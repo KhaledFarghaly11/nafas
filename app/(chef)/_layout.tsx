@@ -1,10 +1,16 @@
 import { Feather } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { useTheme } from '@/design/theme';
+import { useSessionStore } from '@/stores/session-store';
 
 export default function ChefLayout() {
   const theme = useTheme();
+  const role = useSessionStore((s) => s.role);
+
+  if (role !== 'chef') {
+    return <Redirect href="/auth/welcome" />;
+  }
 
   return (
     <Tabs
