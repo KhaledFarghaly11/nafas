@@ -8,6 +8,12 @@ const ThemeContext = createContext<TokenSet>(lightTokens);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const role = useSessionStore((s) => s.role);
+  const hydrated = useSessionStore((s) => s.hydrated);
+
+  if (!hydrated) {
+    return null;
+  }
+
   const tokens = role === 'chef' ? darkTokens : lightTokens;
 
   return <ThemeContext.Provider value={tokens}>{children}</ThemeContext.Provider>;

@@ -41,9 +41,10 @@ export const useSessionStore = create<SessionState>()(
       storage: createJSONStorage(() => AsyncStorage),
       onRehydrateStorage: () => {
         return (_state, error) => {
-          if (!error) {
-            useSessionStore.setState({ hydrated: true });
+          if (error) {
+            console.warn('[session-store] Rehydration failed:', error);
           }
+          useSessionStore.setState({ hydrated: true });
         };
       },
     },

@@ -34,7 +34,7 @@ export function logout(): void {
 
 export function getSession(): UserSession | null {
   const state = sessionStore.getState();
-  if (state.userId === null && state.role === null) {
+  if (state.userId === null || state.role === null) {
     return null;
   }
   return {
