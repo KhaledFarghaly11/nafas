@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@/design/theme';
@@ -14,13 +14,11 @@ export default function PaymentReturnScreen() {
   }
 
   if (!session.userId) {
-    router.replace('/auth/welcome');
-    return null;
+    return <Redirect href="/auth/welcome" />;
   }
 
   if (session.role === 'chef') {
-    router.replace('/(chef)/dashboard');
-    return null;
+    return <Redirect href="/(chef)/dashboard" />;
   }
 
   return (

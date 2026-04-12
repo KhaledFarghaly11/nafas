@@ -28,7 +28,7 @@ function validateSession(state: SessionState): boolean {
   if (userId === null && role === null && phone === null && authenticatedAt === null) {
     return true;
   }
-  if (userId !== null && role !== null && phone !== null) {
+  if (userId !== null && role !== null && phone !== null && authenticatedAt !== null) {
     return true;
   }
   return false;
