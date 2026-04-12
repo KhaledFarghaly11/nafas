@@ -23,7 +23,7 @@ Unauthenticated screens. No tab navigation. Accessible only when no session exis
 
 ### Customer Group (`/(customer)/`)
 
-Authenticated customer screens. 4-tab bottom navigation. Light theme.
+Authenticated customer screens. 5-tab bottom navigation. Light theme.
 
 | Route                           | Tab       | Screen         | Description                                       |
 | ------------------------------- | --------- | -------------- | ------------------------------------------------- |
@@ -62,7 +62,7 @@ Authenticated chef screens. 5-tab bottom navigation. Dark theme.
 
 Executes on every navigation event. Priority: auth check → role check → render.
 
-```
+```text
 IF no session exists:
   → redirect to /auth/welcome
   → prevent access to any (customer)/ or (chef)/ route
@@ -80,7 +80,7 @@ IF session exists with role 'chef':
 
 After successful authentication:
 
-```
+```text
 IF role === 'customer':
   → navigate to /(customer)/home (replace, not push)
 
@@ -92,7 +92,7 @@ IF role === 'chef':
 
 On app launch with persisted session:
 
-```
+```text
 IF valid session exists:
   → skip /auth/welcome
   → navigate directly to role-matched shell home
@@ -106,12 +106,13 @@ IF session is null, corrupted, or partial:
 
 ### Customer Tabs (Bottom Navigation)
 
-| Index | Label (EN) | Label (AR) | Icon      | Route                   |
-| ----- | ---------- | ---------- | --------- | ----------------------- |
-| 0     | Home       | الرئيسية   | home      | `/(customer)/home`      |
-| 1     | Favorites  | المفضلة    | heart     | `/(customer)/favorites` |
-| 2     | Orders     | الطلبات    | clipboard | `/(customer)/orders`    |
-| 3     | Profile    | الحساب     | user      | `/(customer)/profile`   |
+| Index | Label (EN) | Label (AR) | Icon         | Route                   |
+| ----- | ---------- | ---------- | ------------ | ----------------------- |
+| 0     | Home       | الرئيسية   | home         | `/(customer)/home`      |
+| 1     | Favorites  | المفضلة    | heart        | `/(customer)/favorites` |
+| 2     | Cart       | السلة      | shopping-bag | `/(customer)/cart`      |
+| 3     | Orders     | الطلبات    | clipboard    | `/(customer)/orders`    |
+| 4     | Profile    | الحساب     | user         | `/(customer)/profile`   |
 
 ### Chef Tabs (Bottom Navigation)
 
@@ -127,7 +128,7 @@ IF session is null, corrupted, or partial:
 
 Per Constitution Principle VI, deep link routes must be validated against the current session before navigation proceeds.
 
-```
+```text
 nafas://payment-return:
   IF no session → redirect to /auth/welcome
   IF customer session → allow (for future payment flow)

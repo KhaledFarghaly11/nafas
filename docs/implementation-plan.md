@@ -265,7 +265,7 @@ nafas/
 | T063 | Filter implementation  | Category, open now, rating, verified — updates query params                                         |
 | T064 | Kitchen detail header  | Cover image, name, bio, badges, follow/unfollow button, rating, schedule (collapsible)              |
 | T065 | Kitchen detail menu    | Dish list: DishCard with name, description, price, add-to-cart, low stock indicator                 |
-| T066 | Kitchen detail reviews | Review list (read-only): user name, rating, text, date                                              |
+| T066 | Kitchen detail reviews | Review list (read-only): username, rating, text, date                                               |
 | T067 | Add-to-cart from menu  | Tap "+" on DishCard → adds to cartStore under correct kitchen group, shows floating cart button     |
 
 **Exit criteria**: Browse home → search by name → open kitchen → add dishes to cart. Follow kitchen appears in favorites. All states (loading, empty, error) work.

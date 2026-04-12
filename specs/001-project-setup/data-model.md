@@ -11,10 +11,10 @@ Represents the authenticated state of a user. Persisted via Zustand + AsyncStora
 
 | Field           | Type                           | Required         | Default | Constraints                                                                 |
 | --------------- | ------------------------------ | ---------------- | ------- | --------------------------------------------------------------------------- |
-| userId          | `string`                       | Yes (after auth) | `null`  | Non-empty string when authenticated                                         |
+| userId          | `string \| null`               | Yes (after auth) | `null`  | Non-empty string when authenticated                                         |
 | role            | `'customer' \| 'chef' \| null` | Yes              | `null`  | Determined by phone number lookup at auth time                              |
-| phone           | `string`                       | Yes (after auth) | `null`  | Egyptian phone format (matches pre-seeded chef numbers or any other number) |
-| authenticatedAt | `number`                       | Yes (after auth) | `null`  | Unix timestamp of session creation                                          |
+| phone           | `string \| null`               | Yes (after auth) | `null`  | Egyptian phone format (matches pre-seeded chef numbers or any other number) |
+| authenticatedAt | `number \| null`               | Yes (after auth) | `null`  | Unix timestamp of session creation                                          |
 
 **Lifecycle**:
 
@@ -55,7 +55,7 @@ Enumeration of possible user roles. Not a persisted entity — a derived attribu
 
 ## Relationships
 
-```
+```text
 UserSession 1──1 UserRole (derived, not stored separately)
 UserRole 1──1 Shell (determines which route group and tab layout)
 ChefPhoneNumber *──1 UserSession (lookup: phone match → chef role)
@@ -65,7 +65,7 @@ ChefPhoneNumber *──1 UserSession (lookup: phone match → chef role)
 
 ### UserSession
 
-```
+```text
 [No Session] ──phone entry + mock auth──→ [Authenticated]
 [Authenticated] ──sign out──→ [No Session]
 [Authenticated] ──corrupted data──→ [No Session] (auto-clear)
@@ -75,7 +75,7 @@ ChefPhoneNumber *──1 UserSession (lookup: phone match → chef role)
 
 ### Route Guarding
 
-```
+```text
 Customer Session + Chef Route → Redirect to /(customer)/home
 Chef Session + Customer Route → Redirect to /(chef)/dashboard
 No Session + Any Route → Redirect to /auth/welcome
@@ -85,5 +85,5 @@ No Session + Any Route → Redirect to /auth/welcome
 
 - **Persistence layer**: AsyncStorage via Zustand persist middleware
 - **Storage key**: `nafas-session` (namespaced to avoid conflicts)
-- **Hydration**: Synchronous on app launch; root layout reads store state before rendering
+- **Hydration**: Asynchronous on app launch (AsyncStorage-backed); root layout must gate routing until hydration completes using Zustand's `hasHydrated` selector and `onFinishHydration` callback
 - **Clear on**: Explicit sign-out, corrupted/unparseable data, partial session (missing required fields)

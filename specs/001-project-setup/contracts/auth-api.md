@@ -15,36 +15,40 @@ This contract defines the mock authentication API for Phase 1. The API boundary 
 Authenticates a user by phone number. In Phase 1 (mock), this is a simple lookup against pre-seeded data. In production, this would initiate an OTP flow.
 
 **Request**:
-| Field | Type | Required | Validation |
-|-------|------|----------|------------|
-| phone | `string` | Yes | Non-empty, numeric characters only |
+
+| Field | Type     | Required | Validation                         |
+| ----- | -------- | -------- | ---------------------------------- |
+| phone | `string` | Yes      | Non-empty, numeric characters only |
 
 **Response** (`AuthResult`):
-| Field | Type | Description |
-|-------|------|-------------|
-| success | `boolean` | Whether authentication succeeded |
-| user | `User \| null` | User object on success, null on failure |
-| error | `AuthError \| null` | Error details on failure, null on success |
+
+| Field   | Type                | Description                               |
+| ------- | ------------------- | ----------------------------------------- |
+| success | `boolean`           | Whether authentication succeeded          |
+| user    | `User \| null`      | User object on success, null on failure   |
+| error   | `AuthError \| null` | Error details on failure, null on success |
 
 **User**:
-| Field | Type | Description |
-|-------|------|-------------|
-| id | `string` | Unique user identifier |
-| phone | `string` | User's phone number |
-| role | `'customer' \| 'chef'` | Determined by phone number lookup |
-| name | `string` | Display name (pre-seeded for chefs, placeholder for customers) |
+
+| Field | Type                   | Description                                                    |
+| ----- | ---------------------- | -------------------------------------------------------------- |
+| id    | `string`               | Unique user identifier                                         |
+| phone | `string`               | User's phone number                                            |
+| role  | `'customer' \| 'chef'` | Determined by phone number lookup                              |
+| name  | `string`               | Display name (pre-seeded for chefs, placeholder for customers) |
 
 **AuthError**:
-| Field | Type | Description |
-|-------|------|-------------|
-| code | `string` | Error code (e.g., `INVALID_PHONE`, `AUTH_FAILED`) |
-| message | `string` | Human-readable error description |
+
+| Field   | Type     | Description                                       |
+| ------- | -------- | ------------------------------------------------- |
+| code    | `string` | Error code (e.g., `INVALID_PHONE`, `AUTH_FAILED`) |
+| message | `string` | Human-readable error description                  |
 
 **Mock Behavior** (Phase 1):
 
 - If `phone` matches a pre-seeded chef number → return `success: true` with `role: 'chef'`
-- If `phone` is any other non-empty string → return `success: true` with `role: 'customer'` (auto-create customer)
-- If `phone` is empty or non-numeric → return `success: false` with `INVALID_PHONE` error
+- If `phone` is a numeric string not matching a pre-seeded chef number → return `success: true` with `role: 'customer'` (auto-create customer)
+- If `phone` is empty or not a numeric string → return `success: false` with `INVALID_PHONE` error
 
 ### `logout(): void`
 
@@ -57,12 +61,13 @@ Clears the current session. No request body. No response data (void).
 Reads the current session from the store. Used by the auth gate on app launch.
 
 **Response**:
-| Field | Type | Description |
-|-------|------|-------------|
-| userId | `string \| null` | User identifier if authenticated |
-| role | `'customer' \| 'chef' \| null` | User role if authenticated |
-| phone | `string \| null` | Phone number if authenticated |
-| authenticatedAt | `number \| null` | Timestamp if authenticated |
+
+| Field           | Type                           | Description                      |
+| --------------- | ------------------------------ | -------------------------------- |
+| userId          | `string \| null`               | User identifier if authenticated |
+| role            | `'customer' \| 'chef' \| null` | User role if authenticated       |
+| phone           | `string \| null`               | Phone number if authenticated    |
+| authenticatedAt | `number \| null`               | Timestamp if authenticated       |
 
 **Mock Behavior** (Phase 1):
 

@@ -56,7 +56,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: '1.0.0',
   orientation: 'default',
   icon: './assets/icon.png',
-  splash: { image: './assets/splash.png', resizeMode: 'contain', backgroundColor: '#ffffff' },
+  splash: { image: './assets/splash-icon.png', resizeMode: 'contain', backgroundColor: '#ffffff' },
   ios: { supportsTablet: false, bundleIdentifier: 'com.nafas.app' },
   android: {
     adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#ffffff' },
@@ -70,8 +70,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
 ```bash
 # Route groups
-mkdir -p app/auth app/(customer)/home app/(customer)/favorites app/(customer)/cart app/(customer)/checkout app/(customer)/orders app/(customer)/profile
-mkdir -p app/(chef)/dashboard app/(chef)/orders app/(chef)/menu/edit app/(chef)/schedule app/(chef)/stats
+mkdir -p "app/auth" "app/(customer)/home" "app/(customer)/favorites" "app/(customer)/cart" "app/(customer)/checkout" "app/(customer)/orders" "app/(customer)/profile"
+mkdir -p "app/(chef)/dashboard" "app/(chef)/orders" "app/(chef)/menu/edit" "app/(chef)/schedule" "app/(chef)/stats"
 
 # Source modules
 mkdir -p src/api/seeds src/components/primitives src/components/feedback src/components/layout src/components/domain

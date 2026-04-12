@@ -12,7 +12,7 @@ Establish a bootable Expo (managed) mobile app with file-based routing, role-bas
 **Language/Version**: TypeScript 5.x (strict mode)
 **Primary Dependencies**: Expo SDK 54 (managed), Expo Router v6, TanStack React Query v5, Zustand v5
 **Storage**: AsyncStorage (session persistence, mock DB in later phases)
-**Testing**: Jest + ts-jest (jest-expo deferred to later phase due to React 19 compatibility)
+**Testing**: Jest + babel-jest (jest-expo deferred to later phase due to React 19 compatibility)
 **Target Platform**: iOS 15+ and Android 12+ (Expo managed workflow)
 **Project Type**: mobile-app (frontend-only with mock API boundary)
 **Performance Goals**: App launch to interactive ≤ 3s; route transition ≤ 2s

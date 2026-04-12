@@ -10,14 +10,11 @@ Auto-generated from all feature plans. Last updated: 2026-04-12
 ## Project Structure
 
 ```text
-src/
-tests/
-
 app/                          # Expo Router file-based routing
 ├── _layout.tsx               # Root layout: auth gate + theme provider
 ├── auth/                     # Auth shell (no tabs)
-├── customer/               # Customer shell (tab layout, light theme)
-└── chef/                   # Chef shell (tab layout, dark theme)
+├── (customer)/               # Customer shell (tab layout, light theme)
+└── (chef)/                   # Chef shell (tab layout, dark theme)
 
 src/
 ├── api/                      # Mock API layer
@@ -28,6 +25,8 @@ src/
 ├── i18n/                     # Internationalization
 ├── lib/                      # Utilities
 └── types/                    # Shared TypeScript types
+
+__tests__/                    # Test files
 ```
 
 ## Commands

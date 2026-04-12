@@ -10,7 +10,7 @@
 
 **Decision**: Use parenthesized route groups `(customer)/` and `(chef)/` for role-specific tab navigation, with a non-parenthesized `auth/` group for unauthenticated screens.
 
-**Rationale**: Expo Router v4 supports file-based routing with layout groups via parentheses. Parenthesized directories create shared layouts without affecting URL paths — perfect for two separate tab navigators (customer 4-tab, chef 5-tab) under one app. The root `_layout.tsx` acts as the auth gate, conditionally rendering the appropriate shell based on session state.
+**Rationale**: Expo Router v6 supports file-based routing with layout groups via parentheses. Parenthesized directories create shared layouts without affecting URL paths — perfect for two separate tab navigators (customer 5-tab, chef 5-tab) under one app. The root `_layout.tsx` acts as the auth gate, conditionally rendering the appropriate shell based on session state.
 
 **Alternatives considered**:
 
@@ -34,7 +34,7 @@
 
 **Decision**: Zustand with `zustand/middleware` persist middleware using AsyncStorage as the storage backend. Session store shape: `{ userId: string | null, role: 'customer' | 'chef' | null, phone: string | null }`. On app launch, the store hydrates from AsyncStorage before the root layout renders.
 
-**Rationale**: Zustand's persist middleware is purpose-built for this pattern. AsyncStorage is the standard async storage for React Native. Hydration happens synchronously in Zustand's store initialization, so the root layout can read the session immediately. The implementation plan already specifies this approach (session-store.ts).
+**Rationale**: Zustand's persist middleware is purpose-built for this pattern. AsyncStorage is the standard async storage for React Native. Hydration happens asynchronously via AsyncStorage, so the root layout must gate routing until hydration completes — use Zustand's `hasHydrated` selector and `onFinishHydration` callback to prevent flash of unauthorized content. The implementation plan already specifies this approach (session-store.ts).
 
 **Alternatives considered**:
 
@@ -44,7 +44,7 @@
 
 ### 4. Mock Authentication for Phase 1
 
-**Decision**: Welcome screen includes a phone number input. On submit, the app checks if the number matches a pre-seeded chef number (from `seeds/users.ts`). If match → create session with role `chef`. Otherwise → create session with role `customer`. No OTP, no validation beyond non-empty input.
+**Decision**: Welcome screen includes a phone number input. On submit, the app validates that the input is numeric-only (digits), then checks if the number matches a pre-seeded chef number (from `seeds/users.ts`). If non-numeric or empty, return an `INVALID_PHONE` error. If match → create session with role `chef`. Otherwise → create session with role `customer`. No OTP.
 
 **Rationale**: The spec (per clarification Q1) explicitly chose phone-input-only mock auth. This keeps the welcome screen UX consistent with Phase 4's direction while avoiding duplicate work. The mock auth function lives in `src/api/mock-server.ts` behind the same API boundary that real auth will use later.
 

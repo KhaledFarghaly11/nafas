@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "test": "jest",
+    "quality-gate": "npm test && npm run lint",
     "prepare": "husky"
   },
   "dependencies": {

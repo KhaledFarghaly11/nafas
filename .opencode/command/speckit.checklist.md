@@ -360,7 +360,7 @@ Check if `.specify/extensions.yml` exists in the project root.
 
   - **Mandatory hook** (`optional: false`):
 
-    ```
+    ```text
     ## Extension Hooks
 
     **Automatic Hook**: {extension}

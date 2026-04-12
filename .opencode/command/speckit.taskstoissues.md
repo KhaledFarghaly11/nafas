@@ -95,7 +95,7 @@ Check if `.specify/extensions.yml` exists in the project root.
 
   - **Mandatory hook** (`optional: false`):
 
-    ```
+    ```markdown
     ## Extension Hooks
 
     **Automatic Hook**: {extension}

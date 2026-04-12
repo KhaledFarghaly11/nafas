@@ -187,7 +187,7 @@ Given that feature description, do this:
    - Document specific issues found (quote relevant spec sections)
 
    c. **Handle Validation Results**:
-   - **If all items pass**: Mark checklist complete and proceed to step 7
+   - **If all items pass**: Mark checklist complete and proceed to step 8
 
    - **If items fail (excluding [NEEDS CLARIFICATION])**:
      1. List the failing items and specific issues
@@ -219,7 +219,7 @@ Given that feature description, do this:
         **Your choice**: _[Wait for user response]_
         ```
 
-     4. **CRITICAL - Table Formatting**: Ensure markdown tables are properly formatted:
+     4. **CRITICAL - Table Formatting**: Ensure Markdown tables are properly formatted:
         - Use consistent spacing with pipes aligned
         - Each cell should have spaces around content: `| Content |` not `|Content|`
         - Header separator must have at least 3 dashes: `|--------|`
@@ -261,7 +261,7 @@ Given that feature description, do this:
 
      - **Mandatory hook** (`optional: false`):
 
-       ```
+       ```text
        ## Extension Hooks
 
        **Automatic Hook**: {extension}
