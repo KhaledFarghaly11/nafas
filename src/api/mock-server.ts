@@ -3,7 +3,8 @@ import { sessionStore } from '@/stores/session-store';
 import type { AuthResult, UserSession } from '@/types/user';
 
 export function login(phone: string): AuthResult {
-  if (!phone || !/^\d+$/.test(phone)) {
+  const normalizedPhone = phone?.trim();
+  if (!normalizedPhone || !/^\d+$/.test(normalizedPhone)) {
     return {
       success: false,
       user: null,
@@ -11,19 +12,29 @@ export function login(phone: string): AuthResult {
     };
   }
 
-  const matchedChef = CHEF_ACCOUNTS.find((c) => c.phone === phone);
+  const matchedChef = CHEF_ACCOUNTS.find((c) => c.phone === normalizedPhone);
 
   if (matchedChef) {
     return {
       success: true,
-      user: { id: `chef-${phone}`, phone, role: 'chef' as const, name: matchedChef.name },
+      user: {
+        id: `chef-${normalizedPhone}`,
+        phone: normalizedPhone,
+        role: 'chef' as const,
+        name: matchedChef.name,
+      },
       error: null,
     };
   }
 
   return {
     success: true,
-    user: { id: `customer-${phone}`, phone, role: 'customer' as const, name: 'Customer' },
+    user: {
+      id: `customer-${normalizedPhone}`,
+      phone: normalizedPhone,
+      role: 'customer' as const,
+      name: 'Customer',
+    },
     error: null,
   };
 }
