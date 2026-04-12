@@ -2,7 +2,8 @@ import { login as mockLogin, logout as mockLogout } from '@/api/mock-server';
 import { sessionStore, useSessionStore } from '@/stores/session-store';
 
 export function useAuth() {
-  const { userId, role } = useSessionStore((s) => ({ userId: s.userId, role: s.role }));
+  const userId = useSessionStore((s) => s.userId);
+  const role = useSessionStore((s) => s.role);
 
   const isAuthenticated = userId !== null;
 
