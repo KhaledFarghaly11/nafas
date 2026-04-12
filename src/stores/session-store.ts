@@ -13,13 +13,31 @@ interface SessionState {
   logout: () => void;
 }
 
+const INITIAL_STATE = {
+  userId: null as string | null,
+  role: null as UserRole | null,
+  phone: null as string | null,
+  authenticatedAt: null as number | null,
+};
+
+function validateSession(state: SessionState): boolean {
+  const { userId, role, phone, authenticatedAt } = state;
+  if ([userId, role, phone, authenticatedAt].some((v) => v === undefined)) {
+    return false;
+  }
+  if (userId === null && role === null && phone === null && authenticatedAt === null) {
+    return true;
+  }
+  if (userId !== null && role !== null && phone !== null && authenticatedAt !== null) {
+    return true;
+  }
+  return false;
+}
+
 export const useSessionStore = create<SessionState>()(
   persist(
     (set) => ({
-      userId: null,
-      role: null,
-      phone: null,
-      authenticatedAt: null,
+      ...INITIAL_STATE,
       hydrated: false,
       login: (user) =>
         set({
@@ -30,21 +48,22 @@ export const useSessionStore = create<SessionState>()(
         }),
       logout: () =>
         set({
-          userId: null,
-          role: null,
-          phone: null,
-          authenticatedAt: null,
+          ...INITIAL_STATE,
         }),
     }),
     {
       name: 'nafas-session',
       storage: createJSONStorage(() => AsyncStorage),
       onRehydrateStorage: () => {
-        return (_state, error) => {
+        return (state, error) => {
           if (error) {
             console.warn('[session-store] Rehydration failed:', error);
           }
-          useSessionStore.setState({ hydrated: true });
+          if (state && !validateSession(state)) {
+            useSessionStore.setState({ ...INITIAL_STATE, hydrated: true });
+          } else {
+            useSessionStore.setState({ hydrated: true });
+          }
         };
       },
     },
