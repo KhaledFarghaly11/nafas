@@ -175,19 +175,19 @@ nafas/
 
 **Goal**: Theme tokens, core components, and bilingual RTL/LTR working.
 
-| ID   | Task                         | Details                                                                                  |
-| ---- | ---------------------------- | ---------------------------------------------------------------------------------------- |
-| T011 | Design tokens from design.md | `tokens.ts`: both palettes (light/dark), spacing, typography scale, radius, shadows      |
-| T012 | Theme provider               | `theme.ts`: reads role from session store, provides light or dark token set              |
-| T013 | Typography setup             | Space Grotesk + Cairo + Inter loaded, font selection by locale                           |
-| T014 | Icon standardization         | Pick one icon set (e.g., `@expo/vector-icons`/Feather), wrap in themed Icon component    |
-| T015 | Primitives                   | Button, Input, Text, Card, Badge, Divider — all token-driven, theme-aware                |
-| T016 | Screen container             | Safe-area handling, background from theme, scroll behavior                               |
-| T017 | Feedback components          | Skeleton (list + detail variants), EmptyState (with CTA), ErrorState (with retry), Toast |
-| T018 | i18n setup                   | i18next + react-i18next, `ar/common.json`, `en/common.json` structure                    |
-| T019 | RTL/LTR handling             | I18nManager direction on language change, full reload with confirmation dialog           |
-| T020 | Language toggle              | Settings screen: language picker, persisted in settings store                            |
-| T021 | RTL verification pass        | Verify all primitives render correctly in both directions                                |
+| ID   | Task                         | Details                                                                                                                                  |
+| ---- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| T011 | Design tokens from design.md | `tokens.ts`: Nafas palette (cream/clay/saffron/oud/bark/smoke/mint/rose), warm shadows, both palettes, spacing, typography scale, radius |
+| T012 | Theme provider               | `theme.ts`: reads role from session store, provides light or dark Nafas token set                                                        |
+| T013 | Typography setup             | Tajawal (Arabic display) + Noto Sans Arabic (Arabic body) + Cormorant Garamond (numeral) loaded via @expo-google-fonts                   |
+| T014 | Icon standardization         | Pick one icon set (e.g., `@expo/vector-icons`/Feather), wrap in themed Icon component                                                    |
+| T015 | Primitives                   | Button, Input, Text, Card, Badge, Divider — all token-driven, theme-aware                                                                |
+| T016 | Screen container             | Safe-area handling, background from theme, scroll behavior                                                                               |
+| T017 | Feedback components          | Skeleton (list + detail variants), EmptyState (with CTA), ErrorState (with retry), Toast                                                 |
+| T018 | i18n setup                   | i18next + react-i18next, `ar/common.json` (Egyptian dialect), `en/common.json` structure                                                 |
+| T019 | RTL/LTR handling             | I18nManager direction on language change, full reload with confirmation dialog                                                           |
+| T020 | Language toggle              | Settings screen: language picker, persisted in settings store                                                                            |
+| T021 | RTL verification pass        | Verify all primitives render correctly in both directions                                                                                |
 
 **Exit criteria**: Switching language to Arabic reloads app in RTL. All primitives render correctly in both themes. No hardcoded colors or magic numbers.
 

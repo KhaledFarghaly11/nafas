@@ -5,7 +5,16 @@ import { useTheme } from '@/design/theme';
 import { useRTL, applyRTLStyle } from '@/lib/rtl';
 
 type FeatherName = React.ComponentProps<typeof Feather>['name'];
-type IconColor = 'primary' | 'secondary' | 'error' | 'inverse';
+type IconColor =
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'inverse'
+  | 'clay'
+  | 'saffron'
+  | 'mint'
+  | 'smoke'
+  | 'bark';
 
 interface IconProps {
   name: FeatherName;
@@ -21,12 +30,17 @@ const colorToToken: Record<IconColor, keyof ReturnType<typeof useTheme>['colors'
   secondary: 'textSecondary',
   error: 'error',
   inverse: 'background',
+  clay: 'clay',
+  saffron: 'saffron',
+  mint: 'mint',
+  smoke: 'smoke',
+  bark: 'bark',
 };
 
 export function Icon({
   name,
   size = 24,
-  color = 'primary',
+  color = 'bark',
   mirrorInRTL = false,
   style,
   testID,

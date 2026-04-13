@@ -11,19 +11,19 @@ interface SkeletonProps {
 
 export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   const tokens = useTheme();
-  const opacity = useRef(new Animated.Value(0.3)).current;
+  const opacity = useRef(new Animated.Value(0.4)).current;
 
   useEffect(() => {
     const animation = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, {
           toValue: 1,
-          duration: 500,
+          duration: 600,
           useNativeDriver: true,
         }),
         Animated.timing(opacity, {
-          toValue: 0.3,
-          duration: 500,
+          toValue: 0.4,
+          duration: 600,
           useNativeDriver: true,
         }),
       ]),

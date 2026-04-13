@@ -1,6 +1,6 @@
 # Feature Specification: Design System + i18n
 
-**Feature Branch**: `001-design-system-i18n`  
+**Feature Branch**: `002-design-system-i18n`  
 **Created**: 2026-04-13  
 **Status**: Draft  
 **Input**: User description: "Phase 2 — Design System + i18n (Area B Foundation): Theme tokens, core components, and bilingual RTL/LTR working."

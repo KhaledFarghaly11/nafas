@@ -1,3 +1,19 @@
+import {
+  CormorantGaramond_400Regular,
+  CormorantGaramond_600SemiBold,
+  CormorantGaramond_400Regular_Italic,
+} from '@expo-google-fonts/cormorant-garamond';
+import {
+  NotoSansArabic_300Light,
+  NotoSansArabic_400Regular,
+  NotoSansArabic_500Medium,
+} from '@expo-google-fonts/noto-sans-arabic';
+import {
+  Tajawal_400Regular,
+  Tajawal_500Medium,
+  Tajawal_700Bold,
+  Tajawal_800ExtraBold,
+} from '@expo-google-fonts/tajawal';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -11,18 +27,18 @@ import { useSettingsStore } from '@/stores/settings-store';
 
 SplashScreen.preventAutoHideAsync();
 
-/* eslint-disable @typescript-eslint/no-require-imports */
 const fontMap = {
-  SpaceGrotesk: require('../assets/fonts/SpaceGrotesk-Regular.ttf'),
-  SpaceGroteskMedium: require('../assets/fonts/SpaceGrotesk-Medium.ttf'),
-  SpaceGroteskBold: require('../assets/fonts/SpaceGrotesk-Bold.ttf'),
-  Inter: require('../assets/fonts/Inter-Regular.ttf'),
-  InterMedium: require('../assets/fonts/Inter-Medium.ttf'),
-  Cairo: require('../assets/fonts/Cairo-Regular.ttf'),
-  CairoMedium: require('../assets/fonts/Cairo-Medium.ttf'),
-  CairoBold: require('../assets/fonts/Cairo-Bold.ttf'),
+  Tajawal: Tajawal_400Regular,
+  TajawalMedium: Tajawal_500Medium,
+  TajawalBold: Tajawal_700Bold,
+  TajawalExtraBold: Tajawal_800ExtraBold,
+  NotoSansArabic: NotoSansArabic_400Regular,
+  NotoSansArabicLight: NotoSansArabic_300Light,
+  NotoSansArabicMedium: NotoSansArabic_500Medium,
+  CormorantGaramond: CormorantGaramond_400Regular,
+  CormorantGaramondSemiBold: CormorantGaramond_600SemiBold,
+  CormorantGaramondItalic: CormorantGaramond_400Regular_Italic,
 };
-/* eslint-enable @typescript-eslint/no-require-imports */
 
 export default function RootLayout() {
   const hydrated = useSessionStore((s) => s.hydrated);

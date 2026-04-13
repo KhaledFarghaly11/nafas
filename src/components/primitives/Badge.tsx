@@ -3,7 +3,15 @@ import { View, StyleSheet, type ViewStyle } from 'react-native';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 
-type BadgeVariant = 'primary' | 'success' | 'warning' | 'error' | 'info';
+type BadgeVariant =
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+  | 'mint'
+  | 'rose'
+  | 'saffron';
 type BadgeSize = 'sm' | 'md';
 
 interface BadgeProps {
@@ -18,11 +26,14 @@ export function Badge({ label, variant = 'primary', size = 'md', style, testID }
   const tokens = useTheme();
 
   const variantColors: Record<BadgeVariant, { bg: string; text: string }> = {
-    primary: { bg: tokens.colors.primaryLight, text: tokens.colors.primary },
-    success: { bg: `${tokens.colors.success}33`, text: tokens.colors.success },
-    warning: { bg: `${tokens.colors.warning}33`, text: tokens.colors.warning },
-    error: { bg: `${tokens.colors.error}33`, text: tokens.colors.error },
-    info: { bg: tokens.colors.primaryLight, text: tokens.colors.primary },
+    primary: { bg: `${tokens.colors.clay}22`, text: tokens.colors.clay },
+    success: { bg: `${tokens.colors.success}22`, text: tokens.colors.success },
+    warning: { bg: `${tokens.colors.saffron}22`, text: tokens.colors.saffron },
+    error: { bg: `${tokens.colors.error}22`, text: tokens.colors.error },
+    info: { bg: `${tokens.colors.mint}22`, text: tokens.colors.mint },
+    mint: { bg: `${tokens.colors.mint}22`, text: tokens.colors.mint },
+    rose: { bg: `${tokens.colors.rose}22`, text: tokens.colors.rose },
+    saffron: { bg: `${tokens.colors.saffron}22`, text: tokens.colors.saffron },
   };
 
   const sizeConfig: Record<

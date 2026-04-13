@@ -1,11 +1,16 @@
 import { router } from 'expo-router';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { logout } from '@/api/mock-server';
+import { Button } from '@/components/primitives/Button';
+import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 
 export default function ProfileScreen() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const handleSignOut = () => {
     logout();
@@ -13,21 +18,26 @@ export default function ProfileScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.text, { color: theme.colors.text }]}>Profile — Coming Soon</Text>
-      <Button title="Sign Out" onPress={handleSignOut} color={theme.colors.primary} />
-    </View>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.content}>
+        <Text variant="heading3" color="secondary">
+          {t('profile')} — {t('coming_soon')}
+        </Text>
+        <Button variant="danger" title={t('sign_out')} onPress={handleSignOut} />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  content: {
     alignItems: 'center',
     flex: 1,
     gap: 16,
     justifyContent: 'center',
-  },
-  text: {
-    fontSize: 18,
+    paddingHorizontal: 24,
   },
 });

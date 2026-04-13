@@ -28,6 +28,17 @@ export type TokenSet = {
     tabBarInactive: string;
     skeletonBase: string;
     skeletonHighlight: string;
+    clay: string;
+    saffron: string;
+    cream: string;
+    linen: string;
+    oud: string;
+    bark: string;
+    smoke: string;
+    mint: string;
+    rose: string;
+    warmWhite: string;
+    overlay: string;
   };
   spacing: {
     xs: number;
@@ -47,6 +58,7 @@ export type TokenSet = {
     '2xl': TypographyEntry;
     '3xl': TypographyEntry;
     '4xl': TypographyEntry;
+    numeral: TypographyEntry;
   };
   radius: {
     none: number;
@@ -64,6 +76,8 @@ export type TokenSet = {
   };
 };
 
+const warmShadowColor = 'rgba(44, 26, 14, 1)';
+
 const sharedTokens = {
   spacing: {
     xs: 4,
@@ -75,50 +89,51 @@ const sharedTokens = {
     '3xl': 48,
   },
   typography: {
-    xs: { fontSize: 12, lineHeight: 18, fontFamily: 'Cairo' },
-    sm: { fontSize: 14, lineHeight: 21, fontFamily: 'Cairo' },
-    md: { fontSize: 16, lineHeight: 24, fontFamily: 'Cairo' },
-    lg: { fontSize: 18, lineHeight: 27, fontFamily: 'Cairo' },
-    xl: { fontSize: 20, lineHeight: 30, fontFamily: 'Cairo' },
-    '2xl': { fontSize: 24, lineHeight: 36, fontFamily: 'Cairo' },
-    '3xl': { fontSize: 30, lineHeight: 45, fontFamily: 'Cairo' },
-    '4xl': { fontSize: 36, lineHeight: 54, fontFamily: 'Cairo' },
+    xs: { fontSize: 12, lineHeight: 20, fontFamily: 'NotoSansArabic' },
+    sm: { fontSize: 14, lineHeight: 24, fontFamily: 'NotoSansArabic' },
+    md: { fontSize: 15, lineHeight: 26, fontFamily: 'NotoSansArabic' },
+    lg: { fontSize: 18, lineHeight: 28, fontFamily: 'CormorantGaramond' },
+    xl: { fontSize: 19, lineHeight: 29, fontFamily: 'TajawalMedium' },
+    '2xl': { fontSize: 24, lineHeight: 36, fontFamily: 'TajawalBold' },
+    '3xl': { fontSize: 30, lineHeight: 42, fontFamily: 'TajawalBold' },
+    '4xl': { fontSize: 36, lineHeight: 48, fontFamily: 'TajawalExtraBold' },
+    numeral: { fontSize: 20, lineHeight: 28, fontFamily: 'CormorantGaramondSemiBold' },
   },
   radius: {
     none: 0,
-    sm: 4,
-    md: 8,
-    lg: 12,
-    xl: 16,
-    full: 9999,
+    sm: 8,
+    md: 12,
+    lg: 20,
+    xl: 24,
+    full: 50,
   },
   shadows: {
     none: {
-      shadowColor: '#000000',
+      shadowColor: warmShadowColor,
       shadowOffset: { width: 0, height: 0 },
       shadowOpacity: 0,
       shadowRadius: 0,
       elevation: 0,
     },
     sm: {
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.18,
-      shadowRadius: 1.0,
+      shadowColor: warmShadowColor,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.08,
+      shadowRadius: 8,
       elevation: 2,
     },
     md: {
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.23,
-      shadowRadius: 2.62,
+      shadowColor: warmShadowColor,
+      shadowOffset: { width: 0, height: 6 },
+      shadowOpacity: 0.12,
+      shadowRadius: 24,
       elevation: 4,
     },
     lg: {
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.25,
-      shadowRadius: 5.46,
+      shadowColor: warmShadowColor,
+      shadowOffset: { width: 0, height: 16 },
+      shadowOpacity: 0.16,
+      shadowRadius: 48,
       elevation: 8,
     },
   },
@@ -126,40 +141,62 @@ const sharedTokens = {
 
 export const lightTokens: TokenSet = {
   colors: {
-    background: '#FFFFFF',
-    text: '#1A1A1A',
-    textSecondary: '#666666',
-    primary: '#2E7D32',
-    primaryLight: '#66BB6A',
-    error: '#D32F2F',
-    success: '#388E3C',
-    warning: '#F57C00',
-    surface: '#F5F5F5',
-    border: '#E0E0E0',
-    tabBackground: '#FFFFFF',
-    tabBarInactive: '#999999',
-    skeletonBase: '#E0E0E0',
-    skeletonHighlight: '#F5F5F5',
+    background: '#FAF3E8',
+    text: '#2C1A0E',
+    textSecondary: '#6B3F28',
+    primary: '#C1714F',
+    primaryLight: '#E8A838',
+    error: '#B84C3C',
+    success: '#5B8C6A',
+    warning: '#E8A838',
+    surface: '#F0E6D3',
+    border: '#D9CCBC',
+    tabBackground: '#FAF3E8',
+    tabBarInactive: '#9E8A78',
+    skeletonBase: '#F0E6D3',
+    skeletonHighlight: '#FAF3E8',
+    clay: '#C1714F',
+    saffron: '#E8A838',
+    cream: '#FAF3E8',
+    linen: '#F0E6D3',
+    oud: '#2C1A0E',
+    bark: '#6B3F28',
+    smoke: '#9E8A78',
+    mint: '#7DADA0',
+    rose: '#D4927A',
+    warmWhite: '#FFFDF9',
+    overlay: 'rgba(44, 26, 14, 0.55)',
   },
   ...sharedTokens,
 };
 
 export const darkTokens: TokenSet = {
   colors: {
-    background: '#121212',
-    text: '#F5F5F5',
-    textSecondary: '#AAAAAA',
-    primary: '#66BB6A',
-    primaryLight: '#81C784',
-    error: '#EF5350',
-    success: '#66BB6A',
-    warning: '#FF9800',
-    surface: '#1E1E1E',
-    border: '#333333',
-    tabBackground: '#1E1E1E',
-    tabBarInactive: '#777777',
-    skeletonBase: '#333333',
-    skeletonHighlight: '#444444',
+    background: '#1A110A',
+    text: '#FAF3E8',
+    textSecondary: '#9E8A78',
+    primary: '#C1714F',
+    primaryLight: '#D4927A',
+    error: '#D45A4A',
+    success: '#7DADA0',
+    warning: '#E8A838',
+    surface: '#261A10',
+    border: '#3D2C1E',
+    tabBackground: '#1A110A',
+    tabBarInactive: '#6B5A4A',
+    skeletonBase: '#2C1A0E',
+    skeletonHighlight: '#3D2C1E',
+    clay: '#C1714F',
+    saffron: '#E8A838',
+    cream: '#FAF3E8',
+    linen: '#F0E6D3',
+    oud: '#2C1A0E',
+    bark: '#9E7B6A',
+    smoke: '#9E8A78',
+    mint: '#7DADA0',
+    rose: '#D4927A',
+    warmWhite: '#FFFDF9',
+    overlay: 'rgba(44, 26, 14, 0.7)',
   },
   ...sharedTokens,
 };

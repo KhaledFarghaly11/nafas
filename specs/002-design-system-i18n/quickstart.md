@@ -1,6 +1,6 @@
 # Quickstart: Design System + i18n
 
-**Feature**: 001-design-system-i18n
+**Feature**: 002-design-system-i18n
 **Date**: 2026-04-13
 
 ---
@@ -16,20 +16,20 @@
 ### 1. Install Dependencies
 
 ```bash
-npm install i18next react-i18next expo-font expo-updates
+npm install i18next react-i18next expo-font expo-updates @expo-google-fonts/tajawal @expo-google-fonts/noto-sans-arabic @expo-google-fonts/cormorant-garamond
 ```
 
 > `@expo/vector-icons` and `@react-native-async-storage/async-storage` are already installed.
 
 ### 2. Font Assets
 
-Download and place font files in `assets/fonts/`:
+Font files are bundled automatically by `@expo-google-fonts` packages — no manual TTF downloads needed.
 
-- `SpaceGrotesk-Regular.ttf`, `SpaceGrotesk-Medium.ttf`, `SpaceGrotesk-Bold.ttf`
-- `Inter-Regular.ttf`, `Inter-Medium.ttf`
-- `Cairo-Regular.ttf`, `Cairo-Medium.ttf`, `Cairo-Bold.ttf`
+Font families loaded at runtime:
 
-Load fonts at runtime using `useFonts()` from `expo-font` in `app/_layout.tsx` — see T012 in `tasks.md` for the full hook call with all font mappings.
+- **Tajawal** (Regular, Medium, Bold, ExtraBold) — Arabic display: headlines, cook names, dish names
+- **Noto Sans Arabic** (Light, Regular, Medium) — Arabic body: readable at small sizes
+- **Cormorant Garamond** (Regular, SemiBold, Italic) — Latin numeral: prices, timers
 
 ### 3. Run the App
 

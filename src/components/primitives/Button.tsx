@@ -52,7 +52,7 @@ export function Button({
     ButtonVariant,
     { bg: string; textColor: 'primary' | 'inverse'; borderColor?: string; borderWidth?: number }
   > = {
-    primary: { bg: tokens.colors.primary, textColor: 'inverse' },
+    primary: { bg: tokens.colors.clay, textColor: 'inverse' },
     secondary: {
       bg: tokens.colors.surface,
       textColor: 'primary',
@@ -69,9 +69,7 @@ export function Button({
   const iconColor: 'inverse' | 'primary' =
     variant === 'primary' || variant === 'danger' ? 'inverse' : 'primary';
   const activityColor =
-    variant === 'ghost' || variant === 'secondary'
-      ? tokens.colors.primary
-      : tokens.colors.background;
+    variant === 'ghost' || variant === 'secondary' ? tokens.colors.clay : tokens.colors.warmWhite;
   const buttonOpacity = disabled ? 0.5 : 1;
 
   return (
@@ -79,16 +77,17 @@ export function Button({
       testID={testID}
       onPress={onPress}
       disabled={disabled || loading}
-      style={[
+      style={({ pressed }) => [
         styles.base,
         {
           backgroundColor: bg,
-          borderRadius: tokens.radius.md,
+          borderRadius: tokens.radius.sm,
           gap: tokens.spacing.xs,
           opacity: buttonOpacity,
           paddingHorizontal: padding * 1.5,
           paddingVertical: padding,
-          ...(borderColor ? { borderColor, borderWidth } : {}),
+          transform: [{ scale: pressed ? 0.97 : 1 }],
+          ...(borderColor ? { borderColor, borderWidth: borderWidth ?? 0 } : {}),
         },
         style,
       ]}

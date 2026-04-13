@@ -1,9 +1,23 @@
 export const fontFamilies = {
-  latin: { heading: 'SpaceGrotesk', body: 'Inter' },
-  arabic: { heading: 'Cairo', body: 'Cairo' },
+  display: 'Tajawal',
+  displayMedium: 'TajawalMedium',
+  displayBold: 'TajawalBold',
+  displayExtraBold: 'TajawalExtraBold',
+  body: 'NotoSansArabic',
+  bodyLight: 'NotoSansArabicLight',
+  bodyMedium: 'NotoSansArabicMedium',
+  numeral: 'CormorantGaramond',
+  numeralSemiBold: 'CormorantGaramondSemiBold',
+  numeralItalic: 'CormorantGaramondItalic',
 } as const;
 
-export function getFontFamily(language: 'ar' | 'en', variant: 'heading' | 'body'): string {
-  const group = language === 'ar' ? fontFamilies.arabic : fontFamilies.latin;
-  return group[variant];
+export type FontRole = 'display' | 'body' | 'numeral';
+
+export function getFontFamily(role: FontRole): string {
+  const map: Record<FontRole, string> = {
+    display: fontFamilies.display,
+    body: fontFamilies.body,
+    numeral: fontFamilies.numeral,
+  };
+  return map[role];
 }
