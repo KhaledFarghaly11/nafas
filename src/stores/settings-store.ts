@@ -10,7 +10,7 @@ export interface SettingsState {
   setLanguage: (lang: 'en' | 'ar') => void;
   themeOverride: 'light' | 'dark' | null;
   setThemeOverride: (mode: 'light' | 'dark' | null) => void;
-  switchLanguage: (lang: 'en' | 'ar') => void;
+  switchLanguage: (lang: 'en' | 'ar') => Promise<void>;
   hydrated: boolean;
 }
 
@@ -21,10 +21,15 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (lang) => set({ language: lang }),
       themeOverride: null,
       setThemeOverride: (mode) => set({ themeOverride: mode }),
-      switchLanguage: (lang) => {
+      switchLanguage: async (lang) => {
         get().setLanguage(lang);
         I18nManager.forceRTL(lang === 'ar');
         i18n.changeLanguage(lang);
+        const state = get();
+        const toPersist = Object.fromEntries(
+          Object.entries(state).filter(([key]) => key !== 'hydrated'),
+        );
+        await AsyncStorage.setItem('nafas-settings', JSON.stringify(toPersist));
         Updates.reloadAsync();
       },
       hydrated: false,

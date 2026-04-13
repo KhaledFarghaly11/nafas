@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   vertical: {
-    height: '100%',
+    alignSelf: 'stretch',
     width: 1,
   },
 });

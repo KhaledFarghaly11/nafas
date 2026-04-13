@@ -42,12 +42,12 @@ export function Card({
       borderWidth: 1,
     },
     filled: {
-      backgroundColor: tokens.colors.primary,
+      backgroundColor: tokens.colors.linen,
     },
   };
 
   const cardStyle = [
-    styles.base,
+    variant !== 'elevated' && styles.base,
     {
       borderRadius: tokens.radius.lg,
       padding: paddingMap[padding],

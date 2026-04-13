@@ -30,12 +30,12 @@ export function LanguageToggle({ style, testID }: LanguageToggleProps) {
   return (
     <View testID={testID} style={[styles.container, { gap: tokens.spacing.md }, style]}>
       <Button
-        title="العربية"
+        title={t('language_arabic')}
         variant={language === 'ar' ? 'primary' : 'ghost'}
         onPress={() => handlePress('ar')}
       />
       <Button
-        title="English"
+        title={t('language_english')}
         variant={language === 'en' ? 'primary' : 'ghost'}
         onPress={() => handlePress('en')}
       />
