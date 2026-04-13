@@ -60,9 +60,9 @@ about.
 
 One codebase, two runtime shells. Shared components, hooks, and
 utilities live in a common layer; role-specific screens and navigation
-graphs are mounted by the active shell. Theme is forced by role
-(Customer = light, Chef = dark) and MUST NOT be user-toggleable within
-a session.
+graphs are mounted by the active shell. Theme defaults to role
+(Customer = light, Chef = dark) but MAY be overridden by explicit
+user preference persisted in the settings store.
 
 **Rationale**: Duplication across two apps would double maintenance;
 shared code with role branching is cheaper and enforces consistency.
@@ -136,8 +136,8 @@ is the boundary between roles; missing guards expose internal screens.
 
 ### Theming
 
-- Customer shell: forced light theme.
-- Chef shell: forced dark theme.
+- Customer shell: default light theme (overridable by user).
+- Chef shell: default dark theme (overridable by user).
 - All tokens sourced from `design.md`.
 - Component library MUST be theme-aware.
 
@@ -240,4 +240,4 @@ conventions and informal agreements.
 Use `.specify/memory/` documents for development-time reference.
 When in doubt, this constitution takes precedence.
 
-**Version**: 1.0.0 | **Ratified**: 2026-04-11 | **Last Amended**: 2026-04-11
+**Version**: 1.1.0 | **Ratified**: 2026-04-11 | **Last Amended**: 2026-04-13
