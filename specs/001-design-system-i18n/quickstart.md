@@ -29,7 +29,7 @@ Download and place font files in `assets/fonts/`:
 - `Inter-Regular.ttf`, `Inter-Medium.ttf`
 - `Cairo-Regular.ttf`, `Cairo-Medium.ttf`, `Cairo-Bold.ttf`
 
-Configure in `app.config.ts` under `expo.fonts`.
+Load fonts at runtime using `useFonts()` from `expo-font` in `app/_layout.tsx` — see T012 in `tasks.md` for the full hook call with all font mappings.
 
 ### 3. Run the App
 

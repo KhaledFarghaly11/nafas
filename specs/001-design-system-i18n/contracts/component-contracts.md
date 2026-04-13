@@ -13,7 +13,7 @@ This document defines the public API contracts for all components and hooks intr
 
 Returns the active token set based on current theme (light or dark).
 
-```
+```typescript
 useTheme(): {
   colors: {
     background: string
@@ -47,7 +47,7 @@ useTheme(): {
 
 Returns `true` if current layout direction is RTL.
 
-```
+```typescript
 useRTL(): boolean
 ```
 
@@ -60,7 +60,7 @@ useRTL(): boolean
 
 Shows a temporary notification at the bottom of the screen.
 
-```
+```typescript
 useToast(): {
   show: (message: string, type?: 'success' | 'error' | 'info') => void
 }
@@ -86,7 +86,7 @@ All primitives share these common patterns:
 
 ### `<Button>`
 
-```
+```typescript
 Button: {
   title: string
   onPress: () => void
@@ -111,7 +111,7 @@ Button: {
 
 ### `<Input>`
 
-```
+```typescript
 Input: {
   value: string
   onChangeText: (text: string) => void
@@ -136,7 +136,7 @@ Input: {
 
 ### `<Text>`
 
-```
+```typescript
 Text: {
   children: ReactNode
   variant?: 'heading1' | 'heading2' | 'heading3' | 'body' | 'caption' | 'overline'
@@ -157,7 +157,7 @@ Text: {
 
 ### `<Card>`
 
-```
+```typescript
 Card: {
   children: ReactNode
   padding?: 'none' | 'sm' | 'md' | 'lg'
@@ -186,7 +186,7 @@ Badge: {
 
 ### `<Divider>`
 
-```
+```typescript
 Divider: {
   orientation?: 'horizontal' | 'vertical'
   spacing?: 'none' | 'sm' | 'md'
@@ -199,7 +199,7 @@ Divider: {
 
 ### `<Icon>`
 
-```
+```typescript
 Icon: {
   name: string        // Feather icon name
   size?: number       // defaults to 24
@@ -220,7 +220,7 @@ Icon: {
 
 ### `<ScreenContainer>`
 
-```
+```typescript
 ScreenContainer: {
   children: ReactNode
   scrollable?: boolean     // defaults to true
@@ -243,7 +243,7 @@ ScreenContainer: {
 
 ### `<Skeleton>`
 
-```
+```typescript
 Skeleton: {
   variant: 'list' | 'detail' | 'card'
   count?: number           // defaults to 3 for list variant
@@ -263,7 +263,7 @@ Skeleton: {
 
 ### `<EmptyState>`
 
-```
+```typescript
 EmptyState: {
   title: string
   message?: string
@@ -284,7 +284,7 @@ EmptyState: {
 
 ### `<ErrorState>`
 
-```
+```typescript
 ErrorState: {
   title?: string           // defaults to translated error title
   message?: string         // defaults to translated error message
@@ -321,9 +321,9 @@ Not directly instantiated. Managed by `<ToastProvider>` and triggered via `useTo
 
 ### `<ThemeProvider>`
 
-```
+```typescript
 ThemeProvider: {
-  children: ReactNode
+  children: ReactNode;
 }
 ```
 
@@ -337,9 +337,9 @@ ThemeProvider: {
 
 ### `<ToastProvider>`
 
-```
+```typescript
 ToastProvider: {
-  children: ReactNode
+  children: ReactNode;
 }
 ```
 
@@ -356,7 +356,7 @@ ToastProvider: {
 
 Existing `settings-store.ts` extension:
 
-```
+```typescript
 SettingsStore: {
   // Existing
   language: 'ar' | 'en'

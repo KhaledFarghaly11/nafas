@@ -40,7 +40,7 @@ Add a `themeOverride` field to `settings-store.ts` (persisted via AsyncStorage).
 ### Alternatives Considered
 
 - **session-store**: Wrong scope — theme preference is a user setting, not auth state; should persist across different sessions
-- **Device system preference (prefers-color-scheme)**: Not in spec; adds a third source of truth. Could be added later as an additional override source
+- **Device system preference (prefers-color-scheme)**: Not in spec; adds a third source of truth. This could be added later as an additional override source.
 
 ### Constitution Violation Note
 

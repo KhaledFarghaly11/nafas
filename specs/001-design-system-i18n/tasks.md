@@ -111,7 +111,7 @@
 - [ ] T034 Run `npm test` and verify all existing tests still pass — no regressions from the token/theme/settings changes.
 - [ ] T035 Verify the complete language switch flow end-to-end: (1) App launches in Arabic (RTL). (2) Switch to English via LanguageToggle → confirmation dialog → app reloads in English (LTR). (3) Switch back to Arabic → confirmation dialog → app reloads in Arabic (RTL). (4) Kill and relaunch app → previous language and theme persist. (5) **Performance check**: measure time from confirming the dialog to app fully loaded in new language — must be under 5 seconds (SC-001). Fix any issues found.
 - [ ] T036 Verify theme override persistence: (1) Login as chef → dark theme. (2) Override to light theme via ThemeToggle. (3) Kill and relaunch → still light theme. (4) Logout → login as chef again → light theme override persists. (5) Select "Default" on ThemeToggle → theme reverts to role-based dark theme. Fix any issues found.
-- [ ] T037 Verify no hardcoded colors or spacing — search all new/modified files for hex color patterns (`#[0-9a-fA-F]{3,8}`) outside of `tokens.ts` and any numeric spacing values not from the token system. Replace any found with token references.
+- [ ] T037 Verify no hardcoded colors or spacing — search all new/modified files for hex color patterns (`#[0-9a-fA-F]{3,8}`) outside `tokens.ts` and any numeric spacing values not from the token system. Replace any found with token references.
 
 ---
 
@@ -151,8 +151,7 @@
 
 ## Parallel Example: User Story 2
 
-```
-# After US1 is complete, these US2 tasks can run in parallel:
+```text, these US2 tasks can run in parallel:
 T021: Card.tsx        (new file)
 T022: Input.tsx       (new file)
 T023: Badge.tsx       (new file)
