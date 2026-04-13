@@ -22,15 +22,22 @@ export const useSettingsStore = create<SettingsState>()(
       themeOverride: null,
       setThemeOverride: (mode) => set({ themeOverride: mode }),
       switchLanguage: async (lang) => {
-        get().setLanguage(lang);
-        I18nManager.forceRTL(lang === 'ar');
-        i18n.changeLanguage(lang);
-        const state = get();
-        const toPersist = Object.fromEntries(
-          Object.entries(state).filter(([key]) => key !== 'hydrated'),
-        );
-        await AsyncStorage.setItem('nafas-settings', JSON.stringify(toPersist));
-        Updates.reloadAsync();
+        try {
+          get().setLanguage(lang);
+          I18nManager.forceRTL(lang === 'ar');
+          await i18n.changeLanguage(lang);
+          const toPersist = Object.fromEntries(
+            Object.entries(get()).filter(([key]) => key !== 'hydrated'),
+          );
+          await AsyncStorage.setItem(
+            'nafas-settings',
+            JSON.stringify({ state: toPersist, version: 0 }),
+          );
+          await Updates.reloadAsync();
+        } catch (error) {
+          console.warn('[settings-store] switchLanguage failed:', error);
+          throw error;
+        }
       },
       hydrated: false,
     }),
