@@ -59,6 +59,13 @@ export default function ChefLayout() {
           tabBarIcon: ({ color, size }) => <Feather name="bar-chart" color={color} size={size} />,
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
+        }}
+      />
     </Tabs>
   );
 }

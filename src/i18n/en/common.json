@@ -1,0 +1,17 @@
+{
+  "app_name": "Nafas",
+  "language_arabic": "العربية",
+  "language_english": "English",
+  "language_change_confirm_title": "Change Language",
+  "language_change_confirm_message": "The app will reload to apply the new language. Continue?",
+  "language_change_confirm_ok": "Change",
+  "language_change_confirm_cancel": "Cancel",
+  "theme_light": "Light",
+  "theme_dark": "Dark",
+  "theme_system": "Default",
+  "error_title": "Something went wrong",
+  "error_message": "An error occurred. Please try again.",
+  "error_retry": "Retry",
+  "empty_title": "Nothing here yet",
+  "toast_dismissed": "Dismissed"
+}

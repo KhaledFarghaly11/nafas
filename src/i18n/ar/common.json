@@ -1,0 +1,17 @@
+{
+  "app_name": "نفس",
+  "language_arabic": "العربية",
+  "language_english": "English",
+  "language_change_confirm_title": "تغيير اللغة",
+  "language_change_confirm_message": "سيتم إعادة تشغيل التطبيق لتطبيق اللغة الجديدة. هل تريد المتابعة؟",
+  "language_change_confirm_ok": "تغيير",
+  "language_change_confirm_cancel": "إلغاء",
+  "theme_light": "فاتح",
+  "theme_dark": "داكن",
+  "theme_system": "الافتراضي",
+  "error_title": "حدث خطأ ما",
+  "error_message": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+  "error_retry": "إعادة المحاولة",
+  "empty_title": "لا يوجد شيء هنا بعد",
+  "toast_dismissed": "تم الرفض"
+}
