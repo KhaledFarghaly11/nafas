@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
+import { ToastProvider } from '@/components/feedback/Toast';
 import { ThemeProvider } from '@/design/theme';
 import i18n from '@/i18n';
 import { QueryProvider } from '@/lib/query-client';
@@ -51,7 +52,9 @@ export default function RootLayout() {
   return (
     <QueryProvider>
       <ThemeProvider>
-        <Slot />
+        <ToastProvider>
+          <Slot />
+        </ToastProvider>
       </ThemeProvider>
     </QueryProvider>
   );
