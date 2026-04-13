@@ -36,7 +36,7 @@ export function ScreenContainer({
     <View style={[styles.flex, { padding: resolvedPadding }]}>{children}</View>
   );
 
-  const containerStyle = [styles.flex, { backgroundColor: tokens.colors.background }, style];
+  const containerStyle = [styles.flex, style, { backgroundColor: tokens.colors.background }];
 
   if (safeArea) {
     return (

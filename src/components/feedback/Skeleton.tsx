@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   },
   detailImage: {
     height: 150,
+    width: 200,
   },
   detailLine1: {
     borderRadius: 4,

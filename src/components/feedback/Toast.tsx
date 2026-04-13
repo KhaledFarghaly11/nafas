@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, createContext, useContext } from 'react';
+import React, { useState, useRef, useCallback, useEffect, createContext, useContext } from 'react';
 import { Animated, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from '@/components/primitives/Text';
@@ -79,20 +79,25 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const translateY = useRef(new Animated.Value(100)).current;
 
   const hideToast = useCallback(() => {
+    const closingId = state.id;
     Animated.timing(translateY, {
       toValue: 100,
       duration: 300,
       useNativeDriver: true,
     }).start(() => {
-      setState((prev) => ({ ...prev, visible: false }));
+      setState((prev) => {
+        if (prev.id !== closingId) return prev;
+        return { ...prev, visible: false };
+      });
     });
-  }, [translateY]);
+  }, [translateY, state.id]);
 
   const show = useCallback(
     (message: string, type: ToastType = 'info') => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+      translateY.stopAnimation();
 
       setState({ visible: true, message, type, id: Date.now() });
 
@@ -108,6 +113,15 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     },
     [translateY, hideToast],
   );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      translateY.stopAnimation();
+    };
+  }, [translateY]);
 
   return (
     <ToastContext.Provider value={{ show }}>
