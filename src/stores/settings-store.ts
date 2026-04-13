@@ -15,13 +15,15 @@ export const useSettingsStore = create<SettingsState>()(
     (set) => ({
       language: 'ar',
       setLanguage: (lang) => set({ language: lang }),
-      themeOverride: null as 'light' | 'dark' | null,
+      themeOverride: null,
       setThemeOverride: (mode) => set({ themeOverride: mode }),
       hydrated: false,
     }),
     {
       name: 'nafas-settings',
       storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) =>
+        Object.fromEntries(Object.entries(state).filter(([key]) => key !== 'hydrated')),
       onRehydrateStorage: () => {
         return (_state, error) => {
           if (error) {
