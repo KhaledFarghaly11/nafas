@@ -38,18 +38,18 @@ export default function WelcomeScreen() {
           {t('app_name')}
         </Text>
         <Text variant="heading3" color="secondary" align="center" style={styles.tagline}>
-          أكل بيتي حقيقي
+          {t('tagline')}
         </Text>
         <View style={styles.inputContainer}>
           <Input
             value={phone}
             onChangeText={setPhone}
-            placeholder="رقم الموبايل"
+            placeholder={t('phone_placeholder')}
             keyboardType="phone-pad"
             maxLength={11}
           />
         </View>
-        <Button title="يلا بينا" onPress={handleLogin} size="lg" style={styles.button} />
+        <Button title={t('login_button')} onPress={handleLogin} size="lg" style={styles.button} />
       </View>
     </SafeAreaView>
   );

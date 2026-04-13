@@ -11,7 +11,7 @@ interface SkeletonProps {
 
 export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   const tokens = useTheme();
-  const opacity = useRef(new Animated.Value(0.3)).current;
+  const opacity = useRef(new Animated.Value(0.4)).current;
 
   useEffect(() => {
     const animation = Animated.loop(

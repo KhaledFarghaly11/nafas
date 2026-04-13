@@ -15,9 +15,9 @@
   "empty_title": "فاضي لسه",
   "toast_dismissed": "تمام",
   "loading": "ثانية وهنوريك",
-  "order_placed": "تمام! الطباخة عرفت",
+  "order_placed": "تم استلام طلبك",
   "empty_cart": "السلة فاضية لسه",
-  "no_cooks": "معفيش طباخين دلوقتي — جرب بكرة الصبح",
+  "no_cooks": "مفيش طباخين دلوقتي — جرب بكرة الصبح",
   "available_now": "متاحة الآن",
   "loved": "محبوب",
   "home": "البيت",
@@ -36,5 +36,9 @@
   "with_driver": "مع المندوب",
   "delivered": "وصل!",
   "confirming": "جاري التأكيد",
-  "currency": "ج.م"
+  "currency": "ج.م",
+  "coming_soon": "قريب",
+  "tagline": "أكل بيتي حقيقي",
+  "phone_placeholder": "رقم الموبايل",
+  "login_button": "يلا بينا"
 }

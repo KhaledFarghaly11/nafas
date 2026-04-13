@@ -191,7 +191,7 @@ export const darkTokens: TokenSet = {
     cream: '#FAF3E8',
     linen: '#F0E6D3',
     oud: '#2C1A0E',
-    bark: '#6B3F28',
+    bark: '#9E7B6A',
     smoke: '#9E8A78',
     mint: '#7DADA0',
     rose: '#D4927A',

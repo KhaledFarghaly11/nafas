@@ -47,9 +47,7 @@ export default function CustomerLayout() {
         name="orders"
         options={{
           title: t('orders'),
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="clipboard-list" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="clipboard" color={color} size={size} />,
         }}
       />
       <Tabs.Screen

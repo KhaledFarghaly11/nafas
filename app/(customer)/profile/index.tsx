@@ -21,7 +21,7 @@ export default function ProfileScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.content}>
         <Text variant="heading3" color="secondary">
-          {t('profile')} — قريب
+          {t('profile')} — {t('coming_soon')}
         </Text>
         <Button variant="danger" title={t('sign_out')} onPress={handleSignOut} />
       </View>

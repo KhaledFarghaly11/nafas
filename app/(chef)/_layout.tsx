@@ -24,7 +24,7 @@ export default function ChefLayout() {
           borderTopColor: theme.colors.border,
         },
         headerStyle: { backgroundColor: theme.colors.background },
-        headerTintColor: theme.colors.oud,
+        headerTintColor: theme.colors.cream,
         headerTitleStyle: { fontFamily: 'TajawalBold' },
         tabBarLabelStyle: { fontFamily: 'TajawalMedium' },
       }}
@@ -40,9 +40,7 @@ export default function ChefLayout() {
         name="orders"
         options={{
           title: t('orders'),
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="clipboard-list" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="clipboard" color={color} size={size} />,
         }}
       />
       <Tabs.Screen

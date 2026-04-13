@@ -36,5 +36,9 @@
   "with_driver": "With the driver",
   "delivered": "Delivered!",
   "confirming": "Confirming",
-  "currency": "EGP"
+  "currency": "EGP",
+  "coming_soon": "Coming Soon",
+  "tagline": "Authentic home-cooked food",
+  "phone_placeholder": "Phone number",
+  "login_button": "Let's go"
 }
