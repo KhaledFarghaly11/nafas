@@ -1,6 +1,6 @@
 # Data Model: Design System + i18n
 
-**Feature**: 001-design-system-i18n
+**Feature**: 002-design-system-i18n
 **Date**: 2026-04-13
 
 ---
@@ -14,7 +14,7 @@ Centralized visual property values consumed by all components.
 | Field    | Type                                                             | Description                                                       |
 | -------- | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
 | category | `'colors' \| 'spacing' \| 'typography' \| 'radius' \| 'shadows'` | Token category                                                    |
-| name     | `string`                                                         | Semantic token name (e.g., `background`, `primary`, `md`)         |
+| name     | `string`                                                         | Semantic token name (e.g., `background`, `clay`, `bark`, `md`)    |
 | value    | `string \| number`                                               | Token value (hex color, px number, etc.)                          |
 | palette  | `'light' \| 'dark' \| 'shared'`                                  | Which palette the token belongs to; `shared` for non-color tokens |
 
@@ -22,8 +22,8 @@ Centralized visual property values consumed by all components.
 
 - Color tokens must be valid hex strings (6 or 8 digits)
 - Spacing values follow a 4px base grid (4, 8, 12, 16, 24, 32, 48, 64)
-- Typography scale defines: xs (12), sm (14), md (16), lg (18), xl (20), 2xl (24), 3xl (30), 4xl (36)
-- Radius values: none (0), sm (4), md (8), lg (12), xl (16), full (9999)
+- Typography scale defines: xs (12), sm (14), md (15), lg (18), xl (19), 2xl (24), 3xl (30), 4xl (36), numeral (20)
+- Radius values: none (0), sm (8), md (12), lg (20), xl (24), full (50)
 - Shadow values: none, sm, md, lg (elevation levels with platform-specific implementations)
 
 ---
@@ -41,8 +41,8 @@ A complete set of tokens identified by mode.
 
 - Default selection: `role === 'chef' ? 'dark' : 'light'`
 - Override selection: `settingsStore.themeOverride ?? defaultSelection`
-- Light palette: warm background, dark text, green primary
-- Dark palette: dark background, light text, light green primary
+- Light palette: cream background (#FAF3E8), oud text (#2C1A0E), clay primary (#C1714F), saffron highlights, warm-tinted shadows
+- Dark palette: deep oud background (#1A110A), cream text (#FAF3E8), clay primary, saffron active tint for chef tabs
 
 **Validation Rules**:
 
@@ -64,8 +64,8 @@ User preference determining text content and layout direction.
 
 **Derived Logic**:
 
-- `ar` → `rtl`, Cairo font family
-- `en` → `ltr`, Space Grotesk + Inter font families
+- `ar` → `rtl`, Tajawal (display) + Noto Sans Arabic (body) font families
+- `en` → `ltr`, Tajawal (display) + Noto Sans Arabic (body) + Cormorant Garamond (numeral) font families
 - Default for new users: `ar`
 
 **Validation Rules**:

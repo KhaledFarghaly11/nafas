@@ -6,7 +6,7 @@ Auto-generated from all feature plans. Last updated: 2026-04-12
 
 - TypeScript 5.x (strict mode) + Expo SDK 54, Expo Router v6, TanStack React Query v5, Zustand v5 (001-project-setup)
 - AsyncStorage (001-project-setup)
-- i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather (001-design-system-i18n)
+- i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather (002-design-system-i18n)
 
 ## Project Structure
 
@@ -41,7 +41,7 @@ TypeScript 5.x: Follow standard conventions
 ## Recent Changes
 
 - 001-project-setup: Added TypeScript 5.x (strict mode) + Expo SDK 54, Expo Router v6, TanStack React Query v5, Zustand v5, React Native 0.81
-- 001-design-system-i18n: Added i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather
+- 002-design-system-i18n: Added i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

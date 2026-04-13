@@ -1,11 +1,13 @@
 import { Feather } from '@expo/vector-icons';
 import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/design/theme';
 import { useSessionStore } from '@/stores/session-store';
 
 export default function CustomerLayout() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const role = useSessionStore((s) => s.role);
 
   if (role !== 'customer') {
@@ -15,31 +17,36 @@ export default function CustomerLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.tabBarInactive,
-        tabBarStyle: { backgroundColor: theme.colors.tabBackground },
+        tabBarActiveTintColor: theme.colors.clay,
+        tabBarInactiveTintColor: theme.colors.smoke,
+        tabBarStyle: {
+          backgroundColor: theme.colors.tabBackground,
+          borderTopColor: theme.colors.border,
+        },
         headerStyle: { backgroundColor: theme.colors.background },
-        headerTintColor: theme.colors.text,
+        headerTintColor: theme.colors.oud,
+        headerTitleStyle: { fontFamily: 'TajawalBold' },
+        tabBarLabelStyle: { fontFamily: 'TajawalMedium' },
       }}
     >
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: t('home'),
           tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
-          title: 'Favorites',
+          title: t('favorites'),
           tabBarIcon: ({ color, size }) => <Feather name="heart" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="orders"
         options={{
-          title: 'Orders',
+          title: t('orders'),
           tabBarIcon: ({ color, size }) => (
             <Feather name="clipboard-list" color={color} size={size} />
           ),
@@ -48,7 +55,7 @@ export default function CustomerLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: t('profile'),
           tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />

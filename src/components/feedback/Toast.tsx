@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect, createContext, useContext } from 'react';
-import { Animated, View, StyleSheet } from 'react-native';
+import { Animated, View, StyleSheet, I18nManager } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
@@ -37,12 +37,17 @@ function ToastInner({
   translateY: Animated.Value;
 }) {
   const tokens = useTheme();
+  const isRTL = I18nManager.isRTL;
 
   const borderColorMap: Record<ToastType, string> = {
     success: tokens.colors.success,
     error: tokens.colors.error,
-    info: tokens.colors.primary,
+    info: tokens.colors.clay,
   };
+
+  const borderEndWidth = isRTL
+    ? { borderLeftWidth: 4, borderLeftColor: borderColorMap[type] }
+    : { borderRightWidth: 4, borderRightColor: borderColorMap[type] };
 
   return (
     <Animated.View style={[styles.wrapper, { transform: [{ translateY }] }]}>
@@ -51,12 +56,12 @@ function ToastInner({
           style={[
             styles.content,
             {
-              backgroundColor: tokens.colors.surface,
-              borderLeftColor: borderColorMap[type],
+              backgroundColor: tokens.colors.linen,
               borderRadius: tokens.radius.lg,
               paddingHorizontal: tokens.spacing.lg,
               paddingVertical: tokens.spacing.md,
               ...tokens.shadows.md,
+              ...borderEndWidth,
             },
           ]}
         >
@@ -135,7 +140,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 const styles = StyleSheet.create({
   content: {
-    borderLeftWidth: 4,
     overflow: 'hidden',
   },
   wrapper: {

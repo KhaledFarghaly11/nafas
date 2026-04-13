@@ -1,11 +1,11 @@
 # Implementation Plan: Design System + i18n
 
-**Branch**: `001-design-system-i18n` | **Date**: 2026-04-13 | **Spec**: [spec.md](./spec.md)
-**Input**: Feature specification from `/specs/001-design-system-i18n/spec.md`
+**Branch**: `002-design-system-i18n` | **Date**: 2026-04-13 | **Spec**: [spec.md](./spec.md)
+**Input**: Feature specification from `/specs/002-design-system-i18n/spec.md`
 
 ## Summary
 
-Build the complete design system foundation for Nafas: design tokens (light/dark palettes + spacing/typography/radius/shadows), a theme provider with manual override support, bilingual i18n (Arabic RTL / English LTR) with full-app-reload on language switch, and a library of themed, direction-aware primitive and feedback components. This is Phase 2 of the implementation plan — the foundation that all subsequent feature screens depend on.
+Build the complete Nafas design system foundation: design tokens (cream/clay/saffron/oud Nafas palette for light + warm dark oud-inspired dark palette, spacing/typography/radius/warm shadows), a theme provider with manual override support, bilingual i18n (Arabic RTL with Egyptian dialect / English LTR) with full-app-reload on language switch, and a library of themed, direction-aware primitive and feedback components. This is Phase 2 of the implementation plan — the foundation that all subsequent feature screens depend on.
 
 ## Technical Context
 
@@ -48,7 +48,7 @@ _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 ### Documentation (this feature)
 
 ```text
-specs/001-design-system-i18n/
+specs/002-design-system-i18n/
 ├── spec.md              # Feature specification
 ├── plan.md              # This file
 ├── research.md          # Phase 0 output

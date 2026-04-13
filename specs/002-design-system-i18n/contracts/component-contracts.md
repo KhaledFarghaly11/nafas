@@ -1,6 +1,6 @@
 # Component Contracts: Design System + i18n
 
-**Feature**: 001-design-system-i18n
+**Feature**: 002-design-system-i18n
 **Date**: 2026-04-13
 
 This document defines the public API contracts for all components and hooks introduced by this feature.
@@ -30,9 +30,20 @@ useTheme(): {
     tabBarInactive: string
     skeletonBase: string
     skeletonHighlight: string
+    clay: string
+    saffron: string
+    cream: string
+    linen: string
+    oud: string
+    bark: string
+    smoke: string
+    mint: string
+    rose: string
+    warmWhite: string
+    overlay: string
   }
   spacing: { xs: number, sm: number, md: number, lg: number, xl: number, 2xl: number, 3xl: number }
-  typography: { xs/sm/md/lg/xl/2xl/3xl/4xl: { fontSize: number, lineHeight: number, fontFamily: string } }
+  typography: { xs/sm/md/lg/xl/2xl/3xl/4xl/numeral: { fontSize: number, lineHeight: number, fontFamily: string } }
   radius: { none: number, sm: number, md: number, lg: number, xl: number, full: number }
   shadows: { none/sm/md/lg: object }
 }
@@ -139,8 +150,8 @@ Input: {
 ```typescript
 Text: {
   children: ReactNode
-  variant?: 'heading1' | 'heading2' | 'heading3' | 'body' | 'caption' | 'overline'
-  color?: 'primary' | 'secondary' | 'error' | 'inverse'  // maps to token, not raw color
+  variant?: 'heading1' | 'heading2' | 'heading3' | 'body' | 'caption' | 'overline' | 'price'
+  color?: 'primary' | 'secondary' | 'error' | 'inverse' | 'clay' | 'saffron' | 'mint' | 'smoke'  // maps to token, not raw color
   align?: 'left' | 'center' | 'right' | 'auto'
   numberOfLines?: number
   style?: TextStyle
@@ -175,7 +186,7 @@ Card: {
 ```
 Badge: {
   label: string
-  variant?: 'primary' | 'success' | 'warning' | 'error' | 'info'
+  variant?: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'mint' | 'rose' | 'saffron'
   size?: 'sm' | 'md'
   style?: ViewStyle
   testID?: string
@@ -203,7 +214,7 @@ Divider: {
 Icon: {
   name: string        // Feather icon name
   size?: number       // defaults to 24
-  color?: 'primary' | 'secondary' | 'error' | 'inverse'  // maps to token
+  color?: 'primary' | 'secondary' | 'error' | 'inverse' | 'clay' | 'saffron' | 'mint' | 'smoke' | 'bark'  // maps to token
   mirrorInRTL?: boolean  // defaults to false
   style?: ViewStyle
   testID?: string

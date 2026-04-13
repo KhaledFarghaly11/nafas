@@ -1,13 +1,21 @@
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { login } from '@/api/mock-server';
+import { useToast } from '@/components/feedback/Toast';
+import { Button } from '@/components/primitives/Button';
+import { Input } from '@/components/primitives/Input';
+import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 import { useSessionStore } from '@/stores/session-store';
 
 export default function WelcomeScreen() {
   const [phone, setPhone] = useState('');
   const theme = useTheme();
+  const { t } = useTranslation();
+  const toast = useToast();
 
   const handleLogin = () => {
     const result = login(phone);
@@ -19,36 +27,38 @@ export default function WelcomeScreen() {
         router.replace('/(customer)/home');
       }
     } else {
-      Alert.alert('Error', result.error?.message ?? 'Authentication failed');
+      toast.show(result.error?.message ?? t('error_message'), 'error');
     }
   };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.content}>
-        <Text style={[styles.title, { color: theme.colors.text }]}>Nafas</Text>
-        <Text style={[styles.tagline, { color: theme.colors.textSecondary }]}>
-          Homemade Egyptian Food
+        <Text variant="heading1" color="clay" align="center" style={styles.title}>
+          {t('app_name')}
         </Text>
-        <TextInput
-          style={[
-            styles.input,
-            { color: theme.colors.text, borderColor: theme.colors.textSecondary },
-          ]}
-          placeholder="Enter phone number"
-          placeholderTextColor={theme.colors.textSecondary}
-          keyboardType="phone-pad"
-          autoFocus
-          value={phone}
-          onChangeText={setPhone}
-        />
-        <Button title="Get Started" onPress={handleLogin} color={theme.colors.primary} />
+        <Text variant="heading3" color="secondary" align="center" style={styles.tagline}>
+          أكل بيتي حقيقي
+        </Text>
+        <View style={styles.inputContainer}>
+          <Input
+            value={phone}
+            onChangeText={setPhone}
+            placeholder="رقم الموبايل"
+            keyboardType="phone-pad"
+            maxLength={11}
+          />
+        </View>
+        <Button title="يلا بينا" onPress={handleLogin} size="lg" style={styles.button} />
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  button: {
+    width: '100%',
+  },
   container: {
     flex: 1,
   },
@@ -56,24 +66,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 32,
+    paddingHorizontal: 24,
   },
-  input: {
-    borderRadius: 8,
-    borderWidth: 1,
-    fontSize: 16,
-    height: 48,
-    marginBottom: 16,
-    paddingHorizontal: 16,
+  inputContainer: {
+    marginBottom: 24,
     width: '100%',
   },
   tagline: {
-    fontSize: 18,
     marginBottom: 48,
   },
   title: {
-    fontSize: 48,
-    fontWeight: 'bold',
     marginBottom: 8,
   },
 });

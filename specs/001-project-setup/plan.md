@@ -23,16 +23,16 @@ Establish a bootable Expo (managed) mobile app with file-based routing, role-bas
 
 _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-| Principle                                    | Status     | Notes                                                                                                             |
-| -------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------- |
-| I. Frontend-Only, Backend-Ready              | ✅ PASS    | Mock API boundary established via `src/api/` layer; auth uses mock phone lookup only                              |
-| II. Single Source of Truth                   | ✅ PASS    | Zustand owns session/client state; no server-state data in Phase 1 yet                                            |
-| III. Role Separation Without App Duplication | ✅ PASS    | Single codebase with `(customer)/` and `(chef)/` route groups sharing common layer                                |
-| IV. RTL/LTR Correctness Is Not Optional      | ✅ PASS    | i18n setup deferred to Phase 2, but route structure is direction-agnostic                                         |
-| V. Design Tokens, Not Hardcoded Styles       | ⚠️ PARTIAL | No tokens yet in Phase 1; basic theme distinction (light/dark) via Expo Router theming — tokens arrive in Phase 2 |
-| VI. Predictable Navigation with Route Guards | ✅ PASS    | Auth gate in root `_layout.tsx` enforces role-based routing; unauthorized access redirects                        |
+| Principle                                    | Status  | Notes                                                                                      |
+| -------------------------------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| I. Frontend-Only, Backend-Ready              | ✅ PASS | Mock API boundary established via `src/api/` layer; auth uses mock phone lookup only       |
+| II. Single Source of Truth                   | ✅ PASS | Zustand owns session/client state; no server-state data in Phase 1 yet                     |
+| III. Role Separation Without App Duplication | ✅ PASS | Single codebase with `(customer)/` and `(chef)/` route groups sharing common layer         |
+| IV. RTL/LTR Correctness Is Not Optional      | ✅ PASS | i18n setup deferred to Phase 2, but route structure is direction-agnostic                  |
+| V. Design Tokens, Not Hardcoded Styles       | ✅ PASS | Full Nafas token system (cream/clay/saffron palette + warm shadows) implemented in Phase 2 |
+| VI. Predictable Navigation with Route Guards | ✅ PASS | Auth gate in root `_layout.tsx` enforces role-based routing; unauthorized access redirects |
 
-**Post-Phase 1 Re-check**: Principle V partial gap addressed — Phase 1 uses minimal theme tokens (background + text color only) to distinguish shells, with full token system deferred to Phase 2 per the implementation plan.
+**Post-Phase 1 Re-check**: Principle V resolved — full Nafas token system (cream background, clay primary, oud text, warm shadows, Tajawal/NotoSansArabic/CormorantGaramond typography) implemented in Phase 2.
 
 ## Project Structure
 
@@ -102,7 +102,7 @@ nafas/
 │   │   └── domain/
 │   ├── design/
 │   │   ├── tokens.ts
-│   │   ├── theme.ts
+│   │   ├── theme.tsx
 │   │   └── typography.ts
 │   ├── hooks/
 │   │   └── use-auth.ts
@@ -138,6 +138,6 @@ nafas/
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation                                  | Why Needed                                                                                                            | Simpler Alternative Rejected Because                                                                     |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Principle V partial (no full token system) | Tokens deferred to Phase 2 per implementation plan; Phase 1 needs minimal theme distinction to validate shell routing | Full token system in Phase 1 would require design.md finalization before routing foundation is validated |
+| Violation                                  | Why Needed                                                                                                                                                       | Simpler Alternative Rejected Because |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Principle V partial (no full token system) | Resolved in Phase 2 — full Nafas token system now implemented with cream/clay/saffron palette, warm shadows, Tajawal/NotoSansArabic/CormorantGaramond typography |

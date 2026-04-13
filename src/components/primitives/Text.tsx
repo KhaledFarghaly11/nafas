@@ -1,12 +1,18 @@
 import React from 'react';
 import { Text as RNText, type TextStyle } from 'react-native';
 import { useTheme } from '@/design/theme';
-import { getFontFamily } from '@/design/typography';
 import { useRTL } from '@/lib/rtl';
-import { useSettingsStore } from '@/stores/settings-store';
 
-type TextVariant = 'heading1' | 'heading2' | 'heading3' | 'body' | 'caption' | 'overline';
-type TextColor = 'primary' | 'secondary' | 'error' | 'inverse';
+type TextVariant = 'heading1' | 'heading2' | 'heading3' | 'body' | 'caption' | 'overline' | 'price';
+type TextColor =
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'inverse'
+  | 'clay'
+  | 'saffron'
+  | 'mint'
+  | 'smoke';
 type TextAlign = 'left' | 'center' | 'right' | 'auto';
 
 interface TextProps {
@@ -24,8 +30,9 @@ const variantToToken: Record<TextVariant, keyof ReturnType<typeof useTheme>['typ
   heading2: '3xl',
   heading3: '2xl',
   body: 'md',
-  caption: 'sm',
+  caption: 'xs',
   overline: 'xs',
+  price: 'numeral',
 };
 
 const colorToToken: Record<TextColor, keyof ReturnType<typeof useTheme>['colors']> = {
@@ -33,6 +40,10 @@ const colorToToken: Record<TextColor, keyof ReturnType<typeof useTheme>['colors'
   secondary: 'textSecondary',
   error: 'error',
   inverse: 'background',
+  clay: 'clay',
+  saffron: 'saffron',
+  mint: 'mint',
+  smoke: 'smoke',
 };
 
 export function Text({
@@ -46,12 +57,9 @@ export function Text({
 }: TextProps) {
   const tokens = useTheme();
   const isRTL = useRTL();
-  const language = useSettingsStore((s) => s.language);
 
   const typo = tokens.typography[variantToToken[variant]];
   const resolvedColor = tokens.colors[colorToToken[color]];
-  const isHeading = variant === 'heading1' || variant === 'heading2' || variant === 'heading3';
-  const fontFamily = getFontFamily(language, isHeading ? 'heading' : 'body');
 
   const resolvedAlign = align === 'auto' ? (isRTL ? 'right' : 'left') : align;
 
@@ -63,7 +71,7 @@ export function Text({
         {
           fontSize: typo.fontSize,
           lineHeight: typo.lineHeight,
-          fontFamily,
+          fontFamily: typo.fontFamily,
           color: resolvedColor,
           textAlign: resolvedAlign,
         },

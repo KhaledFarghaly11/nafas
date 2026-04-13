@@ -1,6 +1,6 @@
 # Research: Design System + i18n
 
-**Feature**: 001-design-system-i18n
+**Feature**: 002-design-system-i18n
 **Date**: 2026-04-13
 
 ---
@@ -14,8 +14,9 @@ Use a flat token object with semantic naming, structured as two complete palette
 ### Rationale
 
 - The existing `tokens.ts` already establishes this pattern with `lightTokens` / `darkTokens`
-- Flat semantic tokens (e.g., `colors.background`, `colors.primary`) are simpler to consume than nested category tokens for a two-theme mobile app
+- Flat semantic tokens (e.g., `colors.background`, `colors.clay`, `colors.bark`) are simpler to consume than nested category tokens for a two-theme mobile app
 - Sharing spacing, typography, radius, and shadows across both palettes avoids duplication and ensures consistency — only colors differ between light and dark (already stated in spec assumptions)
+- The Nafas design system extends tokens beyond basic colors to include semantic palette names (clay, saffron, cream, linen, oud, bark, smoke, mint, rose, warmWhite, overlay) that carry brand meaning
 - This matches the constitution's Principle V (design tokens, not hardcoded styles)
 
 ### Alternatives Considered
@@ -114,18 +115,20 @@ Use `@expo/vector-icons` (Feather set) as the icon family. Wrap in a themed `Ico
 
 ### Decision
 
-Load three font families: Space Grotesk (Latin headings), Inter (Latin body), Cairo (Arabic). Use `useFont()` from `expo-font` at app startup. Typography component selects font family based on active language.
+Load three font families via `@expo-google-fonts`: Tajawal (Arabic display — headlines, cook names, dish names), Noto Sans Arabic (Arabic body — readable at small sizes), Cormorant Garamond (Latin numeral — prices, timers). Use `useFont()` from `expo-font` at app startup. Typography tokens embed font family directly so Text component uses the correct font per variant.
 
 ### Rationale
 
-- Implementation plan (T013) explicitly lists these three fonts
-- Space Grotesk + Inter covers Latin typography with good hierarchy; Cairo is the standard Arabic web font with excellent readability
-- Font selection by locale is straightforward: Arabic → Cairo, English → Space Grotesk/Inter
-- `expo-font` with `useFonts()` hook is the Expo-standard approach
+- Nafas design system specifies Tajawal as the Arabic display font, Noto Sans Arabic as the Arabic body font, and Cormorant Garamond as the numeral/price font
+- Tajawal at 800 weight creates a warm, crafted heading feel; Noto Sans Arabic at 400/500 is optimized for Arabic UI readability; Cormorant Garamond serif makes prices feel editorial not e-commerce
+- `@expo-google-fonts` packages handle font file bundling and loading — no manual TTF downloads needed
+- Line-height for Arabic body must be minimum 1.7 for readability
+- Font family is embedded in typography tokens (not resolved by language at render time) — the `numeral` token uses Cormorant Garamond for price/timer rendering
 
 ### Alternatives Considered
 
-- **System fonts**: No control over Arabic rendering quality; Cairo specifically designed for Arabic UI
+- **Space Grotesk + Inter + Cairo**: Previous plan; replaced per Nafas design system — Space Grotesk/Inter are Latin-only, Cairo is adequate but Tajawal provides warmer display weights (800 ExtraBold)
+- **System fonts**: No control over Arabic rendering quality; Tajawal specifically designed for Arabic UI display
 - **Single font for both scripts**: No font provides excellent coverage of both Latin and Arabic at display quality
 
 ---

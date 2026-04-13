@@ -18,12 +18,12 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
       Animated.sequence([
         Animated.timing(opacity, {
           toValue: 1,
-          duration: 500,
+          duration: 600,
           useNativeDriver: true,
         }),
         Animated.timing(opacity, {
-          toValue: 0.3,
-          duration: 500,
+          toValue: 0.4,
+          duration: 600,
           useNativeDriver: true,
         }),
       ]),
