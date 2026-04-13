@@ -1,20 +1,23 @@
 import React, { createContext, useContext } from 'react';
 import { lightTokens, darkTokens } from '@/design/tokens';
+import type { TokenSet } from '@/design/tokens';
 import { useSessionStore } from '@/stores/session-store';
-
-type TokenSet = typeof lightTokens;
+import { useSettingsStore } from '@/stores/settings-store';
 
 const ThemeContext = createContext<TokenSet>(lightTokens);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const role = useSessionStore((s) => s.role);
-  const hydrated = useSessionStore((s) => s.hydrated);
+  const sessionHydrated = useSessionStore((s) => s.hydrated);
+  const settingsHydrated = useSettingsStore((s) => s.hydrated);
+  const themeOverride = useSettingsStore((s) => s.themeOverride);
 
-  if (!hydrated) {
+  if (!sessionHydrated || !settingsHydrated) {
     return null;
   }
 
-  const tokens = role === 'chef' ? darkTokens : lightTokens;
+  const mode = themeOverride ?? (role === 'chef' ? 'dark' : 'light');
+  const tokens = mode === 'dark' ? darkTokens : lightTokens;
 
   return <ThemeContext.Provider value={tokens}>{children}</ThemeContext.Provider>;
 };

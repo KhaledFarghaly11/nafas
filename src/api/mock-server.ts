@@ -1,4 +1,4 @@
-import { CHEF_ACCOUNTS } from '@/api/seeds/users';
+import { CHEF_ACCOUNTS, CUSTOMER_ACCOUNTS } from '@/api/seeds/users';
 import { sessionStore } from '@/stores/session-store';
 import type { AuthResult, UserSession } from '@/types/user';
 
@@ -27,13 +27,15 @@ export function login(phone: string): AuthResult {
     };
   }
 
+  const matchedCustomer = CUSTOMER_ACCOUNTS.find((c) => c.phone === normalizedPhone);
+
   return {
     success: true,
     user: {
       id: `customer-${normalizedPhone}`,
       phone: normalizedPhone,
       role: 'customer' as const,
-      name: 'Customer',
+      name: matchedCustomer?.name ?? 'Customer',
     },
     error: null,
   };
