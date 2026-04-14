@@ -62,6 +62,7 @@ export type TokenSet = {
   };
   radius: {
     none: number;
+    xs: number;
     sm: number;
     md: number;
     lg: number;
@@ -101,6 +102,7 @@ const sharedTokens = {
   },
   radius: {
     none: 0,
+    xs: 4,
     sm: 8,
     md: 12,
     lg: 20,

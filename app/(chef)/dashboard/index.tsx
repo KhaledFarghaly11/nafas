@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 
 export default function DashboardScreen() {
   const theme = useTheme();
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.text, { color: theme.colors.text }]}>Dashboard — Coming Soon</Text>
+      <Text variant="heading3">Dashboard — Coming Soon</Text>
     </View>
   );
 }
@@ -16,8 +17,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-  },
-  text: {
-    fontSize: 18,
   },
 });

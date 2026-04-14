@@ -19,7 +19,9 @@ export default function ChefProfileScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.content}>
+      <View
+        style={[styles.content, { gap: theme.spacing.lg, paddingHorizontal: theme.spacing.xl }]}
+      >
         <Text variant="heading3" color="secondary">
           {t('profile')} — {t('coming_soon')}
         </Text>
@@ -36,8 +38,6 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     flex: 1,
-    gap: 16,
     justifyContent: 'center',
-    paddingHorizontal: 24,
   },
 });

@@ -33,6 +33,7 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   }, [opacity]);
 
   const baseColor = tokens.colors.skeletonBase;
+  const xs = tokens.radius.xs;
 
   const renderList = () => {
     const rows: React.ReactNode[] = [];
@@ -42,10 +43,19 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
           key={i}
           style={[styles.listRow, { gap: tokens.spacing.md, marginBottom: tokens.spacing.md }]}
         >
-          <Animated.View style={[styles.listAvatar, { backgroundColor: baseColor, opacity }]} />
+          <Animated.View
+            style={[
+              styles.listAvatar,
+              { backgroundColor: baseColor, borderRadius: tokens.radius.lg, opacity },
+            ]}
+          />
           <View style={[styles.listTextBlock, { gap: tokens.spacing.xs }]}>
-            <Animated.View style={[styles.listLine1, { backgroundColor: baseColor, opacity }]} />
-            <Animated.View style={[styles.listLine2, { backgroundColor: baseColor, opacity }]} />
+            <Animated.View
+              style={[styles.listLine1, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+            />
+            <Animated.View
+              style={[styles.listLine2, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+            />
           </View>
         </View>,
       );
@@ -61,9 +71,15 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
           { backgroundColor: baseColor, borderRadius: tokens.radius.md, opacity },
         ]}
       />
-      <Animated.View style={[styles.detailLine1, { backgroundColor: baseColor, opacity }]} />
-      <Animated.View style={[styles.detailLine2, { backgroundColor: baseColor, opacity }]} />
-      <Animated.View style={[styles.detailLine3, { backgroundColor: baseColor, opacity }]} />
+      <Animated.View
+        style={[styles.detailLine1, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+      />
+      <Animated.View
+        style={[styles.detailLine2, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+      />
+      <Animated.View
+        style={[styles.detailLine3, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+      />
     </View>
   );
 
@@ -71,8 +87,12 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
     <View style={[styles.cardOuter, { borderRadius: tokens.radius.lg }]}>
       <Animated.View style={[styles.cardImage, { backgroundColor: baseColor, opacity }]} />
       <View style={[styles.cardInner, { gap: tokens.spacing.sm, padding: tokens.spacing.md }]}>
-        <Animated.View style={[styles.cardLine1, { backgroundColor: baseColor, opacity }]} />
-        <Animated.View style={[styles.cardLine2, { backgroundColor: baseColor, opacity }]} />
+        <Animated.View
+          style={[styles.cardLine1, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+        />
+        <Animated.View
+          style={[styles.cardLine2, { backgroundColor: baseColor, borderRadius: xs, opacity }]}
+        />
       </View>
     </View>
   );
@@ -92,12 +112,10 @@ const styles = StyleSheet.create({
   },
   cardInner: {},
   cardLine1: {
-    borderRadius: 4,
     height: 14,
     width: '60%',
   },
   cardLine2: {
-    borderRadius: 4,
     height: 12,
     width: '40%',
   },
@@ -109,32 +127,26 @@ const styles = StyleSheet.create({
     width: 200,
   },
   detailLine1: {
-    borderRadius: 4,
     height: 14,
     width: '90%',
   },
   detailLine2: {
-    borderRadius: 4,
     height: 12,
     width: '70%',
   },
   detailLine3: {
-    borderRadius: 4,
     height: 12,
     width: '50%',
   },
   listAvatar: {
-    borderRadius: 20,
     height: 40,
     width: 40,
   },
   listLine1: {
-    borderRadius: 4,
     height: 14,
     width: '70%',
   },
   listLine2: {
-    borderRadius: 4,
     height: 12,
     width: '50%',
   },
