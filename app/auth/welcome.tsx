@@ -33,14 +33,24 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.content}>
-        <Text variant="heading1" color="clay" align="center" style={styles.title}>
+      <View style={[styles.content, { paddingHorizontal: theme.spacing.xl }]}>
+        <Text
+          variant="heading1"
+          color="clay"
+          align="center"
+          style={{ marginBottom: theme.spacing.sm }}
+        >
           {t('app_name')}
         </Text>
-        <Text variant="heading3" color="secondary" align="center" style={styles.tagline}>
+        <Text
+          variant="heading3"
+          color="secondary"
+          align="center"
+          style={{ marginBottom: theme.spacing['3xl'] }}
+        >
           {t('tagline')}
         </Text>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, { marginBottom: theme.spacing.xl }]}>
           <Input
             value={phone}
             onChangeText={setPhone}
@@ -66,16 +76,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 24,
   },
   inputContainer: {
-    marginBottom: 24,
     width: '100%',
-  },
-  tagline: {
-    marginBottom: 48,
-  },
-  title: {
-    marginBottom: 8,
   },
 });

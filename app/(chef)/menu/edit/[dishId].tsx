@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 
 export default function EditDishScreen() {
@@ -8,9 +9,7 @@ export default function EditDishScreen() {
   const { dishId } = useLocalSearchParams<{ dishId: string }>();
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.text, { color: theme.colors.text }]}>
-        Edit Dish — Coming Soon ({dishId})
-      </Text>
+      <Text variant="heading3">Edit Dish — Coming Soon ({dishId})</Text>
     </View>
   );
 }
@@ -20,8 +19,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-  },
-  text: {
-    fontSize: 18,
   },
 });

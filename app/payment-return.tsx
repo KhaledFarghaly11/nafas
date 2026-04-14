@@ -1,6 +1,7 @@
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
 import { useSessionStore } from '@/stores/session-store';
 
@@ -23,8 +24,8 @@ export default function PaymentReturnScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={styles.content}>
-        <Text style={[styles.text, { color: theme.colors.text }]}>
+      <View style={[styles.content, { paddingHorizontal: theme.spacing['2xl'] }]}>
+        <Text variant="body">
           Payment Return — status: {status ?? 'unknown'}, orderId: {orderId ?? 'none'}
         </Text>
       </View>
@@ -40,9 +41,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 32,
-  },
-  text: {
-    fontSize: 16,
   },
 });

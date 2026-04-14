@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
+import { withAlpha } from '@/lib/color';
 
 type BadgeVariant =
   | 'primary'
@@ -22,19 +23,25 @@ interface BadgeProps {
   testID?: string;
 }
 
+const BADGE_ALPHA = 0.13;
+
+const variantColorKey: Record<BadgeVariant, keyof ReturnType<typeof useTheme>['colors']> = {
+  primary: 'clay',
+  success: 'success',
+  warning: 'saffron',
+  error: 'error',
+  info: 'mint',
+  mint: 'mint',
+  rose: 'rose',
+  saffron: 'saffron',
+};
+
 export function Badge({ label, variant = 'primary', size = 'md', style, testID }: BadgeProps) {
   const tokens = useTheme();
 
-  const variantColors: Record<BadgeVariant, { bg: string; text: string }> = {
-    primary: { bg: `${tokens.colors.clay}22`, text: tokens.colors.clay },
-    success: { bg: `${tokens.colors.success}22`, text: tokens.colors.success },
-    warning: { bg: `${tokens.colors.saffron}22`, text: tokens.colors.saffron },
-    error: { bg: `${tokens.colors.error}22`, text: tokens.colors.error },
-    info: { bg: `${tokens.colors.mint}22`, text: tokens.colors.mint },
-    mint: { bg: `${tokens.colors.mint}22`, text: tokens.colors.mint },
-    rose: { bg: `${tokens.colors.rose}22`, text: tokens.colors.rose },
-    saffron: { bg: `${tokens.colors.saffron}22`, text: tokens.colors.saffron },
-  };
+  const colorKey = variantColorKey[variant];
+  const color = tokens.colors[colorKey];
+  const bg = withAlpha(color, BADGE_ALPHA);
 
   const sizeConfig: Record<
     BadgeSize,
@@ -42,7 +49,7 @@ export function Badge({ label, variant = 'primary', size = 'md', style, testID }
   > = {
     sm: {
       paddingHorizontal: tokens.spacing.xs,
-      paddingVertical: 2,
+      paddingVertical: tokens.spacing.xs / 2,
       fontSize: tokens.typography.xs.fontSize,
     },
     md: {
@@ -52,7 +59,6 @@ export function Badge({ label, variant = 'primary', size = 'md', style, testID }
     },
   };
 
-  const { bg, text } = variantColors[variant];
   const sizeStyle = sizeConfig[size];
 
   return (
@@ -69,7 +75,7 @@ export function Badge({ label, variant = 'primary', size = 'md', style, testID }
         style,
       ]}
     >
-      <Text style={{ color: text, fontSize: sizeStyle.fontSize }}>{label}</Text>
+      <Text style={{ color, fontSize: sizeStyle.fontSize }}>{label}</Text>
     </View>
   );
 }
