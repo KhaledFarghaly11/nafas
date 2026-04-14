@@ -30,35 +30,37 @@ export default function CustomerLayout() {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="home/index"
         options={{
           title: t('home'),
           tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="favorites"
+        name="favorites/index"
         options={{
           title: t('favorites'),
           tabBarIcon: ({ color, size }) => <Feather name="heart" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="orders"
+        name="orders/index"
         options={{
           title: t('orders'),
           tabBarIcon: ({ color, size }) => <Feather name="clipboard" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="profile/index"
         options={{
           title: t('profile'),
           tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />
-      <Tabs.Screen name="cart" options={{ href: null }} />
-      <Tabs.Screen name="checkout" options={{ href: null }} />
+      <Tabs.Screen name="cart/index" options={{ href: null }} />
+      <Tabs.Screen name="checkout/index" options={{ href: null }} />
+      <Tabs.Screen name="orders/[id]" options={{ href: null }} />
+      <Tabs.Screen name="home/kitchen/[id]" options={{ href: null }} />
     </Tabs>
   );
 }

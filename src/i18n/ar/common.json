@@ -40,5 +40,10 @@
   "coming_soon": "قريب",
   "tagline": "أكل بيتي حقيقي",
   "phone_placeholder": "رقم الموبايل",
-  "login_button": "يلا بينا"
+  "login_button": "يلا بينا",
+  "test_accounts": "حسابات تجريبية",
+  "chef": "طباخ",
+  "customer": "عميل",
+  "error_invalid_phone": "لو سمحت دخّل رقم موبايل صحيح",
+  "error_unknown_phone": "الرقم مش موجود. جرب حساب تجريبي."
 }
