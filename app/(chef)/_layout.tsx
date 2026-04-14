@@ -30,42 +30,42 @@ export default function ChefLayout() {
       }}
     >
       <Tabs.Screen
-        name="dashboard"
+        name="dashboard/index"
         options={{
           title: t('dashboard'),
           tabBarIcon: ({ color, size }) => <Feather name="grid" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="orders"
+        name="orders/index"
         options={{
           title: t('orders'),
           tabBarIcon: ({ color, size }) => <Feather name="clipboard" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="menu"
+        name="menu/index"
         options={{
           title: t('menu'),
           tabBarIcon: ({ color, size }) => <Feather name="book-open" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="schedule"
+        name="schedule/index"
         options={{
           title: t('schedule'),
           tabBarIcon: ({ color, size }) => <Feather name="calendar" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="stats"
+        name="stats/index"
         options={{
           title: t('stats'),
           tabBarIcon: ({ color, size }) => <Feather name="bar-chart" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="profile/index"
         options={{
           title: t('profile'),
           tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
