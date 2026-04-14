@@ -29,7 +29,14 @@ export default function WelcomeScreen() {
         router.replace('/(customer)/home');
       }
     } else {
-      toast.show(result.error?.message ?? t('error_message'), 'error');
+      const errorCode = result.error?.code;
+      const errorKey =
+        errorCode === 'INVALID_PHONE'
+          ? 'error_invalid_phone'
+          : errorCode === 'UNKNOWN_PHONE'
+            ? 'error_unknown_phone'
+            : 'error_message';
+      toast.show(t(errorKey), 'error');
     }
   };
 
@@ -65,13 +72,13 @@ export default function WelcomeScreen() {
         <Button title={t('login_button')} onPress={handleLogin} size="lg" style={styles.button} />
         <View style={{ gap: theme.spacing.sm, marginTop: theme.spacing.xl }}>
           <Text variant="caption" color="secondary" align="center">
-            Test accounts:
+            {t('test_accounts')}
           </Text>
           <Text variant="caption" color="secondary" align="center">
-            Chef: {CHEF_ACCOUNTS[0].phone} ({CHEF_ACCOUNTS[0].name})
+            {t('chef')}: {CHEF_ACCOUNTS[0].phone} ({CHEF_ACCOUNTS[0].name})
           </Text>
           <Text variant="caption" color="secondary" align="center">
-            Customer: {CUSTOMER_ACCOUNTS[0].phone} ({CUSTOMER_ACCOUNTS[0].name})
+            {t('customer')}: {CUSTOMER_ACCOUNTS[0].phone} ({CUSTOMER_ACCOUNTS[0].name})
           </Text>
         </View>
       </View>

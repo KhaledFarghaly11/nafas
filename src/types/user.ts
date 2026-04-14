@@ -17,5 +17,5 @@ export interface UserSession {
 export interface AuthResult {
   success: boolean;
   user: User | null;
-  error: { code: string; message: string } | null;
+  error: { code: string } | null;
 }

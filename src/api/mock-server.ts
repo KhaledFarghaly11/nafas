@@ -8,7 +8,7 @@ export function login(phone: string): AuthResult {
     return {
       success: false,
       user: null,
-      error: { code: 'INVALID_PHONE', message: 'Please enter a valid phone number' },
+      error: { code: 'INVALID_PHONE' },
     };
   }
 
@@ -43,7 +43,7 @@ export function login(phone: string): AuthResult {
   return {
     success: false,
     user: null,
-    error: { code: 'UNKNOWN_PHONE', message: 'Phone number not found. Try a test account.' },
+    error: { code: 'UNKNOWN_PHONE' },
   };
 }
 
