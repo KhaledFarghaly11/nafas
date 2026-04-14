@@ -71,6 +71,8 @@ export default function ChefLayout() {
           tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />
+      <Tabs.Screen name="orders/[id]" options={{ href: null }} />
+      <Tabs.Screen name="menu/edit/[dishId]" options={{ href: null }} />
     </Tabs>
   );
 }
