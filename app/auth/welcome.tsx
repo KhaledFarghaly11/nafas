@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { login } from '@/api/mock-server';
 import { CHEF_ACCOUNTS, CUSTOMER_ACCOUNTS } from '@/api/seeds/users';
+import { LanguageToggle } from '@/components/domain/LanguageToggle';
 import { useToast } from '@/components/feedback/Toast';
 import { Button } from '@/components/primitives/Button';
 import { Input } from '@/components/primitives/Input';
@@ -34,6 +35,7 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <LanguageToggle style={styles.langToggle} />
       <View style={[styles.content, { paddingHorizontal: theme.spacing.xl }]}>
         <Text
           variant="heading1"
@@ -92,5 +94,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '100%',
+  },
+  langToggle: {
+    alignSelf: 'center',
   },
 });
