@@ -82,9 +82,11 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const translateY = useRef(new Animated.Value(100)).current;
+  const stateRef = useRef(state);
+  stateRef.current = state;
 
   const hideToast = useCallback(() => {
-    const closingId = state.id;
+    const closingId = stateRef.current.id;
     Animated.timing(translateY, {
       toValue: 100,
       duration: 300,
@@ -95,7 +97,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         return { ...prev, visible: false };
       });
     });
-  }, [translateY, state.id]);
+  }, [translateY]);
 
   const show = useCallback(
     (message: string, type: ToastType = 'info') => {

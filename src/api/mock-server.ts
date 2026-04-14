@@ -13,7 +13,6 @@ export function login(phone: string): AuthResult {
   }
 
   const matchedChef = CHEF_ACCOUNTS.find((c) => c.phone === normalizedPhone);
-
   if (matchedChef) {
     return {
       success: true,
@@ -28,16 +27,23 @@ export function login(phone: string): AuthResult {
   }
 
   const matchedCustomer = CUSTOMER_ACCOUNTS.find((c) => c.phone === normalizedPhone);
+  if (matchedCustomer) {
+    return {
+      success: true,
+      user: {
+        id: `customer-${normalizedPhone}`,
+        phone: normalizedPhone,
+        role: 'customer' as const,
+        name: matchedCustomer.name,
+      },
+      error: null,
+    };
+  }
 
   return {
-    success: true,
-    user: {
-      id: `customer-${normalizedPhone}`,
-      phone: normalizedPhone,
-      role: 'customer' as const,
-      name: matchedCustomer?.name ?? 'Customer',
-    },
-    error: null,
+    success: false,
+    user: null,
+    error: { code: 'UNKNOWN_PHONE', message: 'Phone number not found. Try a test account.' },
   };
 }
 

@@ -26,7 +26,13 @@ interface ButtonProps {
 const sizeToPadding: Record<ButtonSize, keyof ReturnType<typeof useTheme>['spacing']> = {
   sm: 'sm',
   md: 'md',
-  lg: 'lg',
+  lg: 'xl',
+};
+
+const sizeToMinHeight: Record<ButtonSize, number> = {
+  sm: 36,
+  md: 44,
+  lg: 52,
 };
 
 const sizeToTextVariant: Record<ButtonSize, 'caption' | 'body' | 'heading3'> = {
@@ -67,6 +73,7 @@ export function Button({
 
   const { bg, textColor, borderColor, borderWidth } = variantConfig[variant];
   const padding = tokens.spacing[sizeToPadding[size]];
+  const minHeight = sizeToMinHeight[size];
   const textVariant = sizeToTextVariant[size];
   const iconColor: 'inverse' | 'primary' =
     variant === 'primary' || variant === 'danger' ? 'inverse' : 'primary';
@@ -85,6 +92,7 @@ export function Button({
           backgroundColor: bg,
           borderRadius: tokens.radius.sm,
           gap: tokens.spacing.xs,
+          minHeight,
           opacity: buttonOpacity,
           paddingHorizontal: padding * 1.5,
           paddingVertical: padding,
