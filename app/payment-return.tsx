@@ -1,45 +1,32 @@
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { Text } from '@/components/primitives/Text';
-import { useTheme } from '@/design/theme';
 import { useSessionStore } from '@/stores/session-store';
 
 export default function PaymentReturnScreen() {
   const { status, orderId } = useLocalSearchParams<{ status?: string; orderId?: string }>();
-  const theme = useTheme();
-  const session = useSessionStore();
+  const hydrated = useSessionStore((s) => s.hydrated);
+  const userId = useSessionStore((s) => s.userId);
+  const role = useSessionStore((s) => s.role);
 
-  if (!session.hydrated) {
+  if (!hydrated) {
     return null;
   }
 
-  if (!session.userId) {
+  if (!userId) {
     return <Redirect href="/auth/welcome" />;
   }
 
-  if (session.role === 'chef') {
+  if (role === 'chef') {
     return <Redirect href="/(chef)/dashboard" />;
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <View style={[styles.content, { paddingHorizontal: theme.spacing['2xl'] }]}>
-        <Text variant="body">
-          Payment Return — status: {status ?? 'unknown'}, orderId: {orderId ?? 'none'}
-        </Text>
-      </View>
-    </SafeAreaView>
+    <ScreenContainer>
+      <Text variant="body">
+        Payment Return — status: {status ?? 'unknown'}, orderId: {orderId ?? 'none'}
+      </Text>
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});

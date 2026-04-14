@@ -1,3 +1,26 @@
+/**
+ * Nafas Design Tokens
+ *
+ * Color tokens fall into two categories:
+ *
+ * **Surface tokens** (theme-adapted — different values per theme):
+ *   background, text, textSecondary, primary, primaryLight, error, success,
+ *   warning, surface, border, tabBackground, tabBarInactive, skeletonBase,
+ *   skeletonHighlight, overlay
+ *
+ *   Use these for all UI surfaces, text, borders, and interactive states.
+ *   They automatically adapt when the theme switches.
+ *
+ * **Brand tokens** (shared — identical across light and dark themes):
+ *   clay, saffron, cream, linen, oud, bark (light only), smoke, mint, rose,
+ *   warmWhite
+ *
+ *   Use these for brand accents, badges, and decorative elements only.
+ *   WARNING: Some brand tokens (cream, warmWhite, linen) are very light
+ *   and should NEVER be used as surface/background colors in dark mode.
+ *   The `bark` token is the only brand token that adapts between themes.
+ */
+
 type Shadow = {
   shadowColor: string;
   shadowOffset: { width: number; height: number };

@@ -1,21 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { Text } from '@/components/primitives/Text';
-import { useTheme } from '@/design/theme';
 
 export default function FavoritesScreen() {
-  const theme = useTheme();
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <ScreenContainer>
       <Text variant="heading3">Favorites — Coming Soon</Text>
-    </View>
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});

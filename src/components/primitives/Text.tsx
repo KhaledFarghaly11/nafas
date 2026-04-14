@@ -35,6 +35,16 @@ const variantToToken: Record<TextVariant, keyof ReturnType<typeof useTheme>['typ
   price: 'numeral',
 };
 
+const variantToLevel: Record<TextVariant, number | undefined> = {
+  heading1: 1,
+  heading2: 2,
+  heading3: 3,
+  body: undefined,
+  caption: undefined,
+  overline: undefined,
+  price: undefined,
+};
+
 const colorToToken: Record<TextColor, keyof ReturnType<typeof useTheme>['colors']> = {
   primary: 'text',
   secondary: 'textSecondary',
@@ -63,10 +73,14 @@ export function Text({
 
   const resolvedAlign = align === 'auto' ? (isRTL ? 'right' : 'left') : align;
 
+  const headingLevel = variantToLevel[variant];
+
   return (
     <RNText
       testID={testID}
       numberOfLines={numberOfLines}
+      accessibilityRole={headingLevel ? 'header' : undefined}
+      accessibilityLevel={headingLevel}
       style={[
         {
           fontSize: typo.fontSize,
