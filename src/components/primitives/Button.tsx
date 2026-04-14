@@ -4,6 +4,7 @@ import { ActivityIndicator, Pressable, StyleSheet, type ViewStyle } from 'react-
 import { Icon } from '@/components/primitives/Icon';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
+import { useRTL } from '@/lib/rtl';
 
 type FeatherName = React.ComponentProps<typeof Feather>['name'];
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
@@ -47,6 +48,7 @@ export function Button({
   testID,
 }: ButtonProps) {
   const tokens = useTheme();
+  const isRTL = useRTL();
 
   const variantConfig: Record<
     ButtonVariant,
@@ -93,7 +95,9 @@ export function Button({
       ]}
       pointerEvents={disabled || loading ? 'none' : 'auto'}
     >
-      {leftIcon && !loading && <Icon name={leftIcon} size={16} color={iconColor} />}
+      {(isRTL ? rightIcon : leftIcon) && !loading && (
+        <Icon name={(isRTL ? rightIcon : leftIcon)!} size={16} color={iconColor} />
+      )}
       {loading ? (
         <ActivityIndicator color={activityColor} size="small" />
       ) : (
@@ -101,7 +105,9 @@ export function Button({
           {title}
         </Text>
       )}
-      {rightIcon && !loading && <Icon name={rightIcon} size={16} color={iconColor} />}
+      {(isRTL ? leftIcon : rightIcon) && !loading && (
+        <Icon name={(isRTL ? leftIcon : rightIcon)!} size={16} color={iconColor} />
+      )}
     </Pressable>
   );
 }

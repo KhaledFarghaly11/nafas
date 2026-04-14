@@ -42,7 +42,7 @@ export function Card({
       borderWidth: 1,
     },
     filled: {
-      backgroundColor: tokens.colors.linen,
+      backgroundColor: tokens.colors.primary,
     },
   };
 

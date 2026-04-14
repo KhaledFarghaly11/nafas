@@ -70,7 +70,7 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   const renderCard = () => (
     <View style={[styles.cardOuter, { borderRadius: tokens.radius.lg }]}>
       <Animated.View style={[styles.cardImage, { backgroundColor: baseColor, opacity }]} />
-      <View style={[styles.cardInner, { gap: tokens.spacing.xs, padding: tokens.spacing.md }]}>
+      <View style={[styles.cardInner, { gap: tokens.spacing.sm, padding: tokens.spacing.md }]}>
         <Animated.View style={[styles.cardLine1, { backgroundColor: baseColor, opacity }]} />
         <Animated.View style={[styles.cardLine2, { backgroundColor: baseColor, opacity }]} />
       </View>
@@ -90,10 +90,7 @@ const styles = StyleSheet.create({
   cardImage: {
     height: 120,
   },
-  cardInner: {
-    gap: 8,
-    padding: 12,
-  },
+  cardInner: {},
   cardLine1: {
     borderRadius: 4,
     height: 14,
