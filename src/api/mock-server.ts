@@ -132,9 +132,16 @@ function validateDishFields(
       !input.descriptionEn?.trim()
     )
       return 'INVALID_INPUT';
-    if (input.price === undefined || input.price <= 0) return 'INVALID_INPUT';
-    if (input.prepTime === undefined || input.prepTime <= 0) return 'INVALID_INPUT';
-    if (input.maxPortions === undefined || input.maxPortions <= 0) return 'INVALID_INPUT';
+    if (input.price === undefined || !Number.isFinite(input.price) || input.price <= 0)
+      return 'INVALID_INPUT';
+    if (input.prepTime === undefined || !Number.isFinite(input.prepTime) || input.prepTime <= 0)
+      return 'INVALID_INPUT';
+    if (
+      input.maxPortions === undefined ||
+      !Number.isFinite(input.maxPortions) ||
+      input.maxPortions <= 0
+    )
+      return 'INVALID_INPUT';
     if (!input.category || !VALID_DISH_CATEGORIES.includes(input.category as DishCategory))
       return 'INVALID_INPUT';
     if (!input.categoryEn || !VALID_DISH_CATEGORIES_EN.includes(input.categoryEn as DishCategoryEn))
@@ -144,9 +151,15 @@ function validateDishFields(
     if (input.nameEn !== undefined && !input.nameEn.trim()) return 'INVALID_INPUT';
     if (input.description !== undefined && !input.description.trim()) return 'INVALID_INPUT';
     if (input.descriptionEn !== undefined && !input.descriptionEn.trim()) return 'INVALID_INPUT';
-    if (input.price !== undefined && input.price <= 0) return 'INVALID_INPUT';
-    if (input.prepTime !== undefined && input.prepTime <= 0) return 'INVALID_INPUT';
-    if (input.maxPortions !== undefined && input.maxPortions <= 0) return 'INVALID_INPUT';
+    if (input.price !== undefined && (!Number.isFinite(input.price) || input.price <= 0))
+      return 'INVALID_INPUT';
+    if (input.prepTime !== undefined && (!Number.isFinite(input.prepTime) || input.prepTime <= 0))
+      return 'INVALID_INPUT';
+    if (
+      input.maxPortions !== undefined &&
+      (!Number.isFinite(input.maxPortions) || input.maxPortions <= 0)
+    )
+      return 'INVALID_INPUT';
     if (
       input.category !== undefined &&
       !VALID_DISH_CATEGORIES.includes(input.category as DishCategory)
@@ -195,7 +208,8 @@ export async function signup(name: string, area: string, phone: string): Promise
   if (!normalizedPhone || !/^\d{11}$/.test(normalizedPhone)) {
     return { success: false, user: null, error: { code: 'INVALID_PHONE' } };
   }
-  if (!name || name.length < 1 || name.length > 100) {
+  const trimmedName = name?.trim();
+  if (!trimmedName || trimmedName.length < 1 || trimmedName.length > 100) {
     return { success: false, user: null, error: { code: 'INVALID_NAME' } };
   }
   const validAreas: CairoArea[] = [
@@ -223,7 +237,7 @@ export async function signup(name: string, area: string, phone: string): Promise
     id,
     phone: normalizedPhone,
     role: 'customer' as const,
-    name,
+    name: trimmedName,
     area,
     createdAt: new Date().toISOString(),
   };
@@ -828,12 +842,21 @@ export async function updateChefSchedule(
     return { success: false, error: { code: 'INVALID_INPUT' } };
   }
 
+  const TIME_REGEX = /^([01]\d|2[0-3]):([0-5]\d)$/;
+
   for (const day of scheduleInput) {
     if (day.isOpen) {
       if (!day.openTime || !day.closeTime) {
         return { success: false, error: { code: 'INVALID_TIMES' } };
       }
-      if (day.openTime >= day.closeTime) {
+      if (!TIME_REGEX.test(day.openTime) || !TIME_REGEX.test(day.closeTime)) {
+        return { success: false, error: { code: 'INVALID_TIMES' } };
+      }
+      const openMinutes =
+        parseInt(day.openTime.slice(0, 2), 10) * 60 + parseInt(day.openTime.slice(3), 10);
+      const closeMinutes =
+        parseInt(day.closeTime.slice(0, 2), 10) * 60 + parseInt(day.closeTime.slice(3), 10);
+      if (openMinutes >= closeMinutes) {
         return { success: false, error: { code: 'INVALID_TIMES' } };
       }
     }
