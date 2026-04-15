@@ -87,6 +87,28 @@ function injectedError(): ApiError {
   return { success: false, error: { code: 'INJECTED_ERROR' } };
 }
 
+const VALID_DISH_CATEGORIES: DishCategory[] = [
+  'مشويات',
+  'حلويات',
+  'مقبلات',
+  'أصناف رئيسية',
+  'شوربات',
+  'سلطات',
+  'مشروبات',
+  'فطائر',
+];
+
+const VALID_DISH_CATEGORIES_EN: DishCategoryEn[] = [
+  'Grills',
+  'Sweets',
+  'Appetizers',
+  'Main Dishes',
+  'Soups',
+  'Salads',
+  'Drinks',
+  'Pastries',
+];
+
 function validateDishFields(
   input: {
     name?: string;
@@ -97,23 +119,44 @@ function validateDishFields(
     prepTime?: number;
     maxPortions?: number;
     available?: boolean;
+    category?: string;
+    categoryEn?: string;
   },
   required = false,
 ): string | null {
   if (required) {
-    if (!input.name || !input.nameEn || !input.description || !input.descriptionEn)
+    if (
+      !input.name?.trim() ||
+      !input.nameEn?.trim() ||
+      !input.description?.trim() ||
+      !input.descriptionEn?.trim()
+    )
       return 'INVALID_INPUT';
     if (input.price === undefined || input.price <= 0) return 'INVALID_INPUT';
     if (input.prepTime === undefined || input.prepTime <= 0) return 'INVALID_INPUT';
     if (input.maxPortions === undefined || input.maxPortions <= 0) return 'INVALID_INPUT';
+    if (!input.category || !VALID_DISH_CATEGORIES.includes(input.category as DishCategory))
+      return 'INVALID_INPUT';
+    if (!input.categoryEn || !VALID_DISH_CATEGORIES_EN.includes(input.categoryEn as DishCategoryEn))
+      return 'INVALID_INPUT';
   } else {
-    if (input.name !== undefined && !input.name) return 'INVALID_INPUT';
-    if (input.nameEn !== undefined && !input.nameEn) return 'INVALID_INPUT';
-    if (input.description !== undefined && !input.description) return 'INVALID_INPUT';
-    if (input.descriptionEn !== undefined && !input.descriptionEn) return 'INVALID_INPUT';
+    if (input.name !== undefined && !input.name.trim()) return 'INVALID_INPUT';
+    if (input.nameEn !== undefined && !input.nameEn.trim()) return 'INVALID_INPUT';
+    if (input.description !== undefined && !input.description.trim()) return 'INVALID_INPUT';
+    if (input.descriptionEn !== undefined && !input.descriptionEn.trim()) return 'INVALID_INPUT';
     if (input.price !== undefined && input.price <= 0) return 'INVALID_INPUT';
     if (input.prepTime !== undefined && input.prepTime <= 0) return 'INVALID_INPUT';
     if (input.maxPortions !== undefined && input.maxPortions <= 0) return 'INVALID_INPUT';
+    if (
+      input.category !== undefined &&
+      !VALID_DISH_CATEGORIES.includes(input.category as DishCategory)
+    )
+      return 'INVALID_INPUT';
+    if (
+      input.categoryEn !== undefined &&
+      !VALID_DISH_CATEGORIES_EN.includes(input.categoryEn as DishCategoryEn)
+    )
+      return 'INVALID_INPUT';
   }
   if (input.available !== undefined && typeof input.available !== 'boolean') return 'INVALID_INPUT';
   return null;
@@ -261,8 +304,9 @@ export async function getKitchenDetail(
   const dishes = getDishesByKitchen(id).filter((d) => d.available);
   const reviews = getReviewsByKitchen(id);
   const schedule = getSchedule(id);
+  if (!schedule) return { success: false, error: { code: 'NOT_FOUND' } };
 
-  return { kitchen, dishes, reviews, schedule: schedule! };
+  return { kitchen, dishes, reviews, schedule };
 }
 
 export async function searchKitchens(
@@ -398,7 +442,7 @@ export async function createOrder(input: CreateOrderInput): Promise<{ order: Ord
     let kitchenTotal = 0;
 
     for (const itemInput of kitchenInput.items) {
-      if (!itemInput.quantity || itemInput.quantity < 1) {
+      if (!itemInput.quantity || itemInput.quantity < 1 || !Number.isInteger(itemInput.quantity)) {
         invalidItems.push(itemInput.dishId);
         continue;
       }
