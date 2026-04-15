@@ -87,23 +87,34 @@ function injectedError(): ApiError {
   return { success: false, error: { code: 'INJECTED_ERROR' } };
 }
 
-function validateDishFields(input: {
-  name?: string;
-  nameEn?: string;
-  description?: string;
-  descriptionEn?: string;
-  price?: number;
-  prepTime?: number;
-  maxPortions?: number;
-  available?: boolean;
-}): string | null {
-  if (input.name !== undefined && !input.name) return 'INVALID_INPUT';
-  if (input.nameEn !== undefined && !input.nameEn) return 'INVALID_INPUT';
-  if (input.description !== undefined && !input.description) return 'INVALID_INPUT';
-  if (input.descriptionEn !== undefined && !input.descriptionEn) return 'INVALID_INPUT';
-  if (input.price !== undefined && input.price <= 0) return 'INVALID_INPUT';
-  if (input.prepTime !== undefined && input.prepTime <= 0) return 'INVALID_INPUT';
-  if (input.maxPortions !== undefined && input.maxPortions <= 0) return 'INVALID_INPUT';
+function validateDishFields(
+  input: {
+    name?: string;
+    nameEn?: string;
+    description?: string;
+    descriptionEn?: string;
+    price?: number;
+    prepTime?: number;
+    maxPortions?: number;
+    available?: boolean;
+  },
+  required = false,
+): string | null {
+  if (required) {
+    if (!input.name || !input.nameEn || !input.description || !input.descriptionEn)
+      return 'INVALID_INPUT';
+    if (input.price === undefined || input.price <= 0) return 'INVALID_INPUT';
+    if (input.prepTime === undefined || input.prepTime <= 0) return 'INVALID_INPUT';
+    if (input.maxPortions === undefined || input.maxPortions <= 0) return 'INVALID_INPUT';
+  } else {
+    if (input.name !== undefined && !input.name) return 'INVALID_INPUT';
+    if (input.nameEn !== undefined && !input.nameEn) return 'INVALID_INPUT';
+    if (input.description !== undefined && !input.description) return 'INVALID_INPUT';
+    if (input.descriptionEn !== undefined && !input.descriptionEn) return 'INVALID_INPUT';
+    if (input.price !== undefined && input.price <= 0) return 'INVALID_INPUT';
+    if (input.prepTime !== undefined && input.prepTime <= 0) return 'INVALID_INPUT';
+    if (input.maxPortions !== undefined && input.maxPortions <= 0) return 'INVALID_INPUT';
+  }
   if (input.available !== undefined && typeof input.available !== 'boolean') return 'INVALID_INPUT';
   return null;
 }
@@ -651,20 +662,8 @@ export async function createDish(
   const kitchen = Array.from(db.kitchens.values()).find((k) => k.chefId === chefId);
   if (!kitchen) return { success: false, error: { code: 'NOT_FOUND' } };
 
-  const validationError = validateDishFields(input);
+  const validationError = validateDishFields(input, true);
   if (validationError) return { success: false, error: { code: validationError } };
-
-  if (
-    !input.name ||
-    !input.nameEn ||
-    !input.description ||
-    !input.descriptionEn ||
-    input.price <= 0 ||
-    input.prepTime <= 0 ||
-    input.maxPortions <= 0
-  ) {
-    return { success: false, error: { code: 'INVALID_INPUT' } };
-  }
 
   const id = await getNextId('dish');
   const dish: Dish = {

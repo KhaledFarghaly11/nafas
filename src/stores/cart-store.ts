@@ -120,7 +120,8 @@ export const useCartStore = create<CartState>()(
         set({ kitchenGroups: newGroups });
       },
       updateQuantity: (kitchenId, dishId, quantity) => {
-        if (quantity < 1) {
+        const normalizedQty = Math.max(1, Math.floor(Number(quantity) || 0));
+        if (quantity < 1 || normalizedQty < 1) {
           get().removeItem(kitchenId, dishId);
           return;
         }
@@ -133,7 +134,7 @@ export const useCartStore = create<CartState>()(
         if (itemIdx < 0) return;
 
         const newItems = [...group.items];
-        newItems[itemIdx] = { ...newItems[itemIdx], quantity };
+        newItems[itemIdx] = { ...newItems[itemIdx], quantity: normalizedQty };
         const newGroups = [...kitchenGroups];
         newGroups[groupIdx] = { ...group, items: newItems };
         set({ kitchenGroups: newGroups });
