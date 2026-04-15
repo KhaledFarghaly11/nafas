@@ -3,11 +3,11 @@ import type { Order } from '@/types';
 export const ORDER_SEEDS: Order[] = [
   {
     id: 'order-1',
-    customerId: 'customer-0110000001',
+    customerId: 'customer-01100000001',
     subOrders: [
       {
         kitchenId: 'kitchen-1',
-        chefId: 'chef-0100000001',
+        chefId: 'chef-01000000001',
         status: 'delivered',
         items: [
           { dishId: 'dish-1', dishName: 'كشري', quantity: 2, unitPrice: 65 },
@@ -28,11 +28,11 @@ export const ORDER_SEEDS: Order[] = [
   },
   {
     id: 'order-2',
-    customerId: 'customer-0110000001',
+    customerId: 'customer-01100000001',
     subOrders: [
       {
         kitchenId: 'kitchen-2',
-        chefId: 'chef-0100000002',
+        chefId: 'chef-01000000002',
         status: 'preparing',
         items: [{ dishId: 'dish-6', dishName: 'مشويات مشكلة', quantity: 1, unitPrice: 180 }],
         kitchenTotal: 180,
@@ -50,18 +50,18 @@ export const ORDER_SEEDS: Order[] = [
   },
   {
     id: 'order-3',
-    customerId: 'customer-0110000002',
+    customerId: 'customer-01100000002',
     subOrders: [
       {
         kitchenId: 'kitchen-1',
-        chefId: 'chef-0100000001',
+        chefId: 'chef-01000000001',
         status: 'confirmed',
         items: [{ dishId: 'dish-3', dishName: 'مكرونة بشاميل', quantity: 1, unitPrice: 75 }],
         kitchenTotal: 75,
       },
       {
         kitchenId: 'kitchen-3',
-        chefId: 'chef-0100000003',
+        chefId: 'chef-01000000003',
         status: 'pending',
         items: [{ dishId: 'dish-11', dishName: 'بسبوسة', quantity: 2, unitPrice: 50 }],
         kitchenTotal: 100,

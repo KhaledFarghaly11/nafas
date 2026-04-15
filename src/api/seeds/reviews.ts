@@ -5,7 +5,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-1',
     kitchenId: 'kitchen-1',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 5,
     text: 'الأكل حقيقي زي البيت بالظبط، رائحة المطبخ بتجيب السيرة',
     createdAt: '2026-04-13T14:30:00.000Z',
@@ -13,7 +13,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-2',
     kitchenId: 'kitchen-1',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'الكشري ممتاز بس الشوربة محتاجة شوية توابل زيادة',
     createdAt: '2026-04-12T18:00:00.000Z',
@@ -21,7 +21,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-3',
     kitchenId: 'kitchen-1',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 5,
     text: 'المكرونة باشاميل هنا أحسن حاجة جربتها بره البيت',
     createdAt: '2026-04-11T20:15:00.000Z',
@@ -29,7 +29,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-4',
     kitchenId: 'kitchen-1',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 5,
     text: 'الملوخية طعمها زي ما ماما بتعملها بالظبط',
     createdAt: '2026-04-10T12:00:00.000Z',
@@ -37,7 +37,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-5',
     kitchenId: 'kitchen-1',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'رز بلبن لذيذ جداً والكمية كويسة',
     createdAt: '2026-04-09T16:45:00.000Z',
@@ -46,7 +46,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-6',
     kitchenId: 'kitchen-2',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 5,
     text: 'المشويات طازة وحارة والكفتة عندهم عظيمة',
     createdAt: '2026-04-12T20:00:00.000Z',
@@ -54,7 +54,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-7',
     kitchenId: 'kitchen-2',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 4,
     text: 'الشيش طاووق ممتاز بس كان محتاج شوية ملح',
     createdAt: '2026-04-11T13:30:00.000Z',
@@ -62,7 +62,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-8',
     kitchenId: 'kitchen-2',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 5,
     text: 'أفضل مشويات في الزمالك، الفطيرة كمان ممتازة',
     createdAt: '2026-04-10T19:00:00.000Z',
@@ -70,7 +70,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-9',
     kitchenId: 'kitchen-2',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 4,
     text: 'المقبلات لذيذة خاصة الحمص والمتبل',
     createdAt: '2026-04-09T17:30:00.000Z',
@@ -79,7 +79,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-10',
     kitchenId: 'kitchen-3',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 5,
     text: 'الكنافة النابلسي هنا أحسن حاجة في القاهرة',
     createdAt: '2026-04-13T15:00:00.000Z',
@@ -87,7 +87,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-11',
     kitchenId: 'kitchen-3',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 5,
     text: 'البسبوسة بالقشطة حاجة تانية خالص',
     createdAt: '2026-04-12T10:00:00.000Z',
@@ -95,7 +95,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-12',
     kitchenId: 'kitchen-3',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 5,
     text: 'أم علي هنا بتعيد الذكريات الحلوة',
     createdAt: '2026-04-11T14:00:00.000Z',
@@ -103,7 +103,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-13',
     kitchenId: 'kitchen-3',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'القطايف حلوة بس محتاجة شوية شربات زيادة',
     createdAt: '2026-04-10T16:00:00.000Z',
@@ -111,7 +111,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-14',
     kitchenId: 'kitchen-3',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 5,
     text: 'المحشي ورق عنب طعمه لا يتوصف',
     createdAt: '2026-04-09T12:00:00.000Z',
@@ -120,7 +120,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-15',
     kitchenId: 'kitchen-4',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 4,
     text: 'الفول والطعمية فطار كويس وسعرهم معقول',
     createdAt: '2026-04-12T09:00:00.000Z',
@@ -128,7 +128,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-16',
     kitchenId: 'kitchen-4',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 4,
     text: 'صينية الفرخة طعمها حلو بس الكمية ممكن تكون أكتر',
     createdAt: '2026-04-11T18:00:00.000Z',
@@ -136,7 +136,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-17',
     kitchenId: 'kitchen-4',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'الشوربة دافية ولذيذة والخدمة سريعة',
     createdAt: '2026-04-10T11:30:00.000Z',
@@ -145,7 +145,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-18',
     kitchenId: 'kitchen-5',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 4,
     text: 'الشوربات هنا بتنفع قوي في البرد',
     createdAt: '2026-04-11T13:00:00.000Z',
@@ -153,7 +153,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-19',
     kitchenId: 'kitchen-5',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 5,
     text: 'السلطة سيزر طازة والدجاج مشوي صح',
     createdAt: '2026-04-10T19:30:00.000Z',
@@ -161,7 +161,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-20',
     kitchenId: 'kitchen-5',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'الحمص بالطحينة زيه زي البيت بالظبط',
     createdAt: '2026-04-09T15:00:00.000Z',
@@ -170,7 +170,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-21',
     kitchenId: 'kitchen-6',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 5,
     text: 'الفطير المشلتت هنا روعة بالسمن البلدي',
     createdAt: '2026-04-12T08:00:00.000Z',
@@ -178,7 +178,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-22',
     kitchenId: 'kitchen-6',
-    userId: 'customer-0110000001',
+    userId: 'customer-01100000001',
     rating: 4,
     text: 'فطيرة الجبنة طازة من الفرن والشاي كرك ممتاز',
     createdAt: '2026-04-11T10:00:00.000Z',
@@ -186,7 +186,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-23',
     kitchenId: 'kitchen-6',
-    userId: 'customer-0110000003',
+    userId: 'customer-01100000003',
     rating: 5,
     text: 'عصير المانجو طبيعي ومش مركز زيه زي العلبة',
     createdAt: '2026-04-10T14:00:00.000Z',
@@ -194,7 +194,7 @@ export const REVIEW_SEEDS: Review[] = [
   {
     id: 'review-24',
     kitchenId: 'kitchen-6',
-    userId: 'customer-0110000002',
+    userId: 'customer-01100000002',
     rating: 4,
     text: 'فطيرة السبانخ لذيذة والكمية كويسة للسعر',
     createdAt: '2026-04-09T17:00:00.000Z',

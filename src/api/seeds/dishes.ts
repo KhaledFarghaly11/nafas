@@ -325,7 +325,7 @@ export const DISH_SEEDS: Dish[] = [
     imageUrl: null,
     createdAt: '2026-04-07T11:00:00.000Z',
   },
-  // Kitchen 5 — مطبخ السيدة (Dokki)
+  // Kitchen 5 — مطبخ السيدة (New Cairo)
   {
     id: 'dish-21',
     kitchenId: 'kitchen-5',

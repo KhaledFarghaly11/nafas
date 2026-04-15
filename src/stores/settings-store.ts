@@ -11,6 +11,8 @@ export interface SettingsState {
   themeOverride: 'light' | 'dark' | null;
   setThemeOverride: (mode: 'light' | 'dark' | null) => void;
   switchLanguage: (lang: 'en' | 'ar') => Promise<void>;
+  devErrorInjection: boolean;
+  setDevErrorInjection: (enabled: boolean) => void;
   hydrated: boolean;
 }
 
@@ -21,11 +23,15 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (lang) => set({ language: lang }),
       themeOverride: null,
       setThemeOverride: (mode) => set({ themeOverride: mode }),
+      devErrorInjection: false,
+      setDevErrorInjection: (enabled) => set({ devErrorInjection: enabled }),
       switchLanguage: async (lang) => {
         try {
           get().setLanguage(lang);
           try {
-            I18nManager.forceRTL(lang === 'ar');
+            if (typeof I18nManager.forceRTL === 'function') {
+              I18nManager.forceRTL(lang === 'ar');
+            }
           } catch {
             // forceRTL not supported in all runtimes (e.g. Expo SDK 54 new architecture)
           }
@@ -37,7 +43,11 @@ export const useSettingsStore = create<SettingsState>()(
             'nafas-settings',
             JSON.stringify({ state: toPersist, version: 0 }),
           );
-          await Updates.reloadAsync();
+          try {
+            await Updates.reloadAsync();
+          } catch {
+            // reloadAsync not available in dev mode or Expo Go
+          }
         } catch (error) {
           console.warn('[settings-store] switchLanguage failed:', error);
           throw error;

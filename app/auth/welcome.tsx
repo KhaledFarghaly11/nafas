@@ -19,8 +19,8 @@ export default function WelcomeScreen() {
   const { t } = useTranslation();
   const toast = useToast();
 
-  const handleLogin = () => {
-    const result = login(phone);
+  const handleLogin = async () => {
+    const result = await login(phone, '123456');
     if (result.success && result.user) {
       useSessionStore.getState().login(result.user);
       if (result.user.role === 'chef') {

@@ -95,7 +95,7 @@ export interface ReorderResponse {
 
 export interface ApiError {
   success: false;
-  error: { code: string };
+  error: { code: string; data?: Record<string, unknown> };
 }
 
 export type ApiResult<T> = ({ success: true } & T) | ApiError;

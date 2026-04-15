@@ -1,5 +1,6 @@
 import { login as mockLogin, logout as mockLogout } from '@/api/mock-server';
-import { sessionStore, useSessionStore } from '@/stores/session-store';
+import { useSessionStore } from '@/stores/session-store';
+import type { AuthResult } from '@/types';
 
 export function useAuth() {
   const userId = useSessionStore((s) => s.userId);
@@ -7,16 +8,13 @@ export function useAuth() {
 
   const isAuthenticated = userId !== null;
 
-  const login = (phone: string) => {
-    const result = mockLogin(phone);
-    if (result.success && result.user) {
-      sessionStore.getState().login(result.user);
-    }
+  const login = async (phone: string): Promise<AuthResult> => {
+    const result = await mockLogin(phone, '123456');
     return result;
   };
 
-  const logout = () => {
-    mockLogout();
+  const logout = async () => {
+    await mockLogout();
   };
 
   return { isAuthenticated, role, login, logout };
