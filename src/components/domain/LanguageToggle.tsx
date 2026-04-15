@@ -32,11 +32,13 @@ export function LanguageToggle({ style, testID }: LanguageToggleProps) {
       <Button
         title={t('language_arabic')}
         variant={language === 'ar' ? 'primary' : 'ghost'}
+        size="sm"
         onPress={() => handlePress('ar')}
       />
       <Button
         title={t('language_english')}
         variant={language === 'en' ? 'primary' : 'ghost'}
+        size="sm"
         onPress={() => handlePress('en')}
       />
     </View>
