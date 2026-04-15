@@ -118,7 +118,13 @@ export async function persistDB(): Promise<void> {
 export async function initializeDB(): Promise<void> {
   const stored = await StorageService.getItem<StoredData>(STORAGE_KEY);
   if (stored && stored.version === DB_VERSION) {
-    db = deserializeDB(stored.data);
+    try {
+      db = deserializeDB(stored.data);
+    } catch (err) {
+      console.warn(`[mock-db] Failed to deserialize ${STORAGE_KEY}:`, err);
+      loadSeeds();
+      await persistDB();
+    }
   } else {
     loadSeeds();
     await persistDB();

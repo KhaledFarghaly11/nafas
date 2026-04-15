@@ -34,12 +34,14 @@ export function LanguageToggle({ style, testID }: LanguageToggleProps) {
         variant={language === 'ar' ? 'primary' : 'ghost'}
         size="sm"
         onPress={() => handlePress('ar')}
+        accessibilityState={{ selected: language === 'ar' }}
       />
       <Button
         title={t('language_english')}
         variant={language === 'en' ? 'primary' : 'ghost'}
         size="sm"
         onPress={() => handlePress('en')}
+        accessibilityState={{ selected: language === 'en' }}
       />
     </View>
   );

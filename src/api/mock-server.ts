@@ -87,6 +87,27 @@ function injectedError(): ApiError {
   return { success: false, error: { code: 'INJECTED_ERROR' } };
 }
 
+function validateDishFields(input: {
+  name?: string;
+  nameEn?: string;
+  description?: string;
+  descriptionEn?: string;
+  price?: number;
+  prepTime?: number;
+  maxPortions?: number;
+  available?: boolean;
+}): string | null {
+  if (input.name !== undefined && !input.name) return 'INVALID_INPUT';
+  if (input.nameEn !== undefined && !input.nameEn) return 'INVALID_INPUT';
+  if (input.description !== undefined && !input.description) return 'INVALID_INPUT';
+  if (input.descriptionEn !== undefined && !input.descriptionEn) return 'INVALID_INPUT';
+  if (input.price !== undefined && input.price <= 0) return 'INVALID_INPUT';
+  if (input.prepTime !== undefined && input.prepTime <= 0) return 'INVALID_INPUT';
+  if (input.maxPortions !== undefined && input.maxPortions <= 0) return 'INVALID_INPUT';
+  if (input.available !== undefined && typeof input.available !== 'boolean') return 'INVALID_INPUT';
+  return null;
+}
+
 // ─── Auth ────────────────────────────────────────────────
 
 export async function login(phone: string, otp: string): Promise<AuthResult> {
@@ -158,14 +179,19 @@ export async function signup(name: string, area: string, phone: string): Promise
   return { success: true, user, error: null };
 }
 
-export async function logout(): Promise<{ success: true }> {
+export async function logout(): Promise<{ success: true } | ApiError> {
   await withLatency();
+  if (shouldInjectError()) return injectedError();
+
   sessionStore.getState().logout();
   cartStore.getState().clearOnLogout();
   return { success: true };
 }
 
-export function getSession() {
+export async function getSession() {
+  await withLatency();
+  if (shouldInjectError()) return null;
+
   const state = sessionStore.getState();
   if (state.userId === null || state.role === null) return null;
   return {
@@ -356,16 +382,18 @@ export async function createOrder(input: CreateOrderInput): Promise<{ order: Ord
       return { success: false, error: { code: 'INVALID_ITEMS' } };
     }
 
+    const invalidItems: string[] = [];
     const orderItems = [];
     let kitchenTotal = 0;
 
     for (const itemInput of kitchenInput.items) {
-      const dish = db.dishes.get(itemInput.dishId);
-      if (!dish) {
-        unavailableDishIds.push(itemInput.dishId);
+      if (!itemInput.quantity || itemInput.quantity < 1) {
+        invalidItems.push(itemInput.dishId);
         continue;
       }
-      if (!dish.available) {
+
+      const dish = db.dishes.get(itemInput.dishId);
+      if (!dish || !dish.available || dish.kitchenId !== kitchen.id) {
         unavailableDishIds.push(itemInput.dishId);
         continue;
       }
@@ -376,6 +404,10 @@ export async function createOrder(input: CreateOrderInput): Promise<{ order: Ord
         unitPrice: dish.price,
       });
       kitchenTotal += dish.price * itemInput.quantity;
+    }
+
+    if (invalidItems.length > 0) {
+      return { success: false, error: { code: 'INVALID_ITEMS', data: { invalidItems } } };
     }
 
     if (unavailableDishIds.length > 0) {
@@ -619,6 +651,9 @@ export async function createDish(
   const kitchen = Array.from(db.kitchens.values()).find((k) => k.chefId === chefId);
   if (!kitchen) return { success: false, error: { code: 'NOT_FOUND' } };
 
+  const validationError = validateDishFields(input);
+  if (validationError) return { success: false, error: { code: validationError } };
+
   if (
     !input.name ||
     !input.nameEn ||
@@ -664,6 +699,9 @@ export async function updateDish(
   const db = getDB();
   const dish = db.dishes.get(dishId);
   if (!dish) return { success: false, error: { code: 'NOT_FOUND' } };
+
+  const validationError = validateDishFields(input);
+  if (validationError) return { success: false, error: { code: validationError } };
 
   const updated: Dish = {
     ...dish,
@@ -739,6 +777,11 @@ export async function updateChefSchedule(
   if (!kitchen) return { success: false, error: { code: 'NOT_FOUND' } };
 
   if (scheduleInput.length !== 7) {
+    return { success: false, error: { code: 'INVALID_INPUT' } };
+  }
+
+  const uniqueDays = new Set(scheduleInput.map((d) => d.day));
+  if (uniqueDays.size !== 7) {
     return { success: false, error: { code: 'INVALID_INPUT' } };
   }
 

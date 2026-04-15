@@ -19,7 +19,6 @@ import { Button } from '@/components/primitives/Button';
 import { Input } from '@/components/primitives/Input';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
-import { useSessionStore } from '@/stores/session-store';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -173,7 +172,6 @@ export default function WelcomeScreen() {
   const handleLogin = async () => {
     const result = await login(phone, '123456');
     if (result.success && result.user) {
-      useSessionStore.getState().login(result.user);
       if (result.user.role === 'chef') {
         router.replace('/(chef)/dashboard');
       } else {

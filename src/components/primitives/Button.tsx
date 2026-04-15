@@ -21,6 +21,7 @@ interface ButtonProps {
   rightIcon?: FeatherName;
   style?: ViewStyle;
   testID?: string;
+  accessibilityState?: Record<string, boolean>;
 }
 
 const sizeToPadding: Record<ButtonSize, keyof ReturnType<typeof useTheme>['spacing']> = {
@@ -52,6 +53,7 @@ export function Button({
   rightIcon,
   style,
   testID,
+  accessibilityState: externalA11yState,
 }: ButtonProps) {
   const tokens = useTheme();
   const isRTL = useRTL();
@@ -88,7 +90,7 @@ export function Button({
       disabled={disabled || loading}
       accessibilityRole="button"
       accessibilityLabel={title}
-      accessibilityState={{ disabled: disabled || loading, busy: loading }}
+      accessibilityState={{ disabled: disabled || loading, busy: loading, ...externalA11yState }}
       style={({ pressed }) => [
         styles.base,
         {

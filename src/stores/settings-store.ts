@@ -26,8 +26,8 @@ export const useSettingsStore = create<SettingsState>()(
       devErrorInjection: false,
       setDevErrorInjection: (enabled) => set({ devErrorInjection: enabled }),
       switchLanguage: async (lang) => {
+        const prevLang = get().language;
         try {
-          get().setLanguage(lang);
           try {
             if (typeof I18nManager.forceRTL === 'function') {
               I18nManager.forceRTL(lang === 'ar');
@@ -36,6 +36,7 @@ export const useSettingsStore = create<SettingsState>()(
             // forceRTL not supported in all runtimes (e.g. Expo SDK 54 new architecture)
           }
           await i18n.changeLanguage(lang);
+          get().setLanguage(lang);
           const toPersist = Object.fromEntries(
             Object.entries(get()).filter(([key]) => key !== 'hydrated'),
           );
@@ -49,6 +50,7 @@ export const useSettingsStore = create<SettingsState>()(
             // reloadAsync not available in dev mode or Expo Go
           }
         } catch (error) {
+          get().setLanguage(prevLang);
           console.warn('[settings-store] switchLanguage failed:', error);
           throw error;
         }

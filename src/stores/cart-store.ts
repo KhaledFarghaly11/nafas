@@ -28,6 +28,7 @@ interface CartState {
     price: number;
     kitchenId: string;
     kitchenName: string;
+    quantity?: number;
   }) => void;
   removeItem: (kitchenId: string, dishId: string) => void;
   updateQuantity: (kitchenId: string, dishId: string, quantity: number) => void;
@@ -50,6 +51,7 @@ export const useCartStore = create<CartState>()(
       ...INITIAL_STATE,
       hydrated: false,
       addItem: (item) => {
+        const addQty = item.quantity ?? 1;
         const { kitchenGroups } = get();
         const groupIdx = kitchenGroups.findIndex((g) => g.kitchenId === item.kitchenId);
 
@@ -62,7 +64,7 @@ export const useCartStore = create<CartState>()(
             const newItems = [...group.items];
             newItems[itemIdx] = {
               ...newItems[itemIdx],
-              quantity: newItems[itemIdx].quantity + 1,
+              quantity: newItems[itemIdx].quantity + addQty,
             };
             newGroups[groupIdx] = { ...group, items: newItems };
           } else {
@@ -70,7 +72,12 @@ export const useCartStore = create<CartState>()(
               ...group,
               items: [
                 ...group.items,
-                { dishId: item.dishId, dishName: item.dishName, price: item.price, quantity: 1 },
+                {
+                  dishId: item.dishId,
+                  dishName: item.dishName,
+                  price: item.price,
+                  quantity: addQty,
+                },
               ],
             };
           }
@@ -87,7 +94,7 @@ export const useCartStore = create<CartState>()(
                     dishId: item.dishId,
                     dishName: item.dishName,
                     price: item.price,
-                    quantity: 1,
+                    quantity: addQty,
                   },
                 ],
               },
