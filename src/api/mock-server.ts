@@ -42,8 +42,8 @@ async function withLatency(): Promise<void> {
 }
 
 function shouldInjectError(): boolean {
-  const enabled = useSettingsStore.getState().devErrorInjection;
-  if (!enabled) return false;
+  const state = useSettingsStore.getState();
+  if (!state.hydrated || !state.devErrorInjection) return false;
   return Math.random() < 0.15;
 }
 

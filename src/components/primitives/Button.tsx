@@ -90,7 +90,7 @@ export function Button({
       disabled={disabled || loading}
       accessibilityRole="button"
       accessibilityLabel={title}
-      accessibilityState={{ disabled: disabled || loading, busy: loading, ...externalA11yState }}
+      accessibilityState={{ ...externalA11yState, disabled: disabled || loading, busy: loading }}
       style={({ pressed }) => [
         styles.base,
         {

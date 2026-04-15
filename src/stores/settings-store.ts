@@ -27,6 +27,7 @@ export const useSettingsStore = create<SettingsState>()(
       setDevErrorInjection: (enabled) => set({ devErrorInjection: enabled }),
       switchLanguage: async (lang) => {
         const prevLang = get().language;
+        const prevRTL = I18nManager.isRTL;
         try {
           try {
             if (typeof I18nManager.forceRTL === 'function') {
@@ -50,6 +51,18 @@ export const useSettingsStore = create<SettingsState>()(
             // reloadAsync not available in dev mode or Expo Go
           }
         } catch (error) {
+          try {
+            await i18n.changeLanguage(prevLang);
+          } catch {
+            // best-effort i18n rollback
+          }
+          try {
+            if (typeof I18nManager.forceRTL === 'function') {
+              I18nManager.forceRTL(prevRTL);
+            }
+          } catch {
+            // best-effort RTL rollback
+          }
           get().setLanguage(prevLang);
           console.warn('[settings-store] switchLanguage failed:', error);
           throw error;

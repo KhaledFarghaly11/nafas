@@ -116,7 +116,12 @@ export async function persistDB(): Promise<void> {
 }
 
 export async function initializeDB(): Promise<void> {
-  const stored = await StorageService.getItem<StoredData>(STORAGE_KEY);
+  let stored: StoredData | null = null;
+  try {
+    stored = await StorageService.getItem<StoredData>(STORAGE_KEY);
+  } catch (err) {
+    console.warn(`[mock-db] Failed to read ${STORAGE_KEY}:`, err);
+  }
   if (stored && stored.version === DB_VERSION) {
     try {
       db = deserializeDB(stored.data);

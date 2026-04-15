@@ -51,7 +51,8 @@ export const useCartStore = create<CartState>()(
       ...INITIAL_STATE,
       hydrated: false,
       addItem: (item) => {
-        const addQty = item.quantity ?? 1;
+        const rawQty = item.quantity ?? 1;
+        const addQty = Math.max(1, Math.floor(Number(rawQty) || 0));
         const { kitchenGroups } = get();
         const groupIdx = kitchenGroups.findIndex((g) => g.kitchenId === item.kitchenId);
 
