@@ -12,7 +12,7 @@ interface SkeletonProps {
 export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   const tokens = useTheme();
   const opacity = useRef(new Animated.Value(0.4)).current;
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState<boolean | null>(null);
 
   useEffect(() => {
     AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
@@ -21,7 +21,7 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion === null || reduceMotion) return;
     const animation = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, {

@@ -12,13 +12,15 @@
  *   They automatically adapt when the theme switches.
  *
  * **Brand tokens** (shared — identical across light and dark themes):
- *   clay, saffron, cream, linen, oud, bark (light only), smoke, mint, rose,
- *   warmWhite
+ *   clay, saffron, cream, linen, oud, smoke, mint, rose, warmWhite
  *
  *   Use these for brand accents, badges, and decorative elements only.
  *   WARNING: Some brand tokens (cream, warmWhite, linen) are very light
  *   and should NEVER be used as surface/background colors in dark mode.
- *   The `bark` token is the only brand token that adapts between themes.
+ *
+ * **Exception — `bark`**: The only brand token that adapts between themes
+ *   (#6B3F28 in light, #9E7B6A in dark). All other brand tokens are identical
+ *   across both themes.
  */
 
 type Shadow = {

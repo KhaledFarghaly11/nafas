@@ -47,6 +47,8 @@ TypeScript 5.x: Follow standard conventions
 
 ## Design Context
 
+> **Canonical source**: `.impeccable.md` — update there first, then sync here.
+
 ### Brand Personality
 
 **Warm, honest, homemade** — inviting like a friend's kitchen, straightforward and real, celebrating imperfection and personality over corporate polish.
@@ -56,15 +58,6 @@ TypeScript 5.x: Follow standard conventions
 - **Customers**: Egyptians wanting homemade food. Browse when hungry. Trust the cook personally — relationship, not transaction.
 - **Chefs (Homemakers)**: Egyptian women cooking from their own kitchens. May not be tech-savvy. Need clarity, simplicity, respect. Dark mode (evening kitchen context).
 
-### Emotional Goals
-
-- **Primary**: Hungry and curious — appetite appeal is the #1 design priority
-- **Secondary**: Comforted and connected — trustworthy, personal, rooted in Egyptian food culture
-
-### Anti-References
-
-- NOT like Talabat/Uber Eats — no corporate, transactional, blue/white delivery app feel
-
 ### Design Principles
 
 1. **Appetite First** — Every screen should make you hungrier. Food imagery, warm colors, generous spacing.
@@ -72,11 +65,5 @@ TypeScript 5.x: Follow standard conventions
 3. **Honest Warmth** — No decorative UI that doesn't serve the user. No stock patterns. Kitchen feel, not boardroom.
 4. **Bilingual by Nature** — Arabic-first, then verify English. RTL is the primary layout direction.
 5. **Two Worlds, One Brand** — Customer (light) and chef (dark) share the same soul but adapt to context. Unified through shared tokens.
-
-### Color Philosophy
-
-- Clay (#C1714F) = brand — CTAs and key interactions
-- Saffron (#E8A838) = spice — highlights, badges, attention
-- Cream (#FAF3E8) = tablecloth — warm inviting background
-- Mint (#7DADA0) & Rose (#D4927A) = garnish — use sparingly for status/variety
+6. **Accessible by Design** — Inclusive via accessibilityRole/Label/State, 44px touch targets, reduced-motion, heading semantics.
 <!-- MANUAL ADDITIONS END -->

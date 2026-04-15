@@ -1,11 +1,13 @@
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { Text } from '@/components/primitives/Text';
 import { useSessionStore } from '@/stores/session-store';
 
 export default function PaymentReturnScreen() {
   const { status, orderId } = useLocalSearchParams<{ status?: string; orderId?: string }>();
+  const { t } = useTranslation();
   const hydrated = useSessionStore((s) => s.hydrated);
   const userId = useSessionStore((s) => s.userId);
   const role = useSessionStore((s) => s.role);
@@ -25,7 +27,10 @@ export default function PaymentReturnScreen() {
   return (
     <ScreenContainer>
       <Text variant="body">
-        Payment Return — status: {status ?? 'unknown'}, orderId: {orderId ?? 'none'}
+        {t('paymentReturn.statusOrder', {
+          status: status ?? 'unknown',
+          orderId: orderId ?? 'none',
+        })}
       </Text>
     </ScreenContainer>
   );
