@@ -5,6 +5,9 @@ export interface User {
   phone: string;
   role: UserRole;
   name: string;
+  area?: string;
+  kitchenId?: string;
+  createdAt: string;
 }
 
 export interface UserSession {
