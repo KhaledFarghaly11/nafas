@@ -159,10 +159,11 @@ is the boundary between roles; missing guards expose internal screens.
 
 ### Order Status Pipeline
 
-`confirmed → preparing → cooking → ready → on_the_way → delivered`
+`pending → confirmed → preparing → cooking → ready → on_the_way → delivered`
 and `cancelled` as terminal.
 
-Customer sees a timeline; chef can advance statuses post-acceptance.
+Customer sees a timeline; chef can accept (`pending → confirmed`) or
+reject (`pending → cancelled`) then advance statuses post-acceptance.
 
 ### Favorites
 
@@ -240,4 +241,4 @@ conventions and informal agreements.
 Use `.specify/memory/` documents for development-time reference.
 When in doubt, this constitution takes precedence.
 
-**Version**: 1.1.0 | **Ratified**: 2026-04-11 | **Last Amended**: 2026-04-13
+**Version**: 1.2.0 | **Ratified**: 2026-04-11 | **Last Amended**: 2026-04-15

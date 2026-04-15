@@ -1,12 +1,13 @@
 # Nafas Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-04-12
+Auto-generated from all feature plans. Last updated: 2026-04-15
 
 ## Active Technologies
 
 - TypeScript 5.x (strict mode) + Expo SDK 54, Expo Router v6, TanStack React Query v5, Zustand v5 (001-project-setup)
 - AsyncStorage (001-project-setup)
 - i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather (002-design-system-i18n)
+- Mock DB with AsyncStorage persistence, Zustand cart store, React Query hooks for all API operations, simulated latency (200-900ms), error injection (003-state-mock-api)
 
 ## Project Structure
 
@@ -42,6 +43,7 @@ TypeScript 5.x: Follow standard conventions
 
 - 001-project-setup: Added TypeScript 5.x (strict mode) + Expo SDK 54, Expo Router v6, TanStack React Query v5, Zustand v5, React Native 0.81
 - 002-design-system-i18n: Added i18next + react-i18next, expo-font, expo-updates, @expo/vector-icons/Feather
+- 003-state-mock-api: Added Mock DB with AsyncStorage persistence, Zustand cart store, React Query hooks for all API operations, simulated latency (200-900ms), error injection
 
 <!-- MANUAL ADDITIONS START -->
 

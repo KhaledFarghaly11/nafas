@@ -21,6 +21,8 @@ export function login(phone: string): AuthResult {
         phone: normalizedPhone,
         role: 'chef' as const,
         name: matchedChef.name,
+        kitchenId: matchedChef.kitchenId,
+        createdAt: '2026-04-01T00:00:00.000Z',
       },
       error: null,
     };
@@ -35,6 +37,7 @@ export function login(phone: string): AuthResult {
         phone: normalizedPhone,
         role: 'customer' as const,
         name: matchedCustomer.name,
+        createdAt: '2026-04-01T00:00:00.000Z',
       },
       error: null,
     };

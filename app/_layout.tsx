@@ -19,6 +19,7 @@ import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import { I18nManager } from 'react-native';
+import { initializeDB } from '@/api/mock-db';
 import { ToastProvider } from '@/components/feedback/Toast';
 import { ThemeProvider } from '@/design/theme';
 import i18n from '@/i18n';
@@ -47,11 +48,19 @@ export default function RootLayout() {
 
   const [fontsLoaded] = useFonts(fontMap);
 
+  const [dbReady, setDbReady] = React.useState(false);
+
   useEffect(() => {
-    if (hydrated && settingsHydrated && fontsLoaded) {
+    initializeDB()
+      .then(() => setDbReady(true))
+      .catch(() => setDbReady(true));
+  }, []);
+
+  useEffect(() => {
+    if (hydrated && settingsHydrated && fontsLoaded && dbReady) {
       SplashScreen.hideAsync().catch(() => {});
     }
-  }, [hydrated, settingsHydrated, fontsLoaded]);
+  }, [hydrated, settingsHydrated, fontsLoaded, dbReady]);
 
   useEffect(() => {
     if (settingsHydrated) {
@@ -69,7 +78,7 @@ export default function RootLayout() {
     }
   }, [settingsHydrated]);
 
-  if (!hydrated || !settingsHydrated || !fontsLoaded) {
+  if (!hydrated || !settingsHydrated || !fontsLoaded || !dbReady) {
     return null;
   }
 

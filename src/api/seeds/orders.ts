@@ -1,0 +1,80 @@
+import type { Order } from '@/types';
+
+export const ORDER_SEEDS: Order[] = [
+  {
+    id: 'order-1',
+    customerId: 'customer-0110000001',
+    subOrders: [
+      {
+        kitchenId: 'kitchen-1',
+        chefId: 'chef-0100000001',
+        status: 'delivered',
+        items: [
+          { dishId: 'dish-1', dishName: 'كشري', quantity: 2, unitPrice: 65 },
+          { dishId: 'dish-2', dishName: 'شوربة عدس', quantity: 1, unitPrice: 40 },
+        ],
+        kitchenTotal: 170,
+      },
+    ],
+    status: 'delivered',
+    deliveryAddress: '15 شارع 9، المعادي',
+    paymentMethod: 'cash',
+    paymentStatus: 'paid',
+    deliveryFee: 25,
+    instructions: null,
+    schedule: 'asap',
+    createdAt: '2026-04-13T10:00:00.000Z',
+    updatedAt: '2026-04-13T11:00:00.000Z',
+  },
+  {
+    id: 'order-2',
+    customerId: 'customer-0110000001',
+    subOrders: [
+      {
+        kitchenId: 'kitchen-2',
+        chefId: 'chef-0100000002',
+        status: 'preparing',
+        items: [{ dishId: 'dish-6', dishName: 'مشويات مشكلة', quantity: 1, unitPrice: 180 }],
+        kitchenTotal: 180,
+      },
+    ],
+    status: 'preparing',
+    deliveryAddress: '15 شارع 9، المعادي',
+    paymentMethod: 'vodafone_cash',
+    paymentStatus: 'paid',
+    deliveryFee: 25,
+    instructions: 'من غير شطة',
+    schedule: 'asap',
+    createdAt: '2026-04-14T14:00:00.000Z',
+    updatedAt: '2026-04-14T14:30:00.000Z',
+  },
+  {
+    id: 'order-3',
+    customerId: 'customer-0110000002',
+    subOrders: [
+      {
+        kitchenId: 'kitchen-1',
+        chefId: 'chef-0100000001',
+        status: 'confirmed',
+        items: [{ dishId: 'dish-3', dishName: 'مكرونة بشاميل', quantity: 1, unitPrice: 75 }],
+        kitchenTotal: 75,
+      },
+      {
+        kitchenId: 'kitchen-3',
+        chefId: 'chef-0100000003',
+        status: 'pending',
+        items: [{ dishId: 'dish-11', dishName: 'بسبوسة', quantity: 2, unitPrice: 50 }],
+        kitchenTotal: 100,
+      },
+    ],
+    status: 'pending',
+    deliveryAddress: '7 شارع فؤاد، الزمالك',
+    paymentMethod: 'instapay',
+    paymentStatus: 'pending',
+    deliveryFee: 25,
+    instructions: 'التوصيل قبل الساعة 8',
+    schedule: 'today',
+    createdAt: '2026-04-15T09:00:00.000Z',
+    updatedAt: '2026-04-15T09:00:00.000Z',
+  },
+];
