@@ -18,6 +18,7 @@ import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
+import { I18nManager } from 'react-native';
 import { ToastProvider } from '@/components/feedback/Toast';
 import { ThemeProvider } from '@/design/theme';
 import i18n from '@/i18n';
@@ -57,6 +58,13 @@ export default function RootLayout() {
       const lang = useSettingsStore.getState().language;
       if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
+      }
+      if (I18nManager.isRTL !== (lang === 'ar')) {
+        try {
+          I18nManager.forceRTL(lang === 'ar');
+        } catch {
+          // forceRTL not supported in all runtimes
+        }
       }
     }
   }, [settingsHydrated]);

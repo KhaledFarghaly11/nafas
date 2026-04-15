@@ -24,7 +24,11 @@ export const useSettingsStore = create<SettingsState>()(
       switchLanguage: async (lang) => {
         try {
           get().setLanguage(lang);
-          I18nManager.forceRTL(lang === 'ar');
+          try {
+            I18nManager.forceRTL(lang === 'ar');
+          } catch {
+            // forceRTL not supported in all runtimes (e.g. Expo SDK 54 new architecture)
+          }
           await i18n.changeLanguage(lang);
           const toPersist = Object.fromEntries(
             Object.entries(get()).filter(([key]) => key !== 'hydrated'),

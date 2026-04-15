@@ -61,6 +61,8 @@ export function Input({
         keyboardType={keyboardType}
         maxLength={maxLength}
         editable={!disabled}
+        accessibilityLabel={label ?? placeholder}
+        accessibilityState={{ disabled }}
         style={[
           styles.input,
           {

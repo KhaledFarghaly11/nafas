@@ -45,5 +45,22 @@
   "chef": "Chef",
   "customer": "Customer",
   "error_invalid_phone": "Please enter a valid phone number",
-  "error_unknown_phone": "Phone number not found. Try a test account."
+  "error_unknown_phone": "Phone number not found. Try a test account.",
+  "chefOrders.heading": "Chef Orders — Coming Soon",
+  "stats.heading": "Stats — Coming Soon",
+  "cart.placeholderHeading": "Cart — Coming Soon",
+  "favorites.title": "Favorites — Coming Soon",
+  "home.comingSoon": "Home — Coming Soon",
+  "orders.comingSoon": "Orders — Coming Soon",
+  "auth.otp.coming_phase_4": "OTP — Coming in Phase 4",
+  "paymentReturn.statusOrder": "Payment Return — status: {{status}}, orderId: {{orderId}}",
+  "dashboard.heading": "Dashboard — Coming Soon",
+  "menu.heading": "Menu — Coming Soon",
+  "schedule.heading": "Schedule — Coming Soon",
+  "editDish.title": "Edit Dish — Coming Soon ({{dishId}})",
+  "kitchenDetail.title": "Kitchen Detail — Coming Soon ({{id}})",
+  "chefOrderDetail.title": "Chef Order Detail — Coming Soon ({{id}})",
+  "orderDetail.title": "Order Detail — Coming Soon ({{id}})",
+  "auth.phone.coming_phase_4": "Phone — Coming in Phase 4",
+  "auth.profileSetup.coming_phase_4": "Profile Setup — Coming in Phase 4"
 }

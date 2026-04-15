@@ -10,6 +10,7 @@ interface CardProps {
   padding?: CardPadding;
   variant?: CardVariant;
   onPress?: () => void;
+  accessibilityLabel?: string;
   style?: ViewStyle;
   testID?: string;
 }
@@ -19,6 +20,7 @@ export function Card({
   padding = 'md',
   variant = 'elevated',
   onPress,
+  accessibilityLabel,
   style,
   testID,
 }: CardProps) {
@@ -61,6 +63,8 @@ export function Card({
       <Pressable
         testID={testID}
         onPress={onPress}
+        accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
         style={({ pressed }) => [cardStyle, { opacity: pressed ? 0.7 : 1 }]}
       >
         {children}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect, createContext, useContext } from 'react';
-import { Animated, View, StyleSheet, I18nManager } from 'react-native';
+import { Animated, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from '@/components/primitives/Text';
 import { useTheme } from '@/design/theme';
@@ -37,20 +37,20 @@ function ToastInner({
   translateY: Animated.Value;
 }) {
   const tokens = useTheme();
-  const isRTL = I18nManager.isRTL;
 
-  const borderColorMap: Record<ToastType, string> = {
+  const accentColorMap: Record<ToastType, string> = {
     success: tokens.colors.success,
     error: tokens.colors.error,
     info: tokens.colors.clay,
   };
 
-  const borderEndWidth = isRTL
-    ? { borderLeftWidth: 4, borderLeftColor: borderColorMap[type] }
-    : { borderRightWidth: 4, borderRightColor: borderColorMap[type] };
-
   return (
-    <Animated.View style={[styles.wrapper, { transform: [{ translateY }] }]}>
+    <Animated.View
+      style={[
+        styles.wrapper,
+        { bottom: tokens.spacing['3xl'] + tokens.spacing.xl, transform: [{ translateY }] },
+      ]}
+    >
       <SafeAreaView edges={['bottom']}>
         <View
           style={[
@@ -58,14 +58,16 @@ function ToastInner({
             {
               backgroundColor: tokens.colors.linen,
               borderRadius: tokens.radius.lg,
-              paddingHorizontal: tokens.spacing.lg,
-              paddingVertical: tokens.spacing.md,
               ...tokens.shadows.md,
-              ...borderEndWidth,
             },
           ]}
         >
-          <Text variant="body">{message}</Text>
+          <View style={[styles.accent, { backgroundColor: accentColorMap[type] }]} />
+          <View
+            style={{ paddingHorizontal: tokens.spacing.lg, paddingVertical: tokens.spacing.md }}
+          >
+            <Text variant="body">{message}</Text>
+          </View>
         </View>
       </SafeAreaView>
     </Animated.View>
@@ -141,12 +143,14 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 };
 
 const styles = StyleSheet.create({
+  accent: {
+    height: 3,
+  },
   content: {
     overflow: 'hidden',
   },
   wrapper: {
     alignSelf: 'center',
-    bottom: 80,
     left: '5%',
     maxWidth: 400,
     position: 'absolute',

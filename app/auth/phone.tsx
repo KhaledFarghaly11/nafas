@@ -1,21 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { ScreenContainer } from '@/components/layout/ScreenContainer';
 import { Text } from '@/components/primitives/Text';
-import { useTheme } from '@/design/theme';
 
 export default function PhoneScreen() {
-  const theme = useTheme();
+  const { t } = useTranslation();
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text variant="heading3">Phone — Coming in Phase 4</Text>
-    </View>
+    <ScreenContainer>
+      <Text variant="heading3">{t('auth.phone.coming_phase_4')}</Text>
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});

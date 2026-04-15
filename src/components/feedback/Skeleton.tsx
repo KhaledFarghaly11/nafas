@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Animated, View, StyleSheet, type ViewStyle } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { AccessibilityInfo, Animated, View, StyleSheet, type ViewStyle } from 'react-native';
 import { useTheme } from '@/design/theme';
 
 interface SkeletonProps {
@@ -12,8 +12,16 @@ interface SkeletonProps {
 export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
   const tokens = useTheme();
   const opacity = useRef(new Animated.Value(0.4)).current;
+  const [reduceMotion, setReduceMotion] = useState<boolean | null>(null);
 
   useEffect(() => {
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
+    const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
+    return () => sub.remove();
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion === null || reduceMotion) return;
     const animation = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, {
@@ -30,7 +38,7 @@ export function Skeleton({ variant, count = 3, style, testID }: SkeletonProps) {
     );
     animation.start();
     return () => animation.stop();
-  }, [opacity]);
+  }, [opacity, reduceMotion]);
 
   const baseColor = tokens.colors.skeletonBase;
   const xs = tokens.radius.xs;

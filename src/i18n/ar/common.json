@@ -45,5 +45,22 @@
   "chef": "طباخ",
   "customer": "عميل",
   "error_invalid_phone": "لو سمحت دخّل رقم موبايل صحيح",
-  "error_unknown_phone": "الرقم مش موجود. جرب حساب تجريبي."
+  "error_unknown_phone": "الرقم مش موجود. جرب حساب تجريبي.",
+  "chefOrders.heading": "طلبات الطباخ — قريب",
+  "stats.heading": "الإحصائيات — قريب",
+  "cart.placeholderHeading": "السلة — قريب",
+  "favorites.title": "المفضلة — قريب",
+  "home.comingSoon": "البيت — قريب",
+  "orders.comingSoon": "الطلبات — قريب",
+  "auth.otp.coming_phase_4": "OTP — هيتفعّل في المرحلة الرابعة",
+  "paymentReturn.statusOrder": "مرجع الدفع — الحالة: {{status}}، رقم الطلب: {{orderId}}",
+  "dashboard.heading": "لوحة التحكم — قريب",
+  "menu.heading": "المنيو — قريب",
+  "schedule.heading": "المواعيد — قريب",
+  "editDish.title": "تعديل الطبق — قريب ({{dishId}})",
+  "kitchenDetail.title": "تفاصيل المطبخ — قريب ({{id}})",
+  "chefOrderDetail.title": "تفاصيل طلب الطباخ — قريب ({{id}})",
+  "orderDetail.title": "تفاصيل الطلب — قريب ({{id}})",
+  "auth.phone.coming_phase_4": "الموبايل — هيتفعّل في المرحلة الرابعة",
+  "auth.profileSetup.coming_phase_4": "إعداد الحساب — هيتفعّل في المرحلة الرابعة"
 }

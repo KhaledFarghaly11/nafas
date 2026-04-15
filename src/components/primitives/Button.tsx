@@ -30,7 +30,7 @@ const sizeToPadding: Record<ButtonSize, keyof ReturnType<typeof useTheme>['spaci
 };
 
 const sizeToMinHeight: Record<ButtonSize, number> = {
-  sm: 36,
+  sm: 44,
   md: 44,
   lg: 52,
 };
@@ -86,6 +86,9 @@ export function Button({
       testID={testID}
       onPress={onPress}
       disabled={disabled || loading}
+      accessibilityRole="button"
+      accessibilityLabel={title}
+      accessibilityState={{ disabled: disabled || loading, busy: loading }}
       style={({ pressed }) => [
         styles.base,
         {
