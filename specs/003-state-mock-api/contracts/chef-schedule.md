@@ -43,6 +43,6 @@ interface DayScheduleInput {
 { success: false, error: { code: 'INVALID_INPUT' | 'NOT_FOUND' | 'INVALID_TIMES' } }
 ```
 
-**Validation**: Must provide exactly 7 day entries. If `isOpen`, `openTime` and `closeTime` are required and `openTime < closeTime`.
+**Validation**: Must provide exactly 7 day entries covering all unique weekdays (sat–fri) with no duplicates. If `isOpen`, `openTime` and `closeTime` are required and `openTime < closeTime`.
 
 **Side effects**: Updates mock DB. Invalidates kitchen detail queries (isOpen status may change).

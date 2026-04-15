@@ -105,7 +105,7 @@ export const REVIEW_SEEDS: Review[] = [
     kitchenId: 'kitchen-3',
     userId: 'customer-0110000002',
     rating: 4,
-    text: 'القطايف حلوة بس محتاجوية شوية شربات زيادة',
+    text: 'القطايف حلوة بس محتاجة شوية شربات زيادة',
     createdAt: '2026-04-10T16:00:00.000Z',
   },
   {

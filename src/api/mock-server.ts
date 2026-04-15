@@ -1,4 +1,4 @@
-import { CHEF_ACCOUNTS, CUSTOMER_ACCOUNTS } from '@/api/seeds/users';
+import { USER_SEEDS } from '@/api/seeds/users';
 import { sessionStore } from '@/stores/session-store';
 import type { AuthResult, UserSession } from '@/types/user';
 
@@ -12,33 +12,11 @@ export function login(phone: string): AuthResult {
     };
   }
 
-  const matchedChef = CHEF_ACCOUNTS.find((c) => c.phone === normalizedPhone);
-  if (matchedChef) {
+  const user = USER_SEEDS.find((u) => u.phone === normalizedPhone);
+  if (user) {
     return {
       success: true,
-      user: {
-        id: `chef-${normalizedPhone}`,
-        phone: normalizedPhone,
-        role: 'chef' as const,
-        name: matchedChef.name,
-        kitchenId: matchedChef.kitchenId,
-        createdAt: '2026-04-01T00:00:00.000Z',
-      },
-      error: null,
-    };
-  }
-
-  const matchedCustomer = CUSTOMER_ACCOUNTS.find((c) => c.phone === normalizedPhone);
-  if (matchedCustomer) {
-    return {
-      success: true,
-      user: {
-        id: `customer-${normalizedPhone}`,
-        phone: normalizedPhone,
-        role: 'customer' as const,
-        name: matchedCustomer.name,
-        createdAt: '2026-04-01T00:00:00.000Z',
-      },
+      user,
       error: null,
     };
   }

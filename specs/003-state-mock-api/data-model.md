@@ -57,22 +57,22 @@ Represents a homemaker's kitchen.
 
 Represents a menu item.
 
-| Field         | Type         | Required | Notes                            |
-| ------------- | ------------ | -------- | -------------------------------- |
-| id            | string       | yes      | Fixed for seeds (e.g., `dish-1`) |
-| kitchenId     | string       | yes      | References Kitchen.id            |
-| name          | string       | yes      | Arabic name                      |
-| nameEn        | string       | yes      | English name                     |
-| description   | string       | yes      | Arabic description               |
-| descriptionEn | string       | yes      | English description              |
-| price         | number       | yes      | In EGP                           |
-| category      | string       | yes      | e.g., 'مشويات', 'حلويات'         |
-| categoryEn    | string       | yes      | English category                 |
-| prepTime      | number       | yes      | Minutes                          |
-| maxPortions   | number       | yes      | Max servings per day             |
-| available     | boolean      | yes      | Toggle by chef                   |
-| imageUrl      | string       | no       | Placeholder                      |
-| createdAt     | string (ISO) | yes      | Auto-set                         |
+| Field         | Type         | Required       | Notes                            |
+| ------------- | ------------ | -------------- | -------------------------------- |
+| id            | string       | yes            | Fixed for seeds (e.g., `dish-1`) |
+| kitchenId     | string       | yes            | References Kitchen.id            |
+| name          | string       | yes            | Arabic name                      |
+| nameEn        | string       | yes            | English name                     |
+| description   | string       | yes            | Arabic description               |
+| descriptionEn | string       | yes            | English description              |
+| price         | number       | yes            | In EGP                           |
+| category      | string       | yes            | e.g., 'مشويات', 'حلويات'         |
+| categoryEn    | string       | yes            | English category                 |
+| prepTime      | number       | yes            | Minutes                          |
+| maxPortions   | number       | yes            | Max servings per day             |
+| available     | boolean      | yes            | Toggle by chef                   |
+| imageUrl      | string       | yes (nullable) | Placeholder                      |
+| createdAt     | string (ISO) | yes            | Auto-set                         |
 
 **Validation**: Price > 0. PrepTime > 0. MaxPortions > 0.
 

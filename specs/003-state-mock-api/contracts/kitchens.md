@@ -8,7 +8,7 @@ Lists kitchens with optional filters.
 
 ```typescript
 interface KitchenFilters {
-  area?: string;
+  area?: CairoArea;
   isOpen?: boolean;
   cuisineTag?: string;
   minRating?: number;
@@ -17,13 +17,7 @@ interface KitchenFilters {
 }
 ```
 
-**Response**:
-
-```typescript
-{ kitchens: Kitchen[], total: number }
-```
-
-**Notes**: `search` matches against kitchen name (AR/EN) and dish names (AR/EN) in that kitchen. `isOpen` is derived from the kitchen's schedule and current time.
+**Notes**: `CairoArea` is the shared union type of the 8 Cairo neighborhoods. `search` matches against kitchen name (AR/EN) and dish names (AR/EN) in that kitchen. `isOpen` is derived from the kitchen's schedule and current time.
 
 **Pagination**: Deferred to real backend integration. MVP returns all matching results. The `total` field is included in the response shape to support future pagination without contract changes.
 

@@ -8,6 +8,16 @@ export type DishCategory =
   | 'مشروبات'
   | 'فطائر';
 
+export type DishCategoryEn =
+  | 'Grills'
+  | 'Sweets'
+  | 'Appetizers'
+  | 'Main Dishes'
+  | 'Soups'
+  | 'Salads'
+  | 'Drinks'
+  | 'Pastries';
+
 export interface Dish {
   id: string;
   kitchenId: string;
@@ -16,8 +26,8 @@ export interface Dish {
   description: string;
   descriptionEn: string;
   price: number;
-  category: string;
-  categoryEn: string;
+  category: DishCategory;
+  categoryEn: DishCategoryEn;
   prepTime: number;
   maxPortions: number;
   available: boolean;

@@ -49,11 +49,15 @@ export default function RootLayout() {
   const [fontsLoaded] = useFonts(fontMap);
 
   const [dbReady, setDbReady] = React.useState(false);
+  const [dbError, setDbError] = React.useState(false);
 
   useEffect(() => {
     initializeDB()
       .then(() => setDbReady(true))
-      .catch(() => setDbReady(true));
+      .catch((error: unknown) => {
+        console.error('[RootLayout] initializeDB failed:', error);
+        setDbError(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export default function RootLayout() {
     }
   }, [settingsHydrated]);
 
-  if (!hydrated || !settingsHydrated || !fontsLoaded || !dbReady) {
+  if (!hydrated || !settingsHydrated || !fontsLoaded || dbError || !dbReady) {
     return null;
   }
 

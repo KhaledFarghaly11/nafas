@@ -76,7 +76,7 @@
 
 ## R7: Order Status Pipeline Enforcement
 
-**Decision**: The mock server validates status transitions against the allowed pipeline: `pending → confirmed → preparing → cooking → ready → on_the_way → delivered`. `cancelled` is allowed from any pre-`delivered` status. Invalid transitions return an error.
+**Decision**: The mock server validates status transitions against the allowed pipeline: `pending → confirmed → preparing → cooking → ready → on_the_way → delivered`. `cancelled` is allowed only from statuses up through `ready` (not from `on_the_way` or `delivered`). Invalid transitions return an error.
 
 **Rationale**: The order status pipeline is a core business rule. Enforcing it at the server layer (even mock) ensures the UI never enters an invalid state and mirrors how a real backend would validate. This also means tests can verify the pipeline is respected.
 

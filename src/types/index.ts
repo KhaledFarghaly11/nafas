@@ -1,6 +1,6 @@
 export type { UserRole, User, UserSession, AuthResult } from './user';
 export type { CairoArea, Kitchen } from './kitchen';
-export type { Dish, DishCategory } from './dish';
+export type { Dish, DishCategory, DishCategoryEn } from './dish';
 export type {
   Order,
   SubOrder,
@@ -15,7 +15,7 @@ export interface Review {
   id: string;
   kitchenId: string;
   userId: string;
-  rating: number;
+  rating: 1 | 2 | 3 | 4 | 5;
   text: string;
   createdAt: string;
 }

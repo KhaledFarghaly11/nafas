@@ -98,7 +98,7 @@ Adds available items from a past order back to the cart. Skips unavailable items
 **Response (success)**:
 
 ```typescript
-{ addedItems: CartItem[], skippedItems: { dishId: string, dishName: string, reason: 'unavailable' | 'deleted' }[] }
+{ addedItems: { dishId: string, dishName: string, price: number, quantity: number, kitchenId: string, kitchenName: string }[], skippedItems: { dishId: string, dishName: string, reason: 'unavailable' | 'deleted' }[] }
 ```
 
 **Response (error)**:

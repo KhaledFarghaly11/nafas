@@ -30,7 +30,7 @@ npm start
 
 ## Data Flow
 
-```
+```text
 UI Component
     ↓ (calls hook)
 React Query Hook (use-kitchens, use-orders, etc.)

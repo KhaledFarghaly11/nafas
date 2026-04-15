@@ -23,6 +23,8 @@ Authenticates a user by phone number and OTP.
 
 **Side effects**: On success, sets session in sessionStore. If user is a pre-seeded chef, role is `'chef'`.
 
+**Implementation note**: The current codebase implements `login(phone)` without OTP validation (Phase 1). The `otp` parameter and `INVALID_OTP` error code are planned for Phase 2+ when the OTP screen is built. Currently any OTP is accepted.
+
 ---
 
 ## signup(name: string, area: string, phone: string)
@@ -48,6 +50,8 @@ Creates a new customer account.
 ```
 
 **Side effects**: Creates user in mock DB. Sets session in sessionStore. Always creates a customer role.
+
+**Implementation note**: Signup is planned for Phase 2+. Not yet implemented in the current mock server.
 
 ---
 

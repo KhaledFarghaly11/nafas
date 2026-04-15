@@ -1,4 +1,4 @@
-import type { AuthResult, Order } from '@/types';
+import type { AuthResult, CairoArea, Order } from '@/types';
 
 export interface LoginRequest {
   phone: string;
@@ -16,7 +16,7 @@ export interface SignupRequest {
 export type SignupResponse = AuthResult;
 
 export interface KitchenFilters {
-  area?: string;
+  area?: CairoArea;
   isOpen?: boolean;
   cuisineTag?: string;
   minRating?: number;
@@ -70,8 +70,8 @@ export type UpdateDishInput = Partial<CreateDishInput>;
 export interface DayScheduleInput {
   day: 'sat' | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri';
   isOpen: boolean;
-  openTime?: string;
-  closeTime?: string;
+  openTime: string | null;
+  closeTime: string | null;
 }
 
 export interface ChefStats {

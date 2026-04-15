@@ -46,6 +46,8 @@ function createEmptyDB(): MockDBData {
 
 let db: MockDBData = createEmptyDB();
 
+const idLocks = new Map<string, Promise<void>>();
+
 function serializeDB(data: MockDBData): SerializedDB {
   return {
     users: Array.from(data.users.entries()),
@@ -99,6 +101,7 @@ export function loadSeeds(): void {
   db.autoIncrementCounters.set('dish', db.dishes.size);
   db.autoIncrementCounters.set('review', db.reviews.size);
   db.autoIncrementCounters.set('order', db.orders.size);
+  db.autoIncrementCounters.set('follow', db.follows.size);
 }
 
 export async function persistDB(): Promise<void> {
@@ -123,11 +126,22 @@ export async function resetToSeeds(): Promise<void> {
 }
 
 export async function getNextId(entityType: string): Promise<string> {
-  const current = db.autoIncrementCounters.get(entityType) ?? 0;
-  const next = current + 1;
-  db.autoIncrementCounters.set(entityType, next);
-  await persistDB();
-  return `${entityType}-${next}`;
+  const prev = idLocks.get(entityType) ?? Promise.resolve();
+  let resolve!: () => void;
+  const nextLock = new Promise<void>((r) => {
+    resolve = r;
+  });
+  idLocks.set(entityType, nextLock);
+  await prev;
+  try {
+    const current = db.autoIncrementCounters.get(entityType) ?? 0;
+    const next = current + 1;
+    db.autoIncrementCounters.set(entityType, next);
+    await persistDB();
+    return `${entityType}-${next}`;
+  } finally {
+    resolve();
+  }
 }
 
 export function getUser(id: string): User | null {
@@ -176,6 +190,7 @@ export function getFollowsByUser(userId: string): Follow[] {
   return Array.from(db.follows.values()).filter((f) => f.userId === userId);
 }
 
+/** Returns the live/mutable db reference. Clone if you need an immutable snapshot. */
 export function getDB(): MockDBData {
   return db;
 }

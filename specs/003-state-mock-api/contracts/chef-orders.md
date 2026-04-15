@@ -32,7 +32,7 @@ interface ChefOrderFilters {
 
 Advances a sub-order's status.
 
-**Request**: `orderId`, `subOrderId`, `status` (next valid status in pipeline)
+**Request**: `orderId`, `subOrderId` (kitchenId of the sub-order), `status` (next valid status in pipeline)
 
 **Response (success)**:
 
@@ -46,7 +46,9 @@ Advances a sub-order's status.
 { success: false, error: { code: 'INVALID_TRANSITION' | 'NOT_FOUND' } }
 ```
 
-**Validation**: Status must be the next valid step in the pipeline (see data-model.md). `cancelled` is allowed from any pre-delivered status.
+**Validation**: Status must be the next valid step in the pipeline (see data-model.md). `cancelled` is allowed only from statuses up through `ready` (not from `on_the_way` or `delivered`).
+
+**Implementation note**: `subOrderId` uses the `kitchenId` to identify the sub-order within an Order, since SubOrders are keyed by kitchenId. A future iteration may add an explicit `id` field to SubOrder.
 
 **Side effects**: Updates mock DB. Invalidates related queries.
 

@@ -17,7 +17,7 @@ Build the state architecture and mock API layer for Nafas: a persistent local da
 **Project Type**: Mobile app (single codebase, two runtime shells)
 **Performance Goals**: 200-900ms simulated latency; data operations complete locally within 2 seconds
 **Constraints**: Frontend-only MVP; no real backend; single-device, single-user at a time; must be swappable with real API
-**Scale/Scope**: 6 seed kitchens, 4-8 dishes each, 3-5 reviews each, 3 chef accounts, 3 customer accounts, 2-3 sample orders
+**Scale/Scope**: 6 seed kitchens, 4-8 dishes each, 3-5 reviews each, 6 chef accounts, 3 customer accounts, 2-3 sample orders
 
 ## Constitution Check
 
