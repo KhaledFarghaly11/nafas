@@ -74,7 +74,9 @@ export default function RootLayout() {
       }
       if (I18nManager.isRTL !== (lang === 'ar')) {
         try {
-          I18nManager.forceRTL(lang === 'ar');
+          if (typeof I18nManager.forceRTL === 'function') {
+            I18nManager.forceRTL(lang === 'ar');
+          }
         } catch {
           // forceRTL not supported in all runtimes
         }

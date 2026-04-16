@@ -11,6 +11,8 @@ export interface SettingsState {
   themeOverride: 'light' | 'dark' | null;
   setThemeOverride: (mode: 'light' | 'dark' | null) => void;
   switchLanguage: (lang: 'en' | 'ar') => Promise<void>;
+  devErrorInjection: boolean;
+  setDevErrorInjection: (enabled: boolean) => void;
   hydrated: boolean;
 }
 
@@ -21,15 +23,21 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (lang) => set({ language: lang }),
       themeOverride: null,
       setThemeOverride: (mode) => set({ themeOverride: mode }),
+      devErrorInjection: false,
+      setDevErrorInjection: (enabled) => set({ devErrorInjection: enabled }),
       switchLanguage: async (lang) => {
+        const prevLang = get().language;
+        const prevRTL = I18nManager.isRTL;
         try {
-          get().setLanguage(lang);
           try {
-            I18nManager.forceRTL(lang === 'ar');
+            if (typeof I18nManager.forceRTL === 'function') {
+              I18nManager.forceRTL(lang === 'ar');
+            }
           } catch {
             // forceRTL not supported in all runtimes (e.g. Expo SDK 54 new architecture)
           }
           await i18n.changeLanguage(lang);
+          get().setLanguage(lang);
           const toPersist = Object.fromEntries(
             Object.entries(get()).filter(([key]) => key !== 'hydrated'),
           );
@@ -37,8 +45,25 @@ export const useSettingsStore = create<SettingsState>()(
             'nafas-settings',
             JSON.stringify({ state: toPersist, version: 0 }),
           );
-          await Updates.reloadAsync();
+          try {
+            await Updates.reloadAsync();
+          } catch {
+            // reloadAsync not available in dev mode or Expo Go
+          }
         } catch (error) {
+          try {
+            await i18n.changeLanguage(prevLang);
+          } catch {
+            // best-effort i18n rollback
+          }
+          try {
+            if (typeof I18nManager.forceRTL === 'function') {
+              I18nManager.forceRTL(prevRTL);
+            }
+          } catch {
+            // best-effort RTL rollback
+          }
+          get().setLanguage(prevLang);
           console.warn('[settings-store] switchLanguage failed:', error);
           throw error;
         }

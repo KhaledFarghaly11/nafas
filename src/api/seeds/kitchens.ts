@@ -3,7 +3,7 @@ import type { Kitchen } from '@/types';
 export const KITCHEN_SEEDS: Kitchen[] = [
   {
     id: 'kitchen-1',
-    chefId: 'chef-0100000001',
+    chefId: 'chef-01000000001',
     name: 'مطبخ أم سمية',
     nameEn: "Umm Samia's Kitchen",
     bio: 'أكل بيتي مصري أصيل زي ما ماما كانت بتعمله',
@@ -19,7 +19,7 @@ export const KITCHEN_SEEDS: Kitchen[] = [
   },
   {
     id: 'kitchen-2',
-    chefId: 'chef-0100000002',
+    chefId: 'chef-01000000002',
     name: 'مطبخ حاج محمد',
     nameEn: "Haj Mohamed's Kitchen",
     bio: 'مشويات بلدي طازة من الحلال يوميتك',
@@ -35,7 +35,7 @@ export const KITCHEN_SEEDS: Kitchen[] = [
   },
   {
     id: 'kitchen-3',
-    chefId: 'chef-0100000003',
+    chefId: 'chef-01000000003',
     name: 'مطبخ ست نونه',
     nameEn: "Sit Nona's Kitchen",
     bio: 'حلويات ومأكولات شرقية بالطريقة اللي الجدة كانت بتعملها',
@@ -51,7 +51,7 @@ export const KITCHEN_SEEDS: Kitchen[] = [
   },
   {
     id: 'kitchen-4',
-    chefId: 'chef-0100000004',
+    chefId: 'chef-01000000004',
     name: 'أكل البيت',
     nameEn: 'Home Food',
     bio: 'وجبات يومية صحية طازة كل يوم',
@@ -67,7 +67,7 @@ export const KITCHEN_SEEDS: Kitchen[] = [
   },
   {
     id: 'kitchen-5',
-    chefId: 'chef-0100000005',
+    chefId: 'chef-01000000005',
     name: 'مطبخ السيدة',
     nameEn: "Al Sayeda's Kitchen",
     bio: 'شوربات ومأكولات دافية في الشتا والصيف',
@@ -83,7 +83,7 @@ export const KITCHEN_SEEDS: Kitchen[] = [
   },
   {
     id: 'kitchen-6',
-    chefId: 'chef-0100000006',
+    chefId: 'chef-01000000006',
     name: 'فرن المعجنات',
     nameEn: 'Pastry Oven',
     bio: 'فطائر ومعجنات طازة كل صباح',

@@ -8,6 +8,12 @@ import { StorageService } from '@/lib/storage';
 import type { User, Kitchen, Dish, Review, Schedule, Order, Follow } from '@/types';
 
 const STORAGE_KEY = 'nafas-mock-db';
+const DB_VERSION = 2;
+
+interface StoredData {
+  version: number;
+  data: SerializedDB;
+}
 
 interface MockDBData {
   users: Map<string, User>;
@@ -106,13 +112,24 @@ export function loadSeeds(): void {
 
 export async function persistDB(): Promise<void> {
   const serialized = serializeDB(db);
-  await StorageService.setItem(STORAGE_KEY, serialized);
+  await StorageService.setItem(STORAGE_KEY, { version: DB_VERSION, data: serialized });
 }
 
 export async function initializeDB(): Promise<void> {
-  const stored = await StorageService.getItem<SerializedDB>(STORAGE_KEY);
-  if (stored) {
-    db = deserializeDB(stored);
+  let stored: StoredData | null = null;
+  try {
+    stored = await StorageService.getItem<StoredData>(STORAGE_KEY);
+  } catch (err) {
+    console.warn(`[mock-db] Failed to read ${STORAGE_KEY}:`, err);
+  }
+  if (stored && stored.version === DB_VERSION) {
+    try {
+      db = deserializeDB(stored.data);
+    } catch (err) {
+      console.warn(`[mock-db] Failed to deserialize ${STORAGE_KEY}:`, err);
+      loadSeeds();
+      await persistDB();
+    }
   } else {
     loadSeeds();
     await persistDB();
