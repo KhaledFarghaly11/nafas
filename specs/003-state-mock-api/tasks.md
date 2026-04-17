@@ -133,11 +133,11 @@
 
 ### Tests for User Story 2
 
-- [ ] T028 Add status transition tests to `__tests__/order-pipeline.test.ts` — Add tests: (1) Create an order (from T023 setup). (2) Chef calls acceptOrder → assert sub-order status is 'confirmed' and overall order status is 'confirmed'. (3) Chef calls updateOrderStatus to advance to 'preparing' → assert status is 'preparing'. (4) Continue advancing through the full pipeline: preparing → cooking → ready → on_the_way → delivered. (5) Assert each transition works and the overall status matches. (6) Test invalid transition: try advancing from 'confirmed' directly to 'ready' → assert it returns an error. (7) Test reject: create another order, chef calls rejectOrder → assert sub-order status is 'cancelled'. (8) Test multi-kitchen: create order with 2 kitchens, chef A accepts → overall status remains 'pending' (chef B hasn't accepted). Chef B accepts → overall status becomes 'confirmed'. Chef A advances to 'preparing' → overall status is 'confirmed' (least advanced is B's 'confirmed').
+- [x] T028 Add status transition tests to `__tests__/order-pipeline.test.ts` — Add tests: (1) Create an order (from T023 setup). (2) Chef calls acceptOrder → assert sub-order status is 'confirmed' and overall order status is 'confirmed'. (3) Chef calls updateOrderStatus to advance to 'preparing' → assert status is 'preparing'. (4) Continue advancing through the full pipeline: preparing → cooking → ready → on_the_way → delivered. (5) Assert each transition works and the overall status matches. (6) Test invalid transition: try advancing from 'confirmed' directly to 'ready' → assert it returns an error. (7) Test reject: create another order, chef calls rejectOrder → assert sub-order status is 'cancelled'. (8) Test multi-kitchen: create order with 2 kitchens, chef A accepts → overall status remains 'pending' (chef B hasn't accepted). Chef B accepts → overall status becomes 'confirmed'. Chef A advances to 'preparing' → overall status is 'confirmed' (least advanced is B's 'confirmed').
 
 ### Implementation for User Story 2
 
-- [ ] T029 [US2] The hooks from T026 (`useAcceptOrder`, `useRejectOrder`, `useUpdateOrderStatus`) already implement this user story. Verify they work by running the test from T028. If any issue is found, fix the mock server or hook implementation.
+- [x] T029 [US2] The hooks from T026 (`useAcceptOrder`, `useRejectOrder`, `useUpdateOrderStatus`) already implement this user story. Verify they work by running the test from T028. If any issue is found, fix the mock server or hook implementation.
 
 **Checkpoint**: Full order pipeline works with status transitions enforced. Run `npx jest __tests__/order-pipeline.test.ts` to verify.
 
