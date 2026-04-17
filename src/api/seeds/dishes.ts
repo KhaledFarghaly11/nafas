@@ -390,7 +390,7 @@ export const DISH_SEEDS: Dish[] = [
     imageUrl: null,
     createdAt: '2026-04-06T07:00:00.000Z',
   },
-  // Kitchen 6 — فرن المعجنات (Mohandessin)
+  // Kitchen 6 — فرن المعجنات (6th October)
   {
     id: 'dish-25',
     kitchenId: 'kitchen-6',
