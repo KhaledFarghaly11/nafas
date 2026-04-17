@@ -44,7 +44,10 @@ describe('T023: Order Pipeline - Creation and Chef Visibility', () => {
     };
 
     const createResult = await createOrder(input);
-    expect('order' in createResult).toBe(true);
+    // Narrow the type to ensure we have the success case
+    if (!('order' in createResult)) {
+      throw new Error('Expected order creation to succeed');
+    }
     const order = createResult.order;
 
     expect(order.customerId).toBe(customerId);

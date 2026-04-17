@@ -44,7 +44,8 @@ export function useReorder(orderId: string) {
   return useMutation({
     mutationFn: () => reorder(orderId),
     onSuccess: (result) => {
-      if (result.success && 'addedItems' in result) {
+      // Check if result has addedItems (indicating successful reorder)
+      if ('addedItems' in result && Array.isArray(result.addedItems)) {
         for (const item of result.addedItems) {
           cartStore.getState().addItem(item);
         }
